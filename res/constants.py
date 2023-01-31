@@ -6,6 +6,12 @@ APP_DIMS_EXPANDED = "800x900"
 APP_EXPANDED_W = 800
 APP_EXPANDED_H = 900
 
+# Directories
+
+SEARCH_ICON_DIR = "res/icons/search.png"
+ADD_ICON_DIR = "res/icons/add.png"
+TICK_ICON_DIR = "res/icons/tick.png"
+EXIT_ICON_DIR = "res/icons/exit.png"
 
 # Colours
 BUTTON_BG = "#7b8b9c"
