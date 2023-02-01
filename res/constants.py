@@ -14,8 +14,8 @@ TICK_ICON_DIR = "res/icons/tick.png"
 EXIT_ICON_DIR = "res/icons/exit.png"
 
 # Colours
-BUTTON_BG = "#7b8b9c"
-BUTTON_BG_HOVER = "#8fa1b5"
+BUTTON_BG = "#56c7d8"
+BUTTON_BG_HOVER = "#86f7f8"
 BUTTON_BG_CLICKED = "#657280"
 
 MAIN_BG = "#575f69"
