@@ -24,3 +24,6 @@ MAIN_BG_LIGHT = "#868c91"
 ENTRY_BG = "#a7aeb5"
 ENTRY_FG = "black"
 
+TITLE_FG = "#fcfdf2"
+LABEL_FG = "#ecede2"
+
