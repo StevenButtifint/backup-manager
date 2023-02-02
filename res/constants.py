@@ -21,3 +21,6 @@ BUTTON_BG_CLICKED = "#657280"
 MAIN_BG = "#1c3d52" #"#575f69"
 MAIN_BG_LIGHT = "#868c91"
 
+ENTRY_BG = "#a7aeb5"
+ENTRY_FG = "black"
+
