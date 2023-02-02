@@ -27,3 +27,11 @@ ENTRY_FG = "black"
 TITLE_FG = "#fcfdf2"
 LABEL_FG = "#ecede2"
 
+TAB_BG = BUTTON_BG
+TAB_BG_SELECTED = BUTTON_BG_HOVER
+
+LISTBOX_BG = "#a7aeb5"
+LISTBOX_FG = "black"
+
+NOTEBOOK_BG = "#575f69"
+NOTEBOOK_FG = "red"
