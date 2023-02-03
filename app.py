@@ -32,6 +32,16 @@ class Window:
         drive_names = []
         for letter in occupied_letters:
             drive_names.append(get_drive_name(letter))
+        print(drive_names)
+
+        #recommended_presets = []
+        recommended_preset_names = []
+        for preset in self.presets.saved_presets:
+            if all(item in drive_names for item in preset["drives"]):
+                #recommended_presets.append(preset)
+                recommended_preset_names.append(preset["name"])
+                print(preset["name"] + "is available")
+
 
 
 
