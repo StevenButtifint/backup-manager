@@ -42,6 +42,13 @@ class Window:
                 recommended_preset_names.append(preset["name"])
                 print(preset["name"] + "is available")
 
+        recommend_frame = make_static_frame(self.window, MAIN_BG, APP_EXPANDED_W, APP_EXPANDED_H, 400, 450, "center")
+        make_label(recommend_frame, "RECOMMENDED PRESETS", MAIN_BG, TITLE_FG, 0.5, 0.0125, "n", 20)
+        make_button(recommend_frame, "Back", 1, 6, BUTTON_BG, "black", 0.0125, 0.0125, lambda: self._return_to_home(recommend_frame), 16, "nw")
+        presets_frame = make_frame(recommend_frame, MAIN_BG, 0.975, 0.235, 0.5, 0.065, "n")
+        presets_listbox = make_listbox(presets_frame, 18, LISTBOX_BG, LISTBOX_FG)
+        set_listbox(presets_listbox, recommended_preset_names)
+
 
 
 
