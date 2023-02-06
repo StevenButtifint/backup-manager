@@ -31,6 +31,20 @@ def make_img_button(frame, text, height, width, bg, fg, rx, ry, anchor, command,
     return new_button
 
 
+def make_tree_view(frame, column_names, column_widths):
+
+    tree_view = ttk.Treeview(frame, columns=column_names, show='headings')
+    for index, name in enumerate(column_names):
+        tree_view.heading(name, text=name)
+        tree_view.column(name, width=column_widths[index])
+    tree_view.pack(side=tk.LEFT, fill=tk.BOTH, expand=tk.YES)
+
+    scrollbar = ttk.Scrollbar(frame, orient=tk.VERTICAL, command=tree_view.yview)
+    tree_view.configure(yscroll=scrollbar.set)
+    scrollbar.pack(side=tk.RIGHT, fill=tk.BOTH)
+    return tree_view
+
+
 
 
 def make_label(frame, text, bg, fg, rx, ry, anchor, size):
