@@ -73,3 +73,16 @@ def make_label(frame, text, bg, fg, rx, ry, anchor, size):
     return label
 
 
+def make_notebook(frame, tab_names, notebook_bg, notebook_fg):
+    notebook = ttk.Notebook(frame)
+    tabs = []
+
+    for tab_name in tab_names:
+        new_tab = tk.Frame(notebook)
+        notebook.add(new_tab, text=tab_name)
+        tabs.append(new_tab)
+
+    notebook.pack(expand=1, fill="both")
+
+    return notebook, tabs
+
