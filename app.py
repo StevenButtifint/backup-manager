@@ -68,6 +68,47 @@ class Window:
         make_button(self.preset_preview_frame, "Delete Preset", 1, 12, BUTTON_BG, "black", 0.5, 0.975, lambda: self.delete_confirm(), 16, "s")
 
 
+    def _save_new_preset(self, notice, name, description, create_preset_frame):
+        notice.config(text="")
+        if name == "":
+            notice.config(text="Enter a preset name")
+
+        elif name in self.presets.get_preset_names():
+            notice.config(text="Preset name must be unique")
+
+        elif len(self.new_preset_locations) == 0:
+            notice.config(text="Enter at least one file or folder to sync")
+
+        else:
+
+            preset_drives = []
+            for location in self.new_preset_locations:
+                new_src = location[5]
+                new_dst = location[6]
+                if new_src not in preset_drives:
+                    preset_drives.append(new_src)
+                if new_dst not in preset_drives:
+                    preset_drives.append(new_dst)
+
+            print(self.new_preset_locations)
+
+            date_created = datetime.today().strftime('%d-%m-%Y')
+
+            preset_data = '{ "name": '+json.dumps(name)+', "description": '+json.dumps(description)+', "created": ' + json.dumps(date_created) + ' , "locations":' + json.dumps(self.new_preset_locations) + ', "drives":' + json.dumps(preset_drives) + '}'
+
+            preset_data = json.loads(str(preset_data))
+
+            self.presets.save_new_preset(preset_data)
+
+            try:
+                set_listbox(self.presets_listbox, self.presets.get_preset_names())
+            except:
+                pass
+
+            create_preset_frame.destroy()
+            self._set_window_compact()
+
+
 
 
 
