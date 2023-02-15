@@ -50,6 +50,24 @@ class Window:
         presets_listbox = make_listbox(presets_frame, 18, LISTBOX_BG, LISTBOX_FG)
         set_listbox(presets_listbox, recommended_preset_names)
 
+    def create_preset_preview(self, name_string, date_created): # change to change content or remake frame each time
+        # self.preset_preview_frame.destroy()
+        # self.preset_preview_frame = make_frame(manage_preset_frame, MAIN_BG_LIGHT, 1, 0.63, 0.5, 1, "s")
+        make_label(self.preset_preview_frame, name_string, MAIN_BG_LIGHT, "black", 0.025, 0.06, "w", 18)
+        make_label(self.preset_preview_frame, "Description:", MAIN_BG_LIGHT, "black", 0.025, 0.1, "w", 18)
+
+        make_label(self.preset_preview_frame, "Location Details", MAIN_BG_LIGHT, "black", 0.5, 0.15, "center", 14)
+        column_names = ('Source Locations', 'Backup Locations')
+        column_widths = [50, 50]
+        preview_tree_frame = make_frame(self.preset_preview_frame, "orange", 0.95, 0.4, 0.5, 0.4, "center")
+        self.location_preview_tree = make_tree_view(preview_tree_frame, column_names, column_widths)
+
+        self.locations_label = make_label(self.preset_preview_frame, "Locations: ", MAIN_BG_LIGHT, "black", 0.06, 0.65, "w", 14)
+        make_label(self.preset_preview_frame, "Date Created: "+date_created, MAIN_BG_LIGHT, "black", 0.06, 0.7, "w", 14)
+
+        make_button(self.preset_preview_frame, "Delete Preset", 1, 12, BUTTON_BG, "black", 0.5, 0.975, lambda: self.delete_confirm(), 16, "s")
+
+
 
 
 
