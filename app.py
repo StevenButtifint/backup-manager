@@ -51,6 +51,21 @@ class Window:
         set_listbox(presets_listbox, recommended_preset_names)
 
     def create_preset_preview(self, name_string, date_created): # change to change content or remake frame each time
+
+    def select_preset_page(self):
+        self.presets.clear_selected_preset()
+        manage_preset_frame = make_static_frame(self.window, MAIN_BG, APP_EXPANDED_W, APP_EXPANDED_H, 400, 450, "center")
+        make_label(manage_preset_frame, "SELECT PRESET", MAIN_BG, TITLE_FG, 0.5, 0.0125, "n", 20)
+        presets_frame = make_frame(manage_preset_frame, MAIN_BG, 0.975, 0.235, 0.5, 0.065, "n")
+        self.presets_listbox = make_listbox(presets_frame, 18, LISTBOX_BG, LISTBOX_FG)
+        self.presets_listbox.bind('<<ListboxSelect>>', self.saved_preset_selected)
+        set_listbox(self.presets_listbox, self.presets.get_preset_names())
+
+        preset_details = make_button(manage_preset_frame, "Toggle Preset Details", 1, 17, BUTTON_BG, "black", 0.5, 0.31, lambda: None, 16, "n")
+        preset_details.config(command=lambda: self._toggle_preset_details())
+        make_button(manage_preset_frame, "Create New Preset", 1, 18, BUTTON_BG, "black", 0.0125, 0.31, lambda: self.create_preset_page(), 16, "nw")
+        make_button(manage_preset_frame, "Back", 1, 6, BUTTON_BG, "black", 0.0125, 0.0125, lambda: self._return_to_home(manage_preset_frame), 16, "nw")
+
         # self.preset_preview_frame.destroy()
         # self.preset_preview_frame = make_frame(manage_preset_frame, MAIN_BG_LIGHT, 1, 0.63, 0.5, 1, "s")
         make_label(self.preset_preview_frame, name_string, MAIN_BG_LIGHT, "black", 0.025, 0.06, "w", 18)
