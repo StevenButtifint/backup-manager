@@ -8,6 +8,13 @@ class Presets:
         self.recommended_preset_names = []
 
 
+    def set_selected_preset(self, preset):
+        self.selected_preset = preset
+
+    def clear_selected_preset(self):
+        self.selected_preset = None
+
+
     @staticmethod
     def get_drive_names():
         drive_names = []
