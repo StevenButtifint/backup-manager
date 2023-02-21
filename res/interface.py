@@ -41,26 +41,26 @@ def make_img_button(frame, text, height, width, bg, fg, rx, ry, anchor, command,
     return new_button
 
 
-def make_tree_view(frame, column_names, column_widths):
+def set_style():
     a = ttk.Style()
-
+    a.theme_use("clam")
     a.configure('.',            # every class of object
                 relief='flat',  # flat ridge for separator
-                borderwidth=0,  # zero width for the border
-                )
-
-    #a.theme_use("clam")
+                borderwidth=0,
+                highlightthickness=0)
 
     a.configure("Treeview",
-                #background="red",
-                forground=TREE_HEADING_BG,
+                background="red",
+                foreground=TREE_HEADING_BG,
                 fieldbackground=TREE_COLUMNS_BG,
                 borderwidth=0,
                 highlightthickness=0)
 
     a.configure('Treeview.Heading',
                 background=TREE_HEADING_BG,
-                forground="red")
+
+
+def make_tree_view(frame, column_names, column_widths):
 
     tree_view = ttk.Treeview(frame, columns=column_names, show='headings')
     for index, name in enumerate(column_names):
