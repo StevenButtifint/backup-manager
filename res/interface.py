@@ -1,4 +1,7 @@
 import tkinter as tk
+from tkinter import ttk
+import tkinter.font as font
+
 
 
 def make_frame(frame, bg, rw, rh, rx, ry, anchor):
