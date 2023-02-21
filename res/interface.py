@@ -58,6 +58,8 @@ def set_style():
 
     a.configure('Treeview.Heading',
                 background=TREE_HEADING_BG,
+                foreground=TREE_HEADING_FG)
+
 
 
 def make_tree_view(frame, column_names, column_widths):
