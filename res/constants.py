@@ -22,8 +22,8 @@ BUTTON_BG = "#56c7d8"
 BUTTON_BG_HOVER = "#86f7f8"
 BUTTON_BG_CLICKED = "#657280"
 
-MAIN_BG = "#1c3d52" #"#575f69"
-MAIN_BG_LIGHT = "#868c91"
+MAIN_BG = "#1c3d52"
+MAIN_BG_LIGHT = "#355b73"
 
 ENTRY_BG = "#8cadc2"
 ENTRY_FG = "black"
@@ -31,11 +31,11 @@ ENTRY_FG = "black"
 TITLE_FG = "#fcfdf2"
 LABEL_FG = "#ecede2"
 
-TAB_BG = "#36a7c8"
-TAB_BG_SELECTED = "#1687a8"
-
-LISTBOX_BG = "#a7aeb5"
+LISTBOX_BG = "#8cadc2"
 LISTBOX_FG = "black"
 
 NOTEBOOK_BG = MAIN_BG
 NOTEBOOK_FG = "red"
+
+TAB_BG = "#36a7c8"
+TAB_BG_SELECTED = "#1687a8"
