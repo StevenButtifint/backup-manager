@@ -18,6 +18,13 @@ def make_button(frame, text, height, width, bg, fg, rx, ry, command, size, ancho
     return new_button
 
 
+def make_entry(frame, width, bg, fg, text, rx, ry, anchor):
+    entry = tk.Entry(frame, width=width, bg=bg, fg=fg, textvariable=text)
+    entry.config(font="Arial 16")
+    entry.place(relx=rx, rely=ry, anchor=anchor)
+    return entry
+
+
 def make_img_button(frame, text, height, width, bg, fg, rx, ry, anchor, command, size, image_dir):
     image = tk.PhotoImage(file=image_dir)
     new_button = tk.Button(frame, text=text, height=height, width=width, bg=bg, fg=fg, image=image)
