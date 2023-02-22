@@ -88,7 +88,15 @@ class Window:
         frame.destroy()
         self.window.geometry(APP_DIMS_COMPACT)
 
-        make_button(self.preset_preview_frame, "Delete Preset", 1, 12, BUTTON_BG, "black", 0.5, 0.975, lambda: self.delete_confirm(), 16, "s")
+    def _toggle_preset_details(self):
+        if (self.window.winfo_width() == APP_EXPANDED_W) and (self.window.winfo_height() == APP_EXPANDED_H):
+            self._set_window_compact()
+        else:
+            if self.presets.selected_preset is not None:
+                self._set_window_expanded()
+            else:
+                self.notice_label.config(text="Select a preset first")
+
 
 
     def _save_new_preset(self, notice, name, description, create_preset_frame):
