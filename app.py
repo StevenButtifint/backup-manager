@@ -97,6 +97,11 @@ class Window:
             else:
                 self.notice_label.config(text="Select a preset first")
 
+    def _set_window_compact(self):
+        self.window.geometry(APP_DIMS_COMPACT)
+
+    def _set_window_expanded(self):
+        self.window.geometry(APP_DIMS_EXPANDED)
 
 
     def _save_new_preset(self, notice, name, description, create_preset_frame):
