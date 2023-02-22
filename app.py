@@ -84,6 +84,10 @@ class Window:
 
         self.locations_label = make_label(self.preset_preview_frame, "Sync Locations: ", MAIN_BG_LIGHT, "black", 0.06, 0.65, "w", 14)
 
+    def _return_to_home(self, frame):
+        frame.destroy()
+        self.window.geometry(APP_DIMS_COMPACT)
+
         make_button(self.preset_preview_frame, "Delete Preset", 1, 12, BUTTON_BG, "black", 0.5, 0.975, lambda: self.delete_confirm(), 16, "s")
 
 
