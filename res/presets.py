@@ -1,4 +1,7 @@
 
+from res.constants import *
+from res.operations import resource_path, connected_drive_letters, get_drive_names, get_saved_presets
+
 
 class Presets:
     def __init__(self):
