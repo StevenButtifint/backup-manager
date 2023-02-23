@@ -1,3 +1,4 @@
+import json
 
 from res.constants import *
 from res.operations import resource_path, connected_drive_letters, get_drive_names, get_saved_presets
@@ -10,6 +11,11 @@ class Presets:
         self.recommended_presets = []
         self.recommended_preset_names = []
 
+    def get_preset_names(self):
+        preset_names = []
+        for preset in self.saved_presets:
+            preset_names.append(preset["name"])
+        return preset_names
 
     def set_selected_preset(self, preset):
         self.selected_preset = preset
