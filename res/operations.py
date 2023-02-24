@@ -1,3 +1,4 @@
+import win32api
 import os
 from os import listdir
 from os.path import isfile, join
@@ -13,5 +14,15 @@ def check_file_modified(file_dir_a, file_dir_b):
         return False
     else:
         return True
+
+
+
+
+def get_drive_names():
+    drive_names = []
+    occupied_letters = connected_drive_letters()
+    for letter in occupied_letters:
+        drive_names.append(get_drive_name(letter))
+    return drive_names
 
 

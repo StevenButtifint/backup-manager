@@ -23,15 +23,6 @@ class Presets:
     def clear_selected_preset(self):
         self.selected_preset = None
 
-
-    @staticmethod
-    def get_drive_names():
-        drive_names = []
-        occupied_letters = connected_drive_letters()
-        for letter in occupied_letters:
-            drive_names.append(get_drive_name(letter))
-        return drive_names
-
     def update_recommended_presets(self):
         drive_names = get_drive_names()
         self.recommended_presets = []
