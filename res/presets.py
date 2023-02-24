@@ -35,3 +35,12 @@ class Presets:
     def update_saved_presets(self):
         self.saved_presets = get_saved_presets()
 
+    def delete_preset(self, preset_name):
+        for idx, preset in enumerate(self.saved_presets):
+            if preset['name'] == preset_name:
+                self.saved_presets.pop(idx)
+
+        with open(resource_path(PRESETS_DIR), 'w', encoding='utf-8') as f:
+            json.dump(self.saved_presets, f, ensure_ascii=False, indent=4)
+        self.update_saved_presets()
+
