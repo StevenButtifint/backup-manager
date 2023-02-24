@@ -44,3 +44,8 @@ class Presets:
             json.dump(self.saved_presets, f, ensure_ascii=False, indent=4)
         self.update_saved_presets()
 
+    def save_new_preset(self, new_preset):
+        self.saved_presets.append(new_preset)
+        with open(resource_path(PRESETS_DIR), 'w', encoding='utf-8') as f:
+            json.dump(self.saved_presets, f, ensure_ascii=False, indent=4)
+        self.update_saved_presets()
