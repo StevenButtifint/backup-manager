@@ -32,3 +32,6 @@ class Presets:
                 self.recommended_presets.append(preset)
                 self.recommended_preset_names.append(preset["name"])
 
+    def update_saved_presets(self):
+        self.saved_presets = get_saved_presets()
+
