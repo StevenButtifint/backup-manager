@@ -29,28 +29,13 @@ class Window:
         make_label(home_frame, APP_VERSION, MAIN_BG, VERSION_FG, 1, 1, "se", 10)
 
     def recommend_preset_page(self):
-        occupied_letters = connected_drive_letters()
-        drive_names = []
-        for letter in occupied_letters:
-            drive_names.append(get_drive_name(letter))
-        print(drive_names)
-
-        #recommended_presets = []
-        recommended_preset_names = []
-        for preset in self.presets.saved_presets:
-            if all(item in drive_names for item in preset["drives"]):
-                #recommended_presets.append(preset)
-                recommended_preset_names.append(preset["name"])
-                print(preset["name"] + "is available")
-
+        self.presets.update_recommended_presets()
+        self.presets.clear_selected_preset()
         recommend_frame = make_static_frame(self.window, MAIN_BG, APP_EXPANDED_W, APP_EXPANDED_H, 400, 450, "center")
         make_label(recommend_frame, "RECOMMENDED PRESETS", MAIN_BG, TITLE_FG, 0.5, 0.0125, "n", 20)
         make_button(recommend_frame, "Back", 1, 6, BUTTON_BG, "black", 0.0125, 0.0125, lambda: self._return_to_home(recommend_frame), 16, "nw")
         presets_frame = make_frame(recommend_frame, MAIN_BG, 0.975, 0.235, 0.5, 0.065, "n")
         presets_listbox = make_listbox(presets_frame, 18, LISTBOX_BG, LISTBOX_FG)
-        set_listbox(presets_listbox, recommended_preset_names)
-
-    def create_preset_preview(self, name_string, date_created): # change to change content or remake frame each time
 
     def select_preset_page(self):
         self.presets.clear_selected_preset()
