@@ -19,3 +19,7 @@ class PresetPreview:
         self.description.insert(tk.END, description)
         self.description.config(state=tk.DISABLED)
 
+    def clear_attributes(self):
+        self.set_name("")
+        self.set_date_created("")
+        self.set_description("")
