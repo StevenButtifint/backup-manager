@@ -12,3 +12,10 @@ class PresetPreview:
 
     def set_date_created(self, date):
         self.date_created.config(text=date)
+
+    def set_description(self, description):
+        self.description.config(state=tk.NORMAL)
+        self.description.delete(1.0, tk.END)
+        self.description.insert(tk.END, description)
+        self.description.config(state=tk.DISABLED)
+
