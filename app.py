@@ -159,6 +159,46 @@ class Window:
 
 
 
+    def add_folder_pair(self, folder_notice, src_entry, dst_entry, sub_folders_check, sync_files_edited, sync_deleted_files):
+        if src_entry.get() != "":
+            if dst_entry.get() != "":
+                if src_entry.get() != dst_entry.get():
+
+                    if sub_folders_check.get() == 1:
+                        sub_folders_check = "Yes"
+                    else:
+                        sub_folders_check = "No"
+
+                    if sync_files_edited.get() == 1:
+                        sync_files_edited = "Yes"
+                    else:
+                        sync_files_edited = "No"
+
+                    if sync_deleted_files.get() == 1:
+                        sync_deleted_files = "Yes"
+                    else:
+                        sync_deleted_files = "No"
+
+                    source = src_entry.get().replace('/', '//')
+                    destination = dst_entry.get().replace('/', '//')
+
+                    src_drive_name = get_drive_name(src_entry.get()[0])
+                    dst_drive_name = get_drive_name(dst_entry.get()[0])
+
+                    self.new_preset_locations.append((source, destination, sub_folders_check, sync_files_edited, sync_deleted_files, src_drive_name, dst_drive_name))
+                    print(self.new_preset_locations)
+                    set_tree_view(self.new_preset_tree, self.new_preset_locations)
+                    src_entry.delete(0, tk.END)
+                    dst_entry.delete(0, tk.END)
+
+                else:
+                    folder_notice.config(text="Source and Destination locations must be different")
+            else:
+                folder_notice.config(text="Select a Backup location")
+        else:
+            folder_notice.config(text="Select a Source location")
+
+
 
 if __name__ == "__main__":
     root = tk.Tk()
