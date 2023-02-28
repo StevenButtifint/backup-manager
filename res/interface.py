@@ -116,3 +116,19 @@ def make_notebook(frame, tab_names, notebook_bg, notebook_fg):
 
     return notebook, tabs
 
+
+
+def mouse_enter(e):
+    if e.widget['background'] != BUTTON_BG_CLICKED:
+        e.widget['background'] = BUTTON_BG_HOVER
+
+
+def mouse_leave(e):
+    if e.widget['background'] != BUTTON_BG_CLICKED:
+        e.widget['background'] = BUTTON_BG
+
+
+def mouse_release(e):
+    e.widget['background'] = BUTTON_BG_CLICKED
+
+
