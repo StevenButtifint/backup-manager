@@ -60,6 +60,22 @@ def set_style():
                 background=TREE_HEADING_BG,
                 foreground=TREE_HEADING_FG)
 
+    a.layout("TNotebook", [])
+    a.configure("TNotebook",
+                background=NOTEBOOK_BG,
+                highlightbackground="#848a98",
+                tabmargins=0)  # borderwidth = 0, highlightthickness = 0)
+
+    a.configure("TNotebook.Tab",
+                background=TAB_BG,
+                foreground=TAB_FG,
+                padding=[20, 5, 20, 2],
+                font=('Arial', '16'))
+
+    a.map("TNotebook.Tab",
+          padding=[("selected", [20, 5, 20, 2])],
+          background=[("selected", TAB_BG_SELECTED)])
+
 
 
 def make_tree_view(frame, column_names, column_widths):
@@ -86,22 +102,8 @@ def make_label(frame, text, bg, fg, rx, ry, anchor, size):
 
 
 def make_notebook(frame, tab_names, notebook_bg, notebook_fg):
-    nb_style = ttk.Style()
-    nb_style.theme_use("clam")
-    nb_style.layout("TNotebook", [])
-    nb_style.configure("TNotebook", highlightbackground="#848a98",
-                    tabmargins=0)  # borderwidth = 0, highlightthickness = 0)
 
-    nb_style.configure("TNotebook",
-                       background=NOTEBOOK_BG,
-                       fieldbackground="purple",
-                       tabmargins=[0, 0, 10, 0],
-                       borderwidth=0,
-                       highlightthickness=0)
 
-    nb_style.configure("TNotebook.Tab",
-                       background=NOTEBOOK_BG,
-                       font=('Arial', '16'))
     notebook = ttk.Notebook(frame)
     tabs = []
 
