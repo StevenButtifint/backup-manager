@@ -85,13 +85,20 @@ def make_tree_view(frame, column_names, column_widths):
     tree_view = ttk.Treeview(frame, columns=column_names, show='headings')
     for index, name in enumerate(column_names):
         tree_view.heading(name, text=name)
-        tree_view.column(name, width=column_widths[index])
+        tree_view.column(name, width=column_widths[index], anchor='c')
     tree_view.pack(side=tk.LEFT, fill=tk.BOTH, expand=tk.YES)
 
     scrollbar = ttk.Scrollbar(frame, orient=tk.VERTICAL, command=tree_view.yview)
     tree_view.configure(yscroll=scrollbar.set)
     scrollbar.pack(side=tk.RIGHT, fill=tk.BOTH)
     return tree_view
+
+
+def set_tree_view(tree_view, content):
+    for i in tree_view.get_children():
+        tree_view.delete(i)
+    for item in content:
+        tree_view.insert('', tk.END, values=item)
 
 
 
