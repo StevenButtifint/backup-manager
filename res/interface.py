@@ -3,6 +3,8 @@ from tkinter import ttk
 import tkinter.font as font
 
 
+from res.constants import *
+
 
 def make_frame(frame, bg, rw, rh, rx, ry, anchor):
     new_frame = tk.Frame(frame, bg=bg)
@@ -130,5 +132,13 @@ def mouse_leave(e):
 
 def mouse_release(e):
     e.widget['background'] = BUTTON_BG_CLICKED
+
+
+def mouse_enter_tile(e):#NOTUSED_
+    e.widget.config(borderwidth=3)
+
+
+def mouse_leave_tile(e):#NOTUSED_
+    e.widget.config(borderwidth=1)
 
 
