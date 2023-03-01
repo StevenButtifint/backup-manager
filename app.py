@@ -104,6 +104,12 @@ class Window:
         else:
             self.notice_label.config(text="Select a preset first")
 
+    def remove_preset(self, confirm_button):
+        self.presets.delete_preset(self.presets.selected_preset["name"])
+        set_listbox(self.presets_listbox, self.presets.get_preset_names())
+        self.presets.clear_selected_preset()
+        self.preset_preview.clear_attributes()
+        confirm_button.destroy()
 
     def create_preset_page(self):
         self._set_window_expanded()
