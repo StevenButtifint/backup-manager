@@ -50,24 +50,32 @@ class Window:
         preset_details.config(command=lambda: self._toggle_preset_details())
         make_button(manage_preset_frame, "Create New Preset", 1, 18, BUTTON_BG, "black", 0.0125, 0.31, lambda: self.create_preset_page(), 16, "nw")
         make_button(manage_preset_frame, "Back", 1, 6, BUTTON_BG, "black", 0.0125, 0.0125, lambda: self._return_to_home(manage_preset_frame), 16, "nw")
+        preset_preview_frame = make_frame(manage_preset_frame, MAIN_BG_LIGHT, 1, 0.63, 0.5, 1, "s")
+        make_label(preset_preview_frame, "PRESET DETAILS", MAIN_BG_LIGHT, LABEL_FG, 0.5, 0.09, "s", 20)
 
-        self.preset_preview_frame = make_frame(manage_preset_frame, MAIN_BG_LIGHT, 1, 0.63, 0.5, 1, "s")
-        make_label(self.preset_preview_frame, "PRESET DETAILS", MAIN_BG_LIGHT, "black", 0.5, 0.06, "s", 20)
-        # self.preset_preview_frame.destroy()
-        # self.preset_preview_frame = make_frame(manage_preset_frame, MAIN_BG_LIGHT, 1, 0.63, 0.5, 1, "s")
+        name_label = make_label(preset_preview_frame, "Name:", MAIN_BG_LIGHT, LABEL_FG, 0.195, 0.14, "e", 18)
+        name_label['font'] = font.Font(slant="italic", size=16)
 
-        self.preset_preview.name = make_label(self.preset_preview_frame, "name_string", MAIN_BG_LIGHT, "black", 0.025, 0.06, "w", 18)
-        self.preset_preview.date_created = make_label(self.preset_preview_frame, "Date Created: ", MAIN_BG_LIGHT, "black", 0.06, 0.7, "w", 14)
+        self.preset_preview.name = make_label(preset_preview_frame, "", MAIN_BG_LIGHT, LABEL_FG, 0.205, 0.14, "w", 18)
 
-        make_label(self.preset_preview_frame, "Description:", MAIN_BG_LIGHT, "black", 0.025, 0.1, "w", 18)
+        description_label = make_label(preset_preview_frame, "Description:", MAIN_BG_LIGHT, LABEL_FG, 0.195, 0.21, "e", 18)
+        description_label['font'] = font.Font(slant="italic", size=16)
 
-        make_label(self.preset_preview_frame, "Location Details", MAIN_BG_LIGHT, "black", 0.5, 0.15, "center", 14)
-        column_names = ('Source Locations', 'Backup Locations')
-        column_widths = [50, 50]
-        preview_tree_frame = make_frame(self.preset_preview_frame, "orange", 0.95, 0.4, 0.5, 0.4, "center")
+        description_frame = make_frame(preset_preview_frame, "black", 0.77, 0.13, 0.205, 0.25, "w")
+        self.preset_preview.description = make_text_box(description_frame, MAIN_BG_LIGHT, LABEL_FG, 12, 12)
+
+        location_label = make_label(preset_preview_frame, "Sync Details:", MAIN_BG_LIGHT, LABEL_FG, 0.195, 0.43, "e", 18)
+        location_label['font'] = font.Font(slant="italic", size=16)
+        preview_tree_frame = make_frame(preset_preview_frame, MAIN_BG_LIGHT, 0.95, 0.4, 0.5, 0.67, "center")
         self.location_preview_tree = make_tree_view(preview_tree_frame, TREE_NAMES, TREE_WIDTHS)
 
-        self.locations_label = make_label(self.preset_preview_frame, "Sync Locations: ", MAIN_BG_LIGHT, "black", 0.06, 0.65, "w", 14)
+        date_label = make_label(preset_preview_frame, "Date Created:", MAIN_BG_LIGHT, LABEL_FG, 0.195, 0.36, "e", 18)
+        date_label['font'] = font.Font(slant="italic", size=16)
+        self.preset_preview.date_created = make_label(preset_preview_frame, "", MAIN_BG_LIGHT, LABEL_FG, 0.205, 0.36, "w", 18)
+
+        delete_button = make_button(preset_preview_frame, "Delete Preset", 1, 12, BUTTON_BG, "black", 0.5, 0.975, lambda: self.delete_confirm(preset_preview_frame), 16, "s")
+        delete_button.config(bg=MAIN_BG_LIGHT)
+
 
     def _return_to_home(self, frame):
         frame.destroy()
