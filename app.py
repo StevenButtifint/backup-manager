@@ -96,6 +96,14 @@ class Window:
     def _set_window_expanded(self):
         self.window.geometry(APP_DIMS_EXPANDED)
 
+    def delete_confirm(self, preset_preview_frame):
+        if self.presets.selected_preset is not None:
+            confirm_button = make_button(preset_preview_frame, "Confirm Preset Deletion", 1, 20, BUTTON_BG, "black", 0.975, 0.975, None, 16, "se")
+            confirm_button.config(command=lambda: self.remove_preset(confirm_button))
+            confirm_button.config(bg="red")
+        else:
+            self.notice_label.config(text="Select a preset first")
+
 
     def create_preset_page(self):
         self._set_window_expanded()
