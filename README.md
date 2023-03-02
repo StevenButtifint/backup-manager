@@ -20,10 +20,15 @@
 
 ### Description
 
+This backup manager makes syncing file systems across multiple drives and devices quick and simple. The user can create custom presets that make maintaining backups as easy as clicking a single button. The application has been made with Python with Tkinter for the GUI.
+
 ---
 
 
 ### What I Learned
+- How to utilize ttk treeview and notebook widgets.
+- How to customise ttk widgets using styles.
+- How to check the modified time of a file.
 
 [Back To The Top](#dyslexia-assistive-application)
  
