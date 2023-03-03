@@ -12,6 +12,12 @@ def make_frame(frame, bg, rw, rh, rx, ry, anchor):
     return new_frame
 
 
+def make_static_frame(frame, bg, w, h, x, y, anchor):
+    new_frame = tk.Frame(frame, bg=bg)
+    new_frame.place(width=w, height=h, x=x, y=y, anchor=anchor)
+    return new_frame
+
+
 def make_button(frame, text, height, width, bg, fg, rx, ry, command, size, anchor):
     new_button = tk.Button(frame, text=text, height=height, width=width, bg=bg, fg=fg)
     new_button.config(activebackground=BUTTON_BG_CLICKED, command=command)
