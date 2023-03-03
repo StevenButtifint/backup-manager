@@ -101,6 +101,16 @@ def set_tree_view(tree_view, content):
         tree_view.insert('', tk.END, values=item)
 
 
+def make_listbox(frame, font_size, bg, fg):
+    listbox = tk.Listbox(frame, font=("Arial", font_size), bg=bg, fg=fg)
+    listbox.pack(side=tk.LEFT, fill=tk.BOTH, expand=tk.YES)
+    scrollbar = tk.Scrollbar(frame)
+    scrollbar.pack(side=tk.RIGHT, fill=tk.BOTH)
+    listbox.config(yscrollcommand=scrollbar.set)
+    listbox.config(highlightthickness=0)
+    scrollbar.config(command=listbox.yview)
+    return listbox
+
 
 
 def make_label(frame, text, bg, fg, rx, ry, anchor, size):
