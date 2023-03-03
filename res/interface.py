@@ -120,6 +120,14 @@ def make_label(frame, text, bg, fg, rx, ry, anchor, size):
     return label
 
 
+def make_checkbutton(frame, text, size, bg, command, rx, ry, anchor):
+    check_value = tk.IntVar()
+    checkbutton = tk.Checkbutton(frame, text=text, command=command, variable=check_value, bg=bg)
+    checkbutton.place(relx=rx, rely=ry, anchor=anchor)
+    checkbutton['font'] = font.Font(family="Arial", size=size)
+    return checkbutton, check_value
+
+
 def make_notebook(frame, tab_names, notebook_bg, notebook_fg):
 
 
