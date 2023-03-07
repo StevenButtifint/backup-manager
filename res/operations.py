@@ -23,6 +23,11 @@ def basic_copy(src, dst):
     shutil.copy2(src, dst)
 
 
+def make_dir(directory):
+    if not os.path.exists(directory):
+        os.mkdir(directory)
+
+
 
 
 def get_drive_name(letter):
