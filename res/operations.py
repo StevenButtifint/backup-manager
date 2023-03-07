@@ -28,6 +28,10 @@ def make_dir(directory):
         os.mkdir(directory)
 
 
+def delete_file(directory):
+    os.remove(directory)
+
+
 
 
 def get_drive_name(letter):
