@@ -1,4 +1,5 @@
 import win32api
+import shutil
 import os
 from os import listdir
 from os.path import isfile, join
@@ -14,6 +15,12 @@ def check_file_modified(file_dir_a, file_dir_b):
         return False
     else:
         return True
+
+
+
+
+def basic_copy(src, dst):
+    shutil.copy2(src, dst)
 
 
 
