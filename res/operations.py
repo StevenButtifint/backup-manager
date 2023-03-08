@@ -4,6 +4,8 @@ import os
 from os import listdir
 from os.path import isfile, join
 
+from res.constants import *
+
 
 def get_files_only(location):
     files = [f for f in listdir(location) if isfile(join(location, f))]
@@ -50,4 +52,12 @@ def get_drive_names():
         drive_names.append(get_drive_name(letter))
     return drive_names
 
+
+
+
+def get_saved_presets():
+    json_file = open(resource_path(PRESETS_DIR))
+    json_str = json_file.read()
+    json_data = json.loads(json_str)
+    return json_data
 

@@ -1,6 +1,7 @@
 
 from res.constants import *
 from res.interface import *
+from res.operations import *
 
 
 class Window:
