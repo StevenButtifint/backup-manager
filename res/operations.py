@@ -19,6 +19,20 @@ def check_file_modified(file_dir_a, file_dir_b):
         return True
 
 
+def get_files_including_subfolders(location):
+    base_len = len(location)+1
+    res = []
+    for (location, dir_names, file_names) in os.walk(location):
+        for file_name in file_names:
+            if len(location) > base_len:
+                sub_location = location[base_len:]
+                sub_location = sub_location.replace("\\", "//")
+
+                res.append(sub_location + "//" + str(file_name))
+            else:
+                res.append(file_name)
+
+    return res
 
 
 def basic_copy(src, dst):
