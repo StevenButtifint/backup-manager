@@ -48,6 +48,16 @@ def delete_file(directory):
     os.remove(directory)
 
 
+def clear_empty_folders(base, file_directory):
+    sub_folders = file_directory.count('//')
+    for x in range(1, sub_folders+1):
+        sub_location = file_directory.rsplit('//', x)[0]
+        try:
+            os.rmdir(base + "//" + sub_location)
+        except:
+            pass  # folder not empty
+
+
 
 
 def get_drive_name(letter):
