@@ -17,6 +17,8 @@ ADD_ICON_DIR = "res/icons/add.png"
 TICK_ICON_DIR = "res/icons/tick.png"
 EXIT_ICON_DIR = "res/icons/exit.png"
 
+APP_ICON_DIR = "res/icons/icon.ico"
+
 # Colours
 BUTTON_BG = "#56c7d8"
 BUTTON_BG_HOVER = "#86f7f8"

@@ -9,6 +9,7 @@ class Window:
         self.window.title(APP_TITLE)
         self.window.resizable(False, False)
         self.window.geometry(APP_DIMS_COMPACT)
+        self.window.iconbitmap(APP_ICON_DIR)
 
     def home_page(self):
         home_frame = make_frame(self.window, MAIN_BG, 1, 1, 0.5, 0.5, "center")
