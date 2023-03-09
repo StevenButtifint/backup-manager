@@ -41,9 +41,11 @@ NOTEBOOK_BG = MAIN_BG
 NOTEBOOK_FG = "red"
 
 TAB_BG = "#36a7c8"
+TAB_FG = "white"
 TAB_BG_SELECTED = "#1687a8"
 
 TREE_HEADING_BG = "#6c8da2"
 TREE_HEADING_FG = "white"
 TREE_COLUMNS_BG = "#8cadc2"
 
+VERSION_FG = "grey"
