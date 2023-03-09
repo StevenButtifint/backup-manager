@@ -118,6 +118,9 @@ def make_listbox(frame, font_size, bg, fg):
     return listbox
 
 
+def set_listbox(listbox, content):
+    listbox.delete(0, tk.END)
+    listbox.insert(tk.END, *content)
 
 
 def make_text_box(frame, bg, fg, height, width):
