@@ -119,6 +119,14 @@ def make_listbox(frame, font_size, bg, fg):
 
 
 
+
+def make_progress_bar(frame, rx, ry, length, anchor):
+    bar = ttk.Progressbar(frame, orient=tk.HORIZONTAL, length=length, mode='determinate')
+    bar.config()
+    bar.place(relx=rx, rely=ry, anchor=anchor)
+    return bar
+
+
 def make_label(frame, text, bg, fg, rx, ry, anchor, size):
     label = tk.Label(frame, text=text, bg=bg, fg=fg)
     label.place(relx=rx, rely=ry, anchor=anchor)
