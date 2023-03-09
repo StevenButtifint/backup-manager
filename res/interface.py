@@ -120,6 +120,12 @@ def make_listbox(frame, font_size, bg, fg):
 
 
 
+def make_text_box(frame, bg, fg, height, width):
+    text_box = tk.Text(frame, bg=bg, fg=fg, height=height, width=width, font=("Arial", 16))
+    text_box.pack(side=tk.LEFT, fill=tk.BOTH, expand=tk.YES)
+    return text_box
+
+
 def make_progress_bar(frame, rx, ry, length, anchor):
     bar = ttk.Progressbar(frame, orient=tk.HORIZONTAL, length=length, mode='determinate')
     bar.config()
