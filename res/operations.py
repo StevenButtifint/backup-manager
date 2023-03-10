@@ -98,6 +98,12 @@ def get_file():
     return path
 
 
+def add_file(entry):
+    path = get_file()
+    entry.delete(0, tk.END)
+    entry.insert(0, path)
+
+
 
 
 def get_saved_presets():
