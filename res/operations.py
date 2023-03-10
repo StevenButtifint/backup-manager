@@ -104,6 +104,10 @@ def add_file(entry):
     entry.insert(0, path)
 
 
+def add_folder(entry):
+    path = get_folder()
+    entry.delete(0, tk.END)
+    entry.insert(0, path)
 
 
 def get_saved_presets():
