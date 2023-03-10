@@ -86,6 +86,12 @@ def connected_drive_letters():
     return letters
 
 
+def get_folder():
+    path = askdirectory(title='Select Folder')  # shows dialog box and return the path
+    print(path)
+    return path
+
+
 
 
 def get_saved_presets():
