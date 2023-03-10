@@ -77,6 +77,15 @@ def get_drive_names():
     return drive_names
 
 
+def connected_drive_letters():
+    drives = win32api.GetLogicalDriveStrings()
+    drives = drives.split('\000')[:-1]
+    letters = []
+    for drive in drives:
+        letters.append(drive[0])
+    return letters
+
+
 
 
 def get_saved_presets():
