@@ -1,6 +1,9 @@
 import win32api
 import shutil
 import os
+import json
+import tkinter as tk
+from tkinter.filedialog import askdirectory, askopenfilename
 from os import listdir
 from os.path import isfile, join
 
@@ -58,6 +61,12 @@ def clear_empty_folders(base, file_directory):
             pass  # folder not empty
 
 
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
 
 
 def get_drive_name(letter):
