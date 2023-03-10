@@ -92,6 +92,12 @@ def get_folder():
     return path
 
 
+def get_file():
+    path = askopenfilename(title='Select File')
+    print(path)
+    return path
+
+
 
 
 def get_saved_presets():
