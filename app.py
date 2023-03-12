@@ -12,6 +12,7 @@ class Window:
         self.window.geometry(APP_DIMS_COMPACT)
         self.window.iconbitmap(APP_ICON_DIR)
         self.window.config(bg=MAIN_BG)
+        self.notice_label = tk.Button()
 
     def home_page(self):
         set_style()
@@ -35,6 +36,7 @@ class Window:
         make_button(recommend_frame, "Back", 1, 6, BUTTON_BG, "black", 0.0125, 0.0125, lambda: self._return_to_home(recommend_frame), 16, "nw")
         presets_frame = make_frame(recommend_frame, MAIN_BG, 0.975, 0.235, 0.5, 0.065, "n")
         presets_listbox = make_listbox(presets_frame, 18, LISTBOX_BG, LISTBOX_FG)
+        self.notice_label = make_label(recommend_frame, "", MAIN_BG_LIGHT, "red", 0.975, 0.025, "ne", 12)
 
     def select_preset_page(self):
         self.presets.clear_selected_preset()
@@ -49,6 +51,8 @@ class Window:
         preset_details.config(command=lambda: self._toggle_preset_details())
         make_button(manage_preset_frame, "Create New Preset", 1, 18, BUTTON_BG, "black", 0.0125, 0.31, lambda: self.create_preset_page(), 16, "nw")
         make_button(manage_preset_frame, "Back", 1, 6, BUTTON_BG, "black", 0.0125, 0.0125, lambda: self._return_to_home(manage_preset_frame), 16, "nw")
+        self.notice_label = make_label(manage_preset_frame, "", MAIN_BG_LIGHT, "red", 0.975, 0.025, "ne", 12)
+
         preset_preview_frame = make_frame(manage_preset_frame, MAIN_BG_LIGHT, 1, 0.63, 0.5, 1, "s")
         make_label(preset_preview_frame, "PRESET DETAILS", MAIN_BG_LIGHT, LABEL_FG, 0.5, 0.09, "s", 20)
 
