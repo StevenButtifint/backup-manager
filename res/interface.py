@@ -52,8 +52,8 @@ def make_img_button(frame, text, height, width, bg, fg, rx, ry, anchor, command,
 def set_style():
     a = ttk.Style()
     a.theme_use("clam")
-    a.configure('.',            # every class of object
-                relief='flat',  # flat ridge for separator
+    a.configure('.',
+                relief='flat',
                 borderwidth=0,
                 highlightthickness=0)
 
@@ -62,7 +62,9 @@ def set_style():
                 foreground=TREE_HEADING_BG,
                 fieldbackground=TREE_COLUMNS_BG,
                 borderwidth=0,
-                highlightthickness=0)
+                highlightthickness=0,
+                bordercolor=MAIN_BG,
+                lightcolor=MAIN_BG)
 
     a.configure('Treeview.Heading',
                 background=TREE_HEADING_BG,
@@ -72,7 +74,7 @@ def set_style():
     a.configure("TNotebook",
                 background=NOTEBOOK_BG,
                 highlightbackground="#848a98",
-                tabmargins=0)  # borderwidth = 0, highlightthickness = 0)
+                tabmargins=0)
 
     a.configure("TNotebook.Tab",
                 background=TAB_BG,
