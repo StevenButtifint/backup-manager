@@ -2,6 +2,7 @@
 from res.constants import *
 from res.interface import *
 from res.operations import *
+from res.presets import Presets
 
 
 class Window:
@@ -12,6 +13,7 @@ class Window:
         self.window.geometry(APP_DIMS_COMPACT)
         self.window.iconbitmap(APP_ICON_DIR)
         self.window.config(bg=MAIN_BG)
+        self.presets = Presets()
         self.notice_label = tk.Button()
 
     def home_page(self):
@@ -36,6 +38,8 @@ class Window:
         make_button(recommend_frame, "Back", 1, 6, BUTTON_BG, "black", 0.0125, 0.0125, lambda: self._return_to_home(recommend_frame), 16, "nw")
         presets_frame = make_frame(recommend_frame, MAIN_BG, 0.975, 0.235, 0.5, 0.065, "n")
         presets_listbox = make_listbox(presets_frame, 18, LISTBOX_BG, LISTBOX_FG)
+        presets_listbox.bind('<<ListboxSelect>>', self.recommended_preset_selected)
+        set_listbox(presets_listbox, self.presets.recommended_preset_names)
         self.notice_label = make_label(recommend_frame, "", MAIN_BG_LIGHT, "red", 0.975, 0.025, "ne", 12)
 
     def select_preset_page(self):
