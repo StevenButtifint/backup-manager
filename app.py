@@ -3,6 +3,7 @@ from res.constants import *
 from res.interface import *
 from res.operations import *
 from res.presets import Presets
+from res.preset_preview import PresetPreview
 
 
 class Window:
@@ -14,6 +15,7 @@ class Window:
         self.window.iconbitmap(APP_ICON_DIR)
         self.window.config(bg=MAIN_BG)
         self.presets = Presets()
+        self.preset_preview = PresetPreview()
         self.notice_label = tk.Button()
 
     def home_page(self):
@@ -50,7 +52,6 @@ class Window:
         self.presets_listbox = make_listbox(presets_frame, 18, LISTBOX_BG, LISTBOX_FG)
         self.presets_listbox.bind('<<ListboxSelect>>', self.saved_preset_selected)
         set_listbox(self.presets_listbox, self.presets.get_preset_names())
-
         preset_details = make_button(manage_preset_frame, "Toggle Preset Details", 1, 17, BUTTON_BG, "black", 0.5, 0.31, lambda: None, 16, "n")
         preset_details.config(command=lambda: self._toggle_preset_details())
         make_button(manage_preset_frame, "Create New Preset", 1, 18, BUTTON_BG, "black", 0.0125, 0.31, lambda: self.create_preset_page(), 16, "nw")
