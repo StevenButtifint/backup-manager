@@ -186,6 +186,10 @@ class Window:
             create_preset_frame.destroy()
             self._set_window_compact()
 
+    def _return_to_manage(self, frame):
+        frame.destroy()
+        self._set_window_compact()
+
 
 
 
