@@ -253,6 +253,12 @@ class Window:
             self.notice_label.config(text="Select a preset to continue")
 
 
+    def recommended_preset_selected(self, event):
+        w = event.widget
+        index = int(w.curselection()[0])
+        self.presets.set_selected_preset(self.presets.recommended_presets[index])
+
+
 
 if __name__ == "__main__":
     root = tk.Tk()
