@@ -262,6 +262,15 @@ class Window:
             print("Processing: " + str(location))
 
 
+            # if sync_deleted_files do this
+            if sync_deleted_files == "Yes":
+                for file in current_files_save:
+                    if file not in current_files:
+                        print("\t\tDELETED FILE (delete): "+str(file) + " (should be deleted from backup)")
+                        delete_file(dst_location+"//"+file)
+                        clear_empty_folders(dst_location, file)
+
+
     def recommended_preset_selected(self, event):
         w = event.widget
         index = int(w.curselection()[0])
