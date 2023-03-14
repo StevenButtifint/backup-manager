@@ -232,6 +232,26 @@ class Window:
         else:
             folder_notice.config(text="Select a Source location")
 
+    def operation_page(self):
+        if self.presets.selected_preset is not None:
+            self._set_window_compact()
+            operation_page_frame = make_frame(self.window, MAIN_BG, 1, 1, 0.5, 0.5, "center")
+            make_button(operation_page_frame, "Back", 1, 6, BUTTON_BG, "black", 0.0125, 0.033, lambda: operation_page_frame.destroy(), 16, "nw")
+
+            make_label(operation_page_frame, "SYNC PRESET", MAIN_BG, TITLE_FG, 0.5, 0.036, "n", 20)
+
+            make_label(operation_page_frame, "Preset: " + self.presets.selected_preset["name"], MAIN_BG, "white", 0.5, 0.4, "n", 20)
+
+
+            status = make_label(operation_page_frame, "Ready", MAIN_BG, "grey", 0.01, 0.91, "sw", 16)
+            bar_progress = make_progress_bar(operation_page_frame, 0.5, 0.98, 780, "s")
+
+            start_button = make_button(operation_page_frame, "Start", 1, 6, BUTTON_BG, "black", 0.9865, 0.88, lambda: None, 16, "se")
+            start_button.config(command=lambda: self.perform_preset(bar_progress, status, operation_page_frame, start_button))
+
+        else:
+            self.notice_label.config(text="Select a preset to continue")
+
 
 
 if __name__ == "__main__":
