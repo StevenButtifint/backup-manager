@@ -261,6 +261,21 @@ class Window:
         for location in self.presets.selected_preset["locations"]:
             print("Processing: " + str(location))
 
+            # currently assume:
+            # -locations exist and use same drive letters as when created
+
+            src_location, dst_location, sub_folders_check, sync_files_edited, sync_deleted_files, src_drive_name, dst_drive_name = location
+
+            # get list of files in src location (without src location prefix)
+            if sub_folders_check == "Yes":
+                current_files = get_files_including_subfolders(src_location)
+            else:
+                current_files = get_files_only(src_location)
+            print("\tSRC items:" + str(current_files))
+
+            # get list of files in dst location (without dst location prefix)
+            current_files_save = get_files_including_subfolders(dst_location)
+            print("\tDST items:" + str(current_files_save))
 
             # if sync_deleted_files do this
             if sync_deleted_files == "Yes":
