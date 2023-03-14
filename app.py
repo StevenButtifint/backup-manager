@@ -252,6 +252,15 @@ class Window:
         else:
             self.notice_label.config(text="Select a preset to continue")
 
+    def perform_preset(self, bar_progress, status, operation_page_frame, start_button):
+        start_button.destroy()
+        operation_count = len(self.presets.selected_preset["locations"])
+        bar_increment = int(100/operation_count)
+
+        count = 1
+        for location in self.presets.selected_preset["locations"]:
+            print("Processing: " + str(location))
+
 
     def recommended_preset_selected(self, event):
         w = event.widget
