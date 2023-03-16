@@ -16,7 +16,10 @@ class Window:
         self.window.config(bg=MAIN_BG)
         self.presets = Presets()
         self.preset_preview = PresetPreview()
+        self.new_preset_locations = []
         self.notice_label = tk.Button()
+        self.presets_listbox = []
+        self.new_preset_tree = []
 
     def home_page(self):
         set_style()
