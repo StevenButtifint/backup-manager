@@ -48,4 +48,6 @@ TREE_HEADING_BG = "#6c8da2"
 TREE_HEADING_FG = "white"
 TREE_COLUMNS_BG = "#8cadc2"
 
+PROGRESSBAR_FG = "green"
+
 VERSION_FG = "grey"
