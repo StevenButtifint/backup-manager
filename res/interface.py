@@ -85,6 +85,13 @@ def set_style():
           padding=[("selected", [20, 5, 20, 2])],
           background=[("selected", TAB_BG_SELECTED)])
 
+    a.configure("TProgressbar",
+                troughcolor=MAIN_BG,
+                bordercolor=PROGRESSBAR_FG,
+                background=PROGRESSBAR_FG,
+                lightcolor=PROGRESSBAR_FG,
+                darkcolor=PROGRESSBAR_FG)
+
 
 def make_tree_view(frame, column_names, column_widths):
     tree_view = ttk.Treeview(frame, columns=column_names, show='headings')
