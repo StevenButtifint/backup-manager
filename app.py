@@ -291,6 +291,15 @@ class Window:
         index = int(w.curselection()[0])
         self.presets.set_selected_preset(self.presets.recommended_presets[index])
 
+    def saved_preset_selected(self, event):
+        w = event.widget
+        index = int(w.curselection()[0])
+        self.presets.selected_preset = self.presets.saved_presets[index]
+        self.preset_preview.set_name(self.presets.selected_preset["name"])
+        self.preset_preview.set_description(self.presets.selected_preset["description"])
+        self.preset_preview.set_date_created(self.presets.selected_preset["created"])
+        set_tree_view(self.location_preview_tree, self.presets.selected_preset["locations"])
+        self.notice_label.config(text="")
 
 
 if __name__ == "__main__":
