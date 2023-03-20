@@ -194,6 +194,21 @@ class Window:
         self._set_window_compact()
 
 
+    def add_file_pair(self, file_notice, src_entry, dst_entry, sync_edited, sync_deleted):
+        if src_entry.get() != "":
+            if dst_entry.get() != "":
+                if dst_entry.get() not in src_entry.get():
+                    if sync_edited.get() == 1:
+                        sync_edited = "Yes"
+                    else:
+                        sync_edited = "No"
+
+                    if sync_deleted.get() == 1:
+                        sync_deleted = "Yes"
+                    else:
+                        sync_deleted = "No"
+
+
 
 
     def add_folder_pair(self, folder_notice, src_entry, dst_entry, sub_folders_check, sync_files_edited, sync_deleted_files):
