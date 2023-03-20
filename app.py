@@ -223,7 +223,6 @@ class Window:
                     dst_drive_name = get_drive_name(dst_entry.get()[0])
 
                     self.new_preset_locations.append((source, destination, sub_folders_check, sync_files_edited, sync_deleted_files, src_drive_name, dst_drive_name))
-                    print(self.new_preset_locations)
                     set_tree_view(self.new_preset_tree, self.new_preset_locations)
                     src_entry.delete(0, tk.END)
                     dst_entry.delete(0, tk.END)
@@ -243,7 +242,7 @@ class Window:
 
             make_label(operation_page_frame, "SYNC PRESET", MAIN_BG, TITLE_FG, 0.5, 0.036, "n", 20)
 
-            make_label(operation_page_frame, "Preset: " + self.presets.selected_preset["name"], MAIN_BG, "white", 0.5, 0.4, "n", 20)
+            make_label(operation_page_frame, "Preset:  " + self.presets.selected_preset["name"], MAIN_BG, "white", 0.2, 0.3, "w", 17)
 
             results = make_label(operation_page_frame, "Details:  Results will be shown here.", MAIN_BG, "white", 0.2, 0.45, "w", 17)
 
@@ -320,7 +319,17 @@ class Window:
                     basic_copy(src_location+"//"+file, dst_location+"//"+file)
                     files_saved += 1
 
+            status.config(text="Processing ("+str(count)+"/"+str(operation_count)+")")
+            count += 1
+            bar_progress.config(value=bar_progress["value"]+bar_increment)
+            self.window.update_idletasks()
+
+            import time
+            time.sleep(1)
+
         results.config(text="Details:  Saved: "+str(files_saved)+"    Updated: "+str(files_updated)+"    Cleared: "+str(files_cleared))
+        status.config(text="Completed")
+        make_button(operation_page_frame, "Close", 1, 6, BUTTON_BG, "black", 0.9865, 0.88, lambda: operation_page_frame.destroy(), 16, "se")
 
     def recommended_preset_selected(self, event):
         w = event.widget
