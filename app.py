@@ -245,20 +245,26 @@ class Window:
 
             make_label(operation_page_frame, "Preset: " + self.presets.selected_preset["name"], MAIN_BG, "white", 0.5, 0.4, "n", 20)
 
+            results = make_label(operation_page_frame, "Details:  Results will be shown here.", MAIN_BG, "white", 0.2, 0.45, "w", 17)
+
 
             status = make_label(operation_page_frame, "Ready", MAIN_BG, "grey", 0.01, 0.91, "sw", 16)
             bar_progress = make_progress_bar(operation_page_frame, 0.5, 0.98, 780, "s")
 
             start_button = make_button(operation_page_frame, "Start", 1, 6, BUTTON_BG, "black", 0.9865, 0.88, lambda: None, 16, "se")
-            start_button.config(command=lambda: self.perform_preset(bar_progress, status, operation_page_frame, start_button))
+            start_button.config(command=lambda: self.perform_preset(bar_progress, status, operation_page_frame, start_button, results))
 
         else:
             self.notice_label.config(text="Select a preset to continue")
 
-    def perform_preset(self, bar_progress, status, operation_page_frame, start_button):
+    def perform_preset(self, bar_progress, status, operation_page_frame, start_button, results):
         start_button.destroy()
         operation_count = len(self.presets.selected_preset["locations"])
         bar_increment = int(100/operation_count)
+
+        files_saved = 0
+        files_updated = 0
+        files_cleared = 0
 
         count = 1
         for location in self.presets.selected_preset["locations"]:
@@ -287,6 +293,7 @@ class Window:
                         print("\t\tDELETED FILE (delete): "+str(file) + " (should be deleted from backup)")
                         delete_file(dst_location+"//"+file)
                         clear_empty_folders(dst_location, file)
+                        files_cleared += 1
 
             # check modified files
             if sync_files_edited == "Yes":
@@ -300,7 +307,7 @@ class Window:
                                 sub_location = sub_location[0]
                                 make_dir(dst_location + "//" + sub_location)
                             basic_copy(src_location + "//" + file, dst_location + "//" + file)
-
+                            files_updated += 1
 
                             # sync new files
             for file in current_files:
@@ -311,7 +318,9 @@ class Window:
                         sub_location = sub_location[0]
                         make_dir(dst_location+"//"+sub_location)
                     basic_copy(src_location+"//"+file, dst_location+"//"+file)
+                    files_saved += 1
 
+        results.config(text="Details:  Saved: "+str(files_saved)+"    Updated: "+str(files_updated)+"    Cleared: "+str(files_cleared))
 
     def recommended_preset_selected(self, event):
         w = event.widget
