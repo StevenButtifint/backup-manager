@@ -210,6 +210,12 @@ class Window:
 
 
 
+                else:
+                    file_notice.config(text="Source and Destination locations must be different")
+            else:
+                file_notice.config(text="Select a Backup location")
+        else:
+            file_notice.config(text="Select a Source location")
 
     def add_folder_pair(self, folder_notice, src_entry, dst_entry, sub_folders_check, sync_files_edited, sync_deleted_files):
         if src_entry.get() != "":
