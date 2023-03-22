@@ -193,6 +193,20 @@ class Window:
         frame.destroy()
         self._set_window_compact()
 
+    def add_sync_options(self, frame):
+        sub_options_frame = make_frame(frame, MAIN_BG, 1-.028, 0.35, 0.5, 0.58, "n")
+
+        tabs = ["Add Folder Location", "Add File Location"]
+        notebook, tabs = make_notebook(sub_options_frame, tabs, NOTEBOOK_BG, NOTEBOOK_FG)
+
+        add_folder_tab = make_frame(tabs[0], TAB_BG_SELECTED, 1, 1, 0.5, 0.5, "center")
+
+        # src_label = make_label(sub_options_frame, "", MAIN_BG_LIGHT, "black", 0.765, 0.05, "ne", 12)
+        src_entry = make_entry(add_folder_tab, 42, ENTRY_BG, ENTRY_FG, "", 0.01, 0.08, "nw")
+
+        # dst_label = make_label(sub_options_frame, "", MAIN_BG_LIGHT, "black", 0.765, 0.3, "ne", 12)
+        dst_entry = make_entry(add_folder_tab, 42, ENTRY_BG, ENTRY_FG, "", 0.01, 0.28, "nw")
+
 
     def add_file_pair(self, file_notice, src_entry, dst_entry, sync_edited, sync_deleted):
         if src_entry.get() != "":
