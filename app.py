@@ -207,6 +207,16 @@ class Window:
         # dst_label = make_label(sub_options_frame, "", MAIN_BG_LIGHT, "black", 0.765, 0.3, "ne", 12)
         dst_entry = make_entry(add_folder_tab, 42, ENTRY_BG, ENTRY_FG, "", 0.01, 0.28, "nw")
 
+        make_button(add_folder_tab, "Set Source Folder", 1, 18, BUTTON_BG, "black", 0.99, 0.05, lambda: add_folder(src_entry), 16, "ne")
+        make_button(add_folder_tab, "Set Backup Location", 1, 18, BUTTON_BG, "black", 0.99, 0.25, lambda: add_folder(dst_entry), 16, "ne")
+
+        _, sub_folders_check = make_checkbutton(add_folder_tab, "Include Source Sub Folders", 16, TAB_BG_SELECTED, None, 0.01, 0.5, "w")
+        _, sync_files_edited = make_checkbutton(add_folder_tab, "Sync File Alterations ", 16, TAB_BG_SELECTED, None, 0.01, 0.65, "w")
+        _, sync_deleted_files = make_checkbutton(add_folder_tab, "Sync Deleted Files", 16, TAB_BG_SELECTED, None, 0.01, 0.8, "w")
+
+        folder_notice = make_label(add_folder_tab, "", MAIN_BG_LIGHT, "red", 0.74, 0.86, "ne", 12)
+
+        make_button(add_folder_tab, "Add Location Pair", 1, 14, BUTTON_BG, "black", 0.99, 0.97, lambda: self.add_folder_pair(folder_notice, src_entry, dst_entry, sub_folders_check, sync_files_edited, sync_deleted_files), 16, "se")
 
     def add_file_pair(self, file_notice, src_entry, dst_entry, sync_edited, sync_deleted):
         if src_entry.get() != "":
