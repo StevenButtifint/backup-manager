@@ -183,7 +183,7 @@ class Window:
 
             try:
                 set_listbox(self.presets_listbox, self.presets.get_preset_names())
-            except:
+            except AttributeError:
                 pass
 
             create_preset_frame.destroy()
@@ -254,6 +254,10 @@ class Window:
                     src_drive_name = get_drive_name(src_entry.get()[0])
                     dst_drive_name = get_drive_name(dst_entry.get()[0])
 
+                    self.new_preset_locations.append((source, destination, "No", sync_edited, sync_deleted, src_drive_name, dst_drive_name))
+                    set_tree_view(self.new_preset_tree, self.new_preset_locations)
+                    src_entry.delete(0, tk.END)
+                    dst_entry.delete(0, tk.END)
                 else:
                     file_notice.config(text="Source and Destination locations must be different")
             else:
