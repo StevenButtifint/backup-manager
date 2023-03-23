@@ -45,6 +45,7 @@ class Window:
         presets_listbox = make_listbox(presets_frame, 18, LISTBOX_BG, LISTBOX_FG)
         presets_listbox.bind('<<ListboxSelect>>', self.recommended_preset_selected)
         set_listbox(presets_listbox, self.presets.recommended_preset_names)
+        make_button(recommend_frame, "Confirm", 1, 14, BUTTON_BG, "black", 0.9865, 0.31, lambda: self.operation_page(), 16, "ne")
         self.notice_label = make_label(recommend_frame, "", MAIN_BG_LIGHT, "red", 0.975, 0.025, "ne", 12)
 
     def select_preset_page(self):
@@ -59,6 +60,7 @@ class Window:
         preset_details.config(command=lambda: self._toggle_preset_details())
         make_button(manage_preset_frame, "Create New Preset", 1, 18, BUTTON_BG, "black", 0.0125, 0.31, lambda: self.create_preset_page(), 16, "nw")
         make_button(manage_preset_frame, "Back", 1, 6, BUTTON_BG, "black", 0.0125, 0.0125, lambda: self._return_to_home(manage_preset_frame), 16, "nw")
+        make_button(manage_preset_frame, "Confirm", 1, 14, BUTTON_BG, "black", 0.9865, 0.31, lambda: self.operation_page(), 16, "ne")
         self.notice_label = make_label(manage_preset_frame, "", MAIN_BG_LIGHT, "red", 0.975, 0.025, "ne", 12)
 
         preset_preview_frame = make_frame(manage_preset_frame, MAIN_BG_LIGHT, 1, 0.63, 0.5, 1, "s")
