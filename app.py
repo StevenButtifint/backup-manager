@@ -248,7 +248,11 @@ class Window:
                     else:
                         sync_deleted = "No"
 
+                    source = src_entry.get().replace('/', '//')
+                    destination = dst_entry.get().replace('/', '//')
 
+                    src_drive_name = get_drive_name(src_entry.get()[0])
+                    dst_drive_name = get_drive_name(dst_entry.get()[0])
 
                 else:
                     file_notice.config(text="Source and Destination locations must be different")
