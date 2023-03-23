@@ -1,3 +1,4 @@
+from datetime import datetime
 
 from res.constants import *
 from res.interface import *
@@ -19,7 +20,9 @@ class Window:
         self.new_preset_locations = []
         self.notice_label = tk.Button()
         self.presets_listbox = []
+        self.location_preview_tree = []
         self.new_preset_tree = []
+        self.home_page()
 
     def home_page(self):
         set_style()
