@@ -136,7 +136,6 @@ def make_text_box(frame, bg, fg, height, width):
 
 def make_progress_bar(frame, rx, ry, length, anchor):
     bar = ttk.Progressbar(frame, orient=tk.HORIZONTAL, length=length, mode='determinate')
-    bar.config()
     bar.place(relx=rx, rely=ry, anchor=anchor)
     return bar
 
@@ -149,10 +148,11 @@ def make_label(frame, text, bg, fg, rx, ry, anchor, size):
 
 
 def make_checkbutton(frame, text, size, bg, command, rx, ry, anchor):
-    check_value = tk.IntVar()
-    checkbutton = tk.Checkbutton(frame, text=text, command=command, variable=check_value, bg=bg)
+    check_value = tk.StringVar()
+    checkbutton = tk.Checkbutton(frame, text=text, command=command, variable=check_value, bg=bg, onvalue="Yes", offvalue="No")
     checkbutton.place(relx=rx, rely=ry, anchor=anchor)
     checkbutton['font'] = font.Font(family="Arial", size=size)
+    checkbutton.select()
     return checkbutton, check_value
 
 
