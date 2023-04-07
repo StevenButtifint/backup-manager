@@ -16,10 +16,10 @@ def get_files_only(location):
 
 
 def check_file_modified(file_dir_a, file_dir_b):
-    if os.path.getmtime(file_dir_a) == os.path.getmtime(file_dir_b):
+    try:
+        return os.path.getmtime(file_dir_a) != os.path.getmtime(file_dir_b)
+    except FileNotFoundError:
         return False
-    else:
-        return True
 
 
 def get_files_including_subfolders(location):
