@@ -22,6 +22,10 @@ def get_file_only(location):
         return []
 
 
+def get_file_folder(location):
+    return '//'.join(location.split('//')[0:-1])
+
+
 def check_file_modified(file_dir_a, file_dir_b):
     try:
         return os.path.getmtime(file_dir_a) != os.path.getmtime(file_dir_b)
