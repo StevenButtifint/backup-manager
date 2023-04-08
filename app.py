@@ -22,6 +22,7 @@ class Window:
         self.presets_listbox = []
         self.location_preview_tree = []
         self.new_preset_tree = []
+        self.previous_page = None
         self.home_page()
 
     def home_page(self):
@@ -50,6 +51,7 @@ class Window:
         set_listbox(presets_listbox, self.presets.recommended_preset_names)
         make_button(recommend_frame, "Confirm", 1, 14, BUTTON_BG, "black", 0.9865, 0.31, lambda: self.operation_page(), 16, "ne")
         self.notice_label = make_label(recommend_frame, "", MAIN_BG_LIGHT, "red", 0.975, 0.025, "ne", 12)
+        self.previous_page = recommend_frame
 
     def select_preset_page(self):
         self.presets.clear_selected_preset()
@@ -92,6 +94,7 @@ class Window:
         delete_button = make_button(preset_preview_frame, "Delete Preset", 1, 12, BUTTON_BG, "black", 0.5, 0.99, lambda: self.delete_confirm(preset_preview_frame), 16, "s")
         delete_button.config(bg=MAIN_BG_LIGHT)
 
+        self.previous_page = manage_preset_frame
 
     def _return_to_home(self, frame):
         frame.destroy()
@@ -185,12 +188,7 @@ class Window:
             preset_data = json.loads(str(preset_data))
 
             self.presets.save_new_preset(preset_data)
-
-            try:
-                set_listbox(self.presets_listbox, self.presets.get_preset_names())
-            except AttributeError:
-                pass
-
+            self.previous_page.destroy()
             create_preset_frame.destroy()
             self._set_window_compact()
 
