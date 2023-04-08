@@ -69,27 +69,27 @@ class Window:
         preset_preview_frame = make_frame(manage_preset_frame, MAIN_BG_LIGHT, 1, 0.63, 0.5, 1, "s")
         make_label(preset_preview_frame, "PRESET DETAILS", MAIN_BG_LIGHT, LABEL_FG, 0.5, 0.09, "s", 20)
 
-        name_label = make_label(preset_preview_frame, "Name:", MAIN_BG_LIGHT, LABEL_FG, 0.195, 0.14, "e", 18)
+        name_label = make_label(preset_preview_frame, "Name", MAIN_BG_LIGHT, LISTBOX_BG, 0.02, 0.1, "w", 18)
         name_label['font'] = font.Font(slant="italic", size=16)
 
-        self.preset_preview.name = make_label(preset_preview_frame, "", MAIN_BG_LIGHT, LABEL_FG, 0.205, 0.14, "w", 18)
+        self.preset_preview.name = make_label(preset_preview_frame, "", MAIN_BG_LIGHT, PREVIEW_FG, 0.02, 0.15, "w", 18)
 
-        description_label = make_label(preset_preview_frame, "Description:", MAIN_BG_LIGHT, LABEL_FG, 0.195, 0.21, "e", 18)
+        description_label = make_label(preset_preview_frame, "Description", MAIN_BG_LIGHT, LISTBOX_BG, 0.02, 0.21, "w", 18)
         description_label['font'] = font.Font(slant="italic", size=16)
 
-        description_frame = make_frame(preset_preview_frame, "black", 0.77, 0.13, 0.205, 0.25, "w")
-        self.preset_preview.description = make_text_box(description_frame, MAIN_BG_LIGHT, LABEL_FG, 12, 12)
+        description_frame = make_frame(preset_preview_frame, "black", 0.958, 0.14, 0.022, 0.31, "w")
+        self.preset_preview.description = make_text_box(description_frame, MAIN_BG_LIGHT, PREVIEW_FG, 12, 12)
 
-        location_label = make_label(preset_preview_frame, "Sync Details:", MAIN_BG_LIGHT, LABEL_FG, 0.195, 0.43, "e", 18)
+        location_label = make_label(preset_preview_frame, "Sync Details", MAIN_BG_LIGHT, LISTBOX_BG, 0.02, 0.43, "w", 18)
         location_label['font'] = font.Font(slant="italic", size=16)
         preview_tree_frame = make_frame(preset_preview_frame, MAIN_BG_LIGHT, 0.95, 0.4, 0.5, 0.67, "center")
         self.location_preview_tree = make_tree_view(preview_tree_frame, TREE_NAMES, TREE_WIDTHS)
 
-        date_label = make_label(preset_preview_frame, "Date Created:", MAIN_BG_LIGHT, LABEL_FG, 0.195, 0.36, "e", 18)
+        date_label = make_label(preset_preview_frame, "Date Created", MAIN_BG_LIGHT, LISTBOX_BG, 0.65, 0.43, "w", 18)
         date_label['font'] = font.Font(slant="italic", size=16)
-        self.preset_preview.date_created = make_label(preset_preview_frame, "", MAIN_BG_LIGHT, LABEL_FG, 0.205, 0.36, "w", 18)
+        self.preset_preview.date_created = make_label(preset_preview_frame, "", MAIN_BG_LIGHT, PREVIEW_FG, 0.98, 0.43, "e", 18)
 
-        delete_button = make_button(preset_preview_frame, "Delete Preset", 1, 12, BUTTON_BG, "black", 0.5, 0.975, lambda: self.delete_confirm(preset_preview_frame), 16, "s")
+        delete_button = make_button(preset_preview_frame, "Delete Preset", 1, 12, BUTTON_BG, "black", 0.5, 0.99, lambda: self.delete_confirm(preset_preview_frame), 16, "s")
         delete_button.config(bg=MAIN_BG_LIGHT)
 
 
