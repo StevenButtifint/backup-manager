@@ -131,8 +131,12 @@ def add_folder(entry):
 
 
 def get_saved_presets():
-    json_file = open(resource_path(PRESETS_DIR))
-    json_str = json_file.read()
-    json_data = json.loads(json_str)
+    try:
+        json_file = open(resource_path(PRESETS_DIR))
+        json_str = json_file.read()
+        json_data = json.loads(json_str)
+    except FileNotFoundError:
+        with open(resource_path(PRESETS_DIR), "w") as outfile:
+            json.dump("[]", outfile)
+        json_data = json.loads("[]")
     return json_data
-
