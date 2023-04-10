@@ -138,6 +138,10 @@ def folder_exists(directory):
     return os.path.isdir(directory)
 
 
+def file_path(directory):
+    return "." in directory[-8:]
+
+
 def get_saved_presets():
     try:
         json_file = open(resource_path(PRESETS_DIR))
