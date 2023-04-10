@@ -56,8 +56,10 @@ def set_style():
                 borderwidth=0,
                 highlightthickness=0)
 
+    a.map("Custom.Treeview", background=[('selected', LISTBOX_BG)])
+
     a.configure("Treeview",
-                background="red",
+                background=LISTBOX_BG,
                 foreground=TREE_HEADING_BG,
                 fieldbackground=TREE_COLUMNS_BG,
                 borderwidth=0,
@@ -94,7 +96,7 @@ def set_style():
 
 
 def make_tree_view(frame, column_names, column_widths):
-    tree_view = ttk.Treeview(frame, columns=column_names, show='headings')
+    tree_view = ttk.Treeview(frame, columns=column_names, show='headings', style="Custom.Treeview")
     for index, name in enumerate(column_names):
         tree_view.heading(name, text=name)
         tree_view.column(name, width=column_widths[index], anchor='c')
@@ -109,7 +111,7 @@ def set_tree_view(tree_view, content):
     for i in tree_view.get_children():
         tree_view.delete(i)
     for item in content:
-        tree_view.insert('', tk.END, values=item)
+        tree_view.insert('', tk.END, values=item, tags=("record",))
 
 
 def make_listbox(frame, font_size, bg, fg):
