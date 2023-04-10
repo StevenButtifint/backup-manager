@@ -130,6 +130,10 @@ def add_folder(entry):
     entry.insert(0, path)
 
 
+def file_exists(directory):
+    return os.path.isfile(directory)
+
+
 def get_saved_presets():
     try:
         json_file = open(resource_path(PRESETS_DIR))
