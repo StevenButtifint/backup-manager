@@ -21,3 +21,6 @@ class LocationPair:
     def clear_dst(self):
         self.dst_entry.delete(0, tk.END)
 
+    def clear_entries(self):
+        self.clear_src()
+        self.clear_dst()
