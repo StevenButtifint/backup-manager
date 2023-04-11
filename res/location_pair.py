@@ -14,3 +14,10 @@ class LocationPair:
         make_button(frame, src_label, 1, 18, BUTTON_BG, "black", 0.99, 0.05, lambda: src_func(self.src_entry), 16, "ne")
         make_button(frame, "Set Backup Location", 1, 18, BUTTON_BG, "black", 0.99, 0.25, lambda: add_folder(self.dst_entry), 16, "ne")
 
+
+    def clear_src(self):
+        self.src_entry.delete(0, tk.END)
+
+    def clear_dst(self):
+        self.dst_entry.delete(0, tk.END)
+
