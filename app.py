@@ -231,8 +231,7 @@ class Window:
 
                     self.new_preset_locations.append((source, destination, "No", sync_edited.get(), sync_deleted.get(), src_drive_name, dst_drive_name))
                     set_tree_view(self.new_preset_tree, self.new_preset_locations)
-                    src_entry.delete(0, tk.END)
-                    dst_entry.delete(0, tk.END)
+                    file_pair.clear_entries()
                 else:
                     file_notice.config(text="Source and Destination locations must be different")
             else:
