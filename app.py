@@ -212,11 +212,7 @@ class Window:
         _, sync_file_edited = make_checkbutton(add_file_tab, "Sync File Alterations ", 16, TAB_BG_SELECTED, None, 0.01, 0.5, "w")
         _, sync_file_deleted = make_checkbutton(add_file_tab, "Sync Deleted Files", 16, TAB_BG_SELECTED, None, 0.01, 0.65, "w")
 
-        src_file_entry = make_entry(add_file_tab, 42, ENTRY_BG, ENTRY_FG, "", 0.01, 0.08, "nw")
-        dst_file_entry = make_entry(add_file_tab, 42, ENTRY_BG, ENTRY_FG, "", 0.01, 0.28, "nw")
-
-        make_button(add_file_tab, "Set Source File", 1, 18, BUTTON_BG, "black", 0.99, 0.05, lambda: add_file(src_file_entry), 16, "ne")
-        make_button(add_file_tab, "Set Backup Location", 1, 18, BUTTON_BG, "black", 0.99, 0.25, lambda: add_folder(dst_file_entry), 16, "ne")
+        file_pair = LocationPair(add_file_tab,  "Set Source File", add_file)
 
         file_notice = make_label(add_file_tab, "", MAIN_BG_LIGHT, "red", 0.74, 0.86, "ne", 12)
 
