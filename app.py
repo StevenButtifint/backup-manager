@@ -4,6 +4,7 @@ from res.constants import *
 from res.interface import *
 from res.operations import *
 from res.presets import Presets
+from res.location_pair import LocationPair
 from res.preset_preview import PresetPreview
 
 
@@ -153,24 +154,18 @@ class Window:
         self.new_preset_tree = make_tree_view(new_tree_frame, TREE_NAMES, TREE_WIDTHS)
 
         main_notice = make_label(create_preset_frame, "", MAIN_BG_LIGHT, "red", 0.985, 0.065, "ne", 12)
-
         make_button(create_preset_frame, "Save", 1, 6, BUTTON_BG, "black", 1 - 0.0125, 0.0125, lambda: self._save_new_preset(main_notice, name_entry.get(), description_entry.get("1.0", tk.END), create_preset_frame), 16, "ne")
-
         self.add_sync_options(create_preset_frame)
 
     def _save_new_preset(self, notice, name, description, create_preset_frame):
         notice.config(text="")
         if name == "":
             notice.config(text="Enter a preset name")
-
         elif name in self.presets.get_preset_names():
             notice.config(text="Preset name must be unique")
-
         elif len(self.new_preset_locations) == 0:
             notice.config(text="Enter at least one file or folder to sync")
-
         else:
-
             preset_drives = []
             for location in self.new_preset_locations:
                 new_src = location[5]
@@ -181,13 +176,9 @@ class Window:
                     preset_drives.append(new_dst)
 
             print(self.new_preset_locations)
-
             date_created = datetime.today().strftime('%d-%m-%Y')
-
             preset_data = '{ "name": '+json.dumps(name)+', "description": '+json.dumps(description)+', "created": ' + json.dumps(date_created) + ' , "locations":' + json.dumps(self.new_preset_locations) + ', "drives":' + json.dumps(preset_drives) + '}'
-
             preset_data = json.loads(str(preset_data))
-
             self.presets.save_new_preset(preset_data)
             self.previous_page.destroy()
             create_preset_frame.destroy()
@@ -205,14 +196,7 @@ class Window:
 
         add_folder_tab = make_frame(tabs[0], TAB_BG_SELECTED, 1, 1, 0.5, 0.5, "center")
 
-        # src_label = make_label(sub_options_frame, "", MAIN_BG_LIGHT, "black", 0.765, 0.05, "ne", 12)
-        src_entry = make_entry(add_folder_tab, 42, ENTRY_BG, ENTRY_FG, "", 0.01, 0.08, "nw")
-
-        # dst_label = make_label(sub_options_frame, "", MAIN_BG_LIGHT, "black", 0.765, 0.3, "ne", 12)
-        dst_entry = make_entry(add_folder_tab, 42, ENTRY_BG, ENTRY_FG, "", 0.01, 0.28, "nw")
-
-        make_button(add_folder_tab, "Set Source Folder", 1, 18, BUTTON_BG, "black", 0.99, 0.05, lambda: add_folder(src_entry), 16, "ne")
-        make_button(add_folder_tab, "Set Backup Location", 1, 18, BUTTON_BG, "black", 0.99, 0.25, lambda: add_folder(dst_entry), 16, "ne")
+        folder_pair = LocationPair(add_folder_tab, "Set Source Folder", add_folder)
 
         _, sub_folders_check = make_checkbutton(add_folder_tab, "Include Source Sub Folders", 16, TAB_BG_SELECTED, None, 0.01, 0.5, "w")
         _, sync_files_edited = make_checkbutton(add_folder_tab, "Sync File Alterations ", 16, TAB_BG_SELECTED, None, 0.01, 0.65, "w")
