@@ -218,22 +218,13 @@ class Window:
 
         make_button(add_file_tab, "Add Location Pair", 1, 14, BUTTON_BG, "black", 0.99, 0.97, lambda: self.add_file_pair(file_notice, src_file_entry, dst_file_entry, sync_file_edited, sync_file_deleted), 16, "se")
 
-    def add_file_pair(self, file_notice, src_entry, dst_entry, sync_edited, sync_deleted):
-        if src_entry.get() != "":
-            if dst_entry.get() != "":
-                if dst_entry.get() not in src_entry.get():
-                    if sync_edited.get() == 1:
-                        sync_edited = "Yes"
-                    else:
-                        sync_edited = "No"
-
-                    if sync_deleted.get() == 1:
-                        sync_deleted = "Yes"
-                    else:
-                        sync_deleted = "No"
 
                     source = src_entry.get().replace('/', '//')
                     destination = dst_entry.get().replace('/', '//')
+    def add_file_pair(self, file_notice, file_pair, sync_edited, sync_deleted):
+        if file_pair.valid_src():
+            if file_pair.valid_dst():
+                if file_pair.dst_entry.get() not in file_pair.src_entry.get():
 
                     src_drive_name = get_drive_name(src_entry.get()[0])
                     dst_drive_name = get_drive_name(dst_entry.get()[0])
