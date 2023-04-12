@@ -219,17 +219,17 @@ class Window:
         make_button(add_file_tab, "Add Location Pair", 1, 14, BUTTON_BG, "black", 0.99, 0.97, lambda: self.add_file_pair(file_notice, src_file_entry, dst_file_entry, sync_file_edited, sync_file_deleted), 16, "se")
 
 
-                    source = src_entry.get().replace('/', '//')
-                    destination = dst_entry.get().replace('/', '//')
     def add_file_pair(self, file_notice, file_pair, sync_edited, sync_deleted):
         if file_pair.valid_src():
             if file_pair.valid_dst():
                 if file_pair.dst_entry.get() not in file_pair.src_entry.get():
+                    source = file_pair.src_entry.get().replace('/', '//')
+                    destination = file_pair.dst_entry.get().replace('/', '//')
 
-                    src_drive_name = get_drive_name(src_entry.get()[0])
-                    dst_drive_name = get_drive_name(dst_entry.get()[0])
+                    src_drive_name = get_drive_name(file_pair.src_entry.get()[0])
+                    dst_drive_name = get_drive_name(file_pair.dst_entry.get()[0])
 
-                    self.new_preset_locations.append((source, destination, "No", sync_edited, sync_deleted, src_drive_name, dst_drive_name))
+                    self.new_preset_locations.append((source, destination, "No", sync_edited.get(), sync_deleted.get(), src_drive_name, dst_drive_name))
                     set_tree_view(self.new_preset_tree, self.new_preset_locations)
                     src_entry.delete(0, tk.END)
                     dst_entry.delete(0, tk.END)
