@@ -37,10 +37,10 @@ def make_entry(frame, width, bg, fg, text, rx, ry, anchor):
 
 def make_img_button(frame, text, height, width, bg, fg, rx, ry, anchor, command, size, image_dir):
     image = tk.PhotoImage(file=image_dir)
-    new_button = tk.Button(frame, text=text, height=height, width=width, bg=bg, fg=fg, image=image)
+    new_button = tk.Button(frame, text=text, height=height, width=width, bg=bg, fg=fg, image=image, compound="top")
     new_button.config(activebackground=BUTTON_BG_CLICKED, command=command)
     new_button.image = image
-    new_button['font'] = font.Font(family='Helvetica', size=size)
+    new_button['font'] = font.Font(family="Helvetica", size=size, weight="bold")
     new_button['borderwidth'] = 1
     new_button.place(relx=rx, rely=ry, anchor=anchor)
     new_button.bind("<Enter>", mouse_enter)
