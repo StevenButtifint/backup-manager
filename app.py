@@ -385,6 +385,12 @@ class Window:
         set_tree_view(self.location_preview_tree, self.presets.selected_preset["locations"])
         self.notice_label.config(text="")
 
+    def compare_locations_page(self):
+        self._set_window_expanded()
+        compare_locations_frame = make_frame(self.window, MAIN_BG, 1, 1, 0.5, 0.5, "center")
+        make_button(compare_locations_frame, "Back", 1, 6, BUTTON_BG, "black", 0.0125, 0.0125, lambda: self._return_to_manage(compare_locations_frame), 16, "nw")
+        make_label(compare_locations_frame, "COMPARE LOCATIONS", MAIN_BG, TITLE_FG, 0.5, 0.0125, "n", 20)
+
 
 if __name__ == "__main__":
     root = tk.Tk()
