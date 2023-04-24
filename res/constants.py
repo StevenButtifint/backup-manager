@@ -35,7 +35,9 @@ ENTRY_FG = "black"
 PREVIEW_FG = "black"
 
 TITLE_FG = "#fcfdf2"
+TITLE_FAINT_FG = "#86b0ca"
 LABEL_FG = "#ecede2"
+LABEL_FAINT_FG = "#46708a"
 
 LISTBOX_BG = "#8cadc2"
 LISTBOX_FG = "black"
@@ -53,4 +55,5 @@ TREE_COLUMNS_BG = "#8cadc2"
 
 PROGRESSBAR_FG = "green"
 
-VERSION_FG = "grey"
+UPDATED_FG = "#5c7d92"
+VERSION_FG = "#3c5d72"
