@@ -30,10 +30,10 @@ class Window:
         set_style()
         home_frame = make_frame(self.window, MAIN_BG, 1, 1, 0.5, 0.5, "center")
         make_label(home_frame, "WELCOME", MAIN_BG, TITLE_FG, 0.5, 0.03, "n", 20)
-        make_img_button(home_frame, "Recommend\nPreset", 200, 200, BUTTON_BG, "black", 0, 0.5, "w", lambda: self.recommend_preset_page(), 14, SEARCH_ICON_DIR)
-        make_img_button(home_frame, "Select\nPreset", 200, 200, BUTTON_BG, "black", 0.25, 0.5, "w", lambda: self.select_preset_page(), 14, TICK_ICON_DIR)
+        make_img_button(home_frame, "Recommended\nPresets", 200, 200, BUTTON_BG, "black", 0, 0.5, "w", lambda: self.recommend_preset_page(), 14, TICK_ICON_DIR)
+        make_img_button(home_frame, "Select a\nPreset", 200, 200, BUTTON_BG, "black", 0.25, 0.5, "w", lambda: self.select_preset_page(), 14, SEARCH_ICON_DIR)
         make_img_button(home_frame, "Create New\nPreset", 200, 200, BUTTON_BG, "black", 0.5, 0.5, "w", lambda: self.create_preset_page(), 14, ADD_ICON_DIR)
-        make_img_button(home_frame, "Compare\nFolders", 200, 200, BUTTON_BG, "black", 0.75, 0.5, "w", lambda: self.compare_locations_page(), 14, EXIT_ICON_DIR)
+        make_img_button(home_frame, "Compare\nFolders", 200, 200, BUTTON_BG, "black", 0.75, 0.5, "w", lambda: self.compare_locations_page(), 14, COMPARE_ICON_DIR)
         make_label(home_frame, APP_VERSION, MAIN_BG, VERSION_FG, 1, 1, "se", 10)
 
     def recommend_preset_page(self):
