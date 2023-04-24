@@ -14,10 +14,11 @@ TREE_WIDTHS = [110, 110, 22, 3, 3]
 PRESETS_DIR = "res/saved_presets.json"
 
 SEARCH_ICON_DIR = "res/icons/search.png"
+COMPARE_ICON_DIR = "res/icons/compare.png"
 ADD_ICON_DIR = "res/icons/add.png"
 TICK_ICON_DIR = "res/icons/tick.png"
 EXIT_ICON_DIR = "res/icons/exit.png"
-
+BACK_ICON_DIR = "res/icons/back.png"
 APP_ICON_DIR = "res/icons/icon.ico"
 
 # Colours
