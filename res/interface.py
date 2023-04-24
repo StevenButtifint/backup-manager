@@ -21,7 +21,7 @@ def make_button(frame, text, height, width, bg, fg, rx, ry, command, size, ancho
     new_button = tk.Button(frame, text=text, height=height, width=width, bg=bg, fg=fg)
     new_button.config(activebackground=BUTTON_BG_CLICKED, command=command)
     new_button['font'] = font.Font(family='Helvetica', size=size)
-    new_button['borderwidth'] = 1
+    new_button['borderwidth'] = 2
     new_button.place(relx=rx, rely=ry, anchor=anchor)
     new_button.bind("<Enter>", mouse_enter)
     new_button.bind("<Leave>", mouse_leave)
@@ -30,7 +30,7 @@ def make_button(frame, text, height, width, bg, fg, rx, ry, command, size, ancho
 
 def make_entry(frame, width, bg, fg, text, rx, ry, anchor):
     entry = tk.Entry(frame, width=width, bg=bg, fg=fg, textvariable=text)
-    entry.config(font="Arial 16")
+    entry.config(font="Arial 16", readonlybackground=bg)
     entry.place(relx=rx, rely=ry, anchor=anchor)
     return entry
 
@@ -181,9 +181,3 @@ def mouse_leave(e):
 
 def mouse_release(e):
     e.widget['background'] = BUTTON_BG_CLICKED
-
-
-
-
-
-
