@@ -2,6 +2,7 @@ import win32api
 import shutil
 import os
 import json
+import subprocess
 import tkinter as tk
 from tkinter.filedialog import askdirectory, askopenfilename
 from os import listdir
@@ -152,3 +153,7 @@ def get_saved_presets():
             json.dump("[]", outfile)
         json_data = json.loads("[]")
     return json_data
+
+
+def open_file_in_explorer(directory):
+    subprocess.Popen(r'explorer /select,'+directory)
