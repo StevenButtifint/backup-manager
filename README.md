@@ -30,5 +30,5 @@ This backup manager makes syncing file systems across multiple drives and device
 - How to customise ttk widgets using styles.
 - How to check the modified time of a file.
 
-[Back To The Top](#dyslexia-assistive-application)
+[Back To The Top](#backup-manager)
  
