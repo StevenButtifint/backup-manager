@@ -12,6 +12,7 @@ TREE_WIDTHS = [110, 110, 22, 3, 3]
 
 # Directories
 PRESETS_DIR = "res/saved_presets.json"
+LAST_USED_DIR = "res/last_used_log.txt"
 
 SEARCH_ICON_DIR = "res/icons/search.png"
 COMPARE_ICON_DIR = "res/icons/compare.png"
