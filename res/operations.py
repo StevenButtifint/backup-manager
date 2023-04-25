@@ -6,7 +6,9 @@ import subprocess
 import tkinter as tk
 from tkinter.filedialog import askdirectory, askopenfilename
 from os import listdir
+from datetime import date
 from os.path import isfile, join
+
 
 from res.constants import *
 
@@ -25,6 +27,13 @@ def get_file_only(location):
 
 def get_file_folder(location):
     return '//'.join(location.split('//')[0:-1])
+
+
+def get_modified_time(directory):
+    try:
+        return os.path.getmtime(directory)
+    except FileNotFoundError:
+        return None
 
 
 def check_file_modified(file_dir_a, file_dir_b):
