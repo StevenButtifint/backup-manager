@@ -41,7 +41,8 @@ class Window:
         self.presets.clear_selected_preset()
         recommend_frame = make_static_frame(self.window, MAIN_BG, APP_EXPANDED_W, APP_EXPANDED_H, 400, 450, "center")
         make_label(recommend_frame, "RECOMMENDED PRESETS", MAIN_BG, TITLE_FG, 0.5, 0.0125, "n", 20)
-        make_button(recommend_frame, "Back", 1, 6, BUTTON_BG, "black", 0.0125, 0.0125, lambda: self._return_to_home(recommend_frame), 16, "nw")
+        make_img_button(recommend_frame, "", 32, 50, BUTTON_BG, "black", 0.0125, 0.0125, "nw",
+                        lambda: self._return_to_manage(recommend_frame), 16, resource_path(BACK_ICON_DIR))
         presets_frame = make_frame(recommend_frame, MAIN_BG, 0.975, 0.235, 0.5, 0.065, "n")
         presets_listbox = make_listbox(presets_frame, 18, LISTBOX_BG, LISTBOX_FG)
         presets_listbox.bind('<<ListboxSelect>>', self.recommended_preset_selected)
@@ -62,7 +63,8 @@ class Window:
         preset_details = make_button(manage_preset_frame, "Toggle Preset Details", 1, 17, BUTTON_BG, "black", 0.5, 0.31, lambda: None, 16, "n")
         preset_details.config(command=lambda: self._toggle_preset_details())
         make_button(manage_preset_frame, "Create New Preset", 1, 18, BUTTON_BG, "black", 0.0125, 0.31, lambda: self.create_preset_page(), 16, "nw")
-        make_button(manage_preset_frame, "Back", 1, 6, BUTTON_BG, "black", 0.0125, 0.0125, lambda: self._return_to_home(manage_preset_frame), 16, "nw")
+        make_img_button(manage_preset_frame, "", 32, 50, BUTTON_BG, "black", 0.0125, 0.0125, "nw",
+                        lambda: self._return_to_manage(manage_preset_frame), 16, resource_path(BACK_ICON_DIR))
         make_button(manage_preset_frame, "Confirm", 1, 14, BUTTON_BG, "black", 0.9865, 0.31, lambda: self.operation_page(), 16, "ne")
         self.notice_label = make_label(manage_preset_frame, "", MAIN_BG_LIGHT, "red", 0.975, 0.025, "ne", 12)
 
@@ -132,7 +134,8 @@ class Window:
         self._set_window_expanded()
         self.new_preset_locations = []
         create_preset_frame = make_frame(self.window, MAIN_BG, 1, 1, 0.5, 0.5, "center")
-        make_button(create_preset_frame, "Cancel", 1, 6, BUTTON_BG, "black", 0.0125, 0.0125, lambda: self._return_to_manage(create_preset_frame), 16, "nw")
+        make_img_button(create_preset_frame, "", 32, 50, BUTTON_BG, "black", 0.0125, 0.0125, "nw",
+                        lambda: self._return_to_manage(create_preset_frame), 16, resource_path(BACK_ICON_DIR))
         make_label(create_preset_frame, "CREATE NEW PRESET", MAIN_BG, TITLE_FG, 0.5, 0.0125, "n", 20)
 
         name_lbl = make_label(create_preset_frame, "Name", MAIN_BG, LABEL_FG, 0.0125, 0.07, "nw", 18)
@@ -277,7 +280,7 @@ class Window:
         if self.presets.selected_preset is not None:
             self._set_window_compact()
             operation_page_frame = make_frame(self.window, MAIN_BG, 1, 1, 0.5, 0.5, "center")
-            make_button(operation_page_frame, "Back", 1, 6, BUTTON_BG, "black", 0.0125, 0.033, lambda: operation_page_frame.destroy(), 16, "nw")
+            make_img_button(operation_page_frame, "", 32, 50, BUTTON_BG, "black", 0.0125, 0.03, "nw", lambda: self._return_to_manage(operation_page_frame), 16, resource_path(BACK_ICON_DIR))
 
             make_label(operation_page_frame, "SYNC PRESET", MAIN_BG, TITLE_FG, 0.5, 0.036, "n", 20)
 
