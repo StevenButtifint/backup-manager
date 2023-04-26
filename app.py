@@ -49,7 +49,7 @@ class Window:
         set_listbox(presets_listbox, self.presets.recommended_preset_names)
         make_button(recommend_frame, "Create New Preset", 1, 18, BUTTON_BG, "black", 0.0125, 0.31, lambda: self.create_preset_page(), 16, "nw")
         make_button(recommend_frame, "Confirm", 1, 14, BUTTON_BG, "black", 0.9865, 0.31, lambda: self.operation_page(), 16, "ne")
-        self.notice_label = make_label(recommend_frame, "", MAIN_BG_LIGHT, "red", 0.975, 0.025, "ne", 12)
+        self.notice_label = make_label(recommend_frame, "", MAIN_BG, "red", 0.975, 0.025, "ne", 12)
         self.previous_page = recommend_frame
 
     def select_preset_page(self):
@@ -66,10 +66,10 @@ class Window:
         make_img_button(manage_preset_frame, "", 32, 50, BUTTON_BG, "black", 0.0125, 0.0125, "nw",
                         lambda: self._return_to_manage(manage_preset_frame), 16, resource_path(BACK_ICON_DIR))
         make_button(manage_preset_frame, "Confirm", 1, 14, BUTTON_BG, "black", 0.9865, 0.31, lambda: self.operation_page(), 16, "ne")
-        self.notice_label = make_label(manage_preset_frame, "", MAIN_BG_LIGHT, "red", 0.975, 0.025, "ne", 12)
+        self.notice_label = make_label(manage_preset_frame, "", MAIN_BG, "red", 0.975, 0.025, "ne", 12)
 
         preset_preview_frame = make_frame(manage_preset_frame, MAIN_BG_LIGHT, 1, 0.63, 0.5, 1, "s")
-        make_label(preset_preview_frame, "PRESET DETAILS", MAIN_BG_LIGHT, LABEL_FG, 0.5, 0.09, "s", 20)
+        make_label(preset_preview_frame, "PRESET DETAILS", MAIN_BG_LIGHT, LISTBOX_BG, 0.5, 0.09, "s", 20)
 
         name_label = make_label(preset_preview_frame, "Name", MAIN_BG_LIGHT, LISTBOX_BG, 0.02, 0.1, "w", 18)
         name_label['font'] = font.Font(slant="italic", size=16)
@@ -152,7 +152,7 @@ class Window:
         new_tree_frame = make_frame(create_preset_frame, ENTRY_BG, 1-.028, 0.3, 0.5, 0.27, "n")
         self.new_preset_tree = make_tree_view(new_tree_frame, TREE_NAMES, TREE_WIDTHS)
 
-        main_notice = make_label(create_preset_frame, "", MAIN_BG_LIGHT, "red", 0.985, 0.065, "ne", 12)
+        main_notice = make_label(create_preset_frame, "", MAIN_BG, "red", 0.985, 0.065, "ne", 12)
         make_button(create_preset_frame, "Save", 1, 6, BUTTON_BG, "black", 1 - 0.0125, 0.0125, lambda: self._save_new_preset(main_notice, name_entry.get(), description_entry.get("1.0", tk.END), create_preset_frame), 16, "ne")
         self.add_sync_options(create_preset_frame)
 
@@ -201,7 +201,7 @@ class Window:
         _, sync_files_edited = make_checkbutton(add_folder_tab, "Sync File Alterations ", 16, TAB_BG_SELECTED, None, 0.01, 0.65, "w")
         _, sync_deleted_files = make_checkbutton(add_folder_tab, "Sync Deleted Files", 16, TAB_BG_SELECTED, None, 0.01, 0.8, "w")
 
-        folder_notice = make_label(add_folder_tab, "", MAIN_BG_LIGHT, "red", 0.74, 0.86, "ne", 12)
+        folder_notice = make_label(add_folder_tab, "", TAB_BG_SELECTED, "red", 0.74, 0.86, "ne", 12)
 
         make_button(add_folder_tab, "Add Location Pair", 1, 14, BUTTON_BG, "black", 0.99, 0.97, lambda: self.add_folder_pair(folder_notice, src_entry, dst_entry, sub_folders_check, sync_files_edited, sync_deleted_files), 16, "se")
 
@@ -213,9 +213,7 @@ class Window:
 
         file_pair = LocationPair(add_file_tab,  "Set Source File", add_file)
 
-        file_notice = make_label(add_file_tab, "", MAIN_BG_LIGHT, "red", 0.74, 0.86, "ne", 12)
-
-        make_button(add_file_tab, "Add Location Pair", 1, 14, BUTTON_BG, "black", 0.99, 0.97, lambda: self.add_file_pair(file_notice, src_file_entry, dst_file_entry, sync_file_edited, sync_file_deleted), 16, "se")
+        file_notice = make_label(add_file_tab, "", TAB_BG_SELECTED, "red", 0.74, 0.86, "ne", 12)
 
 
     def add_file_pair(self, file_notice, file_pair, sync_edited, sync_deleted):
