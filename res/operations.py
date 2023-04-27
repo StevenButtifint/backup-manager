@@ -130,14 +130,18 @@ def get_file():
 
 def add_file(entry):
     path = get_file()
+    entry.config(state="normal")
     entry.delete(0, tk.END)
     entry.insert(0, path)
+    entry.config(state="readonly")
 
 
 def add_folder(entry):
     path = get_folder()
+    entry.config(state="normal")
     entry.delete(0, tk.END)
     entry.insert(0, path)
+    entry.config(state="readonly")
 
 
 def file_exists(directory):
