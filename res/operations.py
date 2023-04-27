@@ -168,5 +168,15 @@ def get_saved_presets():
     return json_data
 
 
+
+
+def file_selection(event, items, location):
+    widget = event.widget
+    path = location+"/"+items[widget.curselection()[0]]
+    path = path.replace("//", "/")
+    path = path.replace("/", "\\")
+    open_file_in_explorer(path)
+
+
 def open_file_in_explorer(directory):
     subprocess.Popen(r'explorer /select,'+directory)
