@@ -243,13 +243,10 @@ class Window:
                     source = folder_pair.src_entry.get().replace('/', '//')
                     destination = folder_pair.dst_entry.get().replace('/', '//')
 
-                    source = src_entry.get().replace('/', '//')
-                    destination = dst_entry.get().replace('/', '//')
+                    src_drive_name = get_drive_name(folder_pair.src_entry.get()[0])
+                    dst_drive_name = get_drive_name(folder_pair.dst_entry.get()[0])
 
-                    src_drive_name = get_drive_name(src_entry.get()[0])
-                    dst_drive_name = get_drive_name(dst_entry.get()[0])
-
-                    self.new_preset_locations.append((source, destination, sub_folders_check, sync_files_edited, sync_deleted_files, src_drive_name, dst_drive_name))
+                    self.new_preset_locations.append((source, destination, sub_folders_check.get(), sync_files_edited.get(), sync_deleted_files.get(), src_drive_name, dst_drive_name))
                     set_tree_view(self.new_preset_tree, self.new_preset_locations)
                     src_entry.delete(0, tk.END)
                     dst_entry.delete(0, tk.END)
