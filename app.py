@@ -236,25 +236,12 @@ class Window:
         else:
             file_notice.config(text="Select a Source location")
 
-    def add_folder_pair(self, folder_notice, src_entry, dst_entry, sub_folders_check, sync_files_edited, sync_deleted_files):
-        if src_entry.get() != "":
-            if dst_entry.get() != "":
-                if src_entry.get() != dst_entry.get():
-
-                    if sub_folders_check.get() == 1:
-                        sub_folders_check = "Yes"
-                    else:
-                        sub_folders_check = "No"
-
-                    if sync_files_edited.get() == 1:
-                        sync_files_edited = "Yes"
-                    else:
-                        sync_files_edited = "No"
-
-                    if sync_deleted_files.get() == 1:
-                        sync_deleted_files = "Yes"
-                    else:
-                        sync_deleted_files = "No"
+    def add_folder_pair(self, folder_notice, folder_pair, sub_folders_check, sync_files_edited, sync_deleted_files):
+        if folder_pair.valid_src():
+            if folder_pair.valid_dst():
+                if folder_pair.valid_pair():
+                    source = folder_pair.src_entry.get().replace('/', '//')
+                    destination = folder_pair.dst_entry.get().replace('/', '//')
 
                     source = src_entry.get().replace('/', '//')
                     destination = dst_entry.get().replace('/', '//')

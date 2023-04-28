@@ -29,6 +29,7 @@ This backup manager makes syncing file systems across multiple drives and device
 - How to utilize ttk treeview and notebook widgets.
 - How to customise ttk widgets using styles.
 - How to check the modified time of a file.
+- How to create a minimalistic UI for perform complex operations. 
 
 [Back To The Top](#backup-manager)
  
