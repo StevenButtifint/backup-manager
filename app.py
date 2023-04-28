@@ -14,9 +14,9 @@ class Window:
         self.window.title(APP_TITLE)
         self.window.resizable(False, False)
         self.window.geometry(APP_DIMS_COMPACT)
-        self.window.iconbitmap(APP_ICON_DIR)
+        self.window.iconbitmap(self.resource_path(APP_ICON_DIR))
         self.window.config(bg=MAIN_BG)
-        self.presets = Presets()
+        self.presets = Presets(self.resource_path(""))
         self.preset_preview = PresetPreview()
         self.new_preset_locations = []
         self.notice_label = tk.Button()
@@ -30,10 +30,10 @@ class Window:
         set_style()
         home_frame = make_frame(self.window, MAIN_BG, 1, 1, 0.5, 0.5, "center")
         make_label(home_frame, "WELCOME", MAIN_BG, TITLE_FG, 0.5, 0.03, "n", 20)
-        make_img_button(home_frame, "Recommended\nPresets", 200, 200, BUTTON_BG, "black", 0, 0.5, "w", lambda: self.recommend_preset_page(), 14, TICK_ICON_DIR)
-        make_img_button(home_frame, "Select a\nPreset", 200, 200, BUTTON_BG, "black", 0.25, 0.5, "w", lambda: self.select_preset_page(), 14, SEARCH_ICON_DIR)
-        make_img_button(home_frame, "Create New\nPreset", 200, 200, BUTTON_BG, "black", 0.5, 0.5, "w", lambda: self.create_preset_page(), 14, ADD_ICON_DIR)
-        make_img_button(home_frame, "Compare\nFolders", 200, 200, BUTTON_BG, "black", 0.75, 0.5, "w", lambda: self.compare_locations_page(), 14, COMPARE_ICON_DIR)
+        make_img_button(home_frame, "Recommended\nPresets", 200, 200, BUTTON_BG, "black", 0, 0.5, "w", lambda: self.recommend_preset_page(), 14, self.resource_path(TICK_ICON_DIR))
+        make_img_button(home_frame, "Select a\nPreset", 200, 200, BUTTON_BG, "black", 0.25, 0.5, "w", lambda: self.select_preset_page(), 14, self.resource_path(SEARCH_ICON_DIR))
+        make_img_button(home_frame, "Create New\nPreset", 200, 200, BUTTON_BG, "black", 0.5, 0.5, "w", lambda: self.create_preset_page(), 14, self.resource_path(ADD_ICON_DIR))
+        make_img_button(home_frame, "Compare\nFolders", 200, 200, BUTTON_BG, "black", 0.75, 0.5, "w", lambda: self.compare_locations_page(), 14, self.resource_path(COMPARE_ICON_DIR))
         make_label(home_frame, APP_VERSION, MAIN_BG, VERSION_FG, 1, 1, "se", 10)
 
     def recommend_preset_page(self):
@@ -42,7 +42,7 @@ class Window:
         recommend_frame = make_static_frame(self.window, MAIN_BG, APP_EXPANDED_W, APP_EXPANDED_H, 400, 450, "center")
         make_label(recommend_frame, "RECOMMENDED PRESETS", MAIN_BG, TITLE_FG, 0.5, 0.0125, "n", 20)
         make_img_button(recommend_frame, "", 32, 50, BUTTON_BG, "black", 0.0125, 0.0125, "nw",
-                        lambda: self._return_to_manage(recommend_frame), 16, resource_path(BACK_ICON_DIR))
+                        lambda: self._return_to_manage(recommend_frame), 16, self.resource_path(BACK_ICON_DIR))
         presets_frame = make_frame(recommend_frame, MAIN_BG, 0.975, 0.235, 0.5, 0.065, "n")
         presets_listbox = make_listbox(presets_frame, 18, LISTBOX_BG, LISTBOX_FG)
         presets_listbox.bind('<<ListboxSelect>>', self.recommended_preset_selected)
@@ -64,7 +64,7 @@ class Window:
         preset_details.config(command=lambda: self._toggle_preset_details())
         make_button(manage_preset_frame, "Create New Preset", 1, 18, BUTTON_BG, "black", 0.0125, 0.31, lambda: self.create_preset_page(), 16, "nw")
         make_img_button(manage_preset_frame, "", 32, 50, BUTTON_BG, "black", 0.0125, 0.0125, "nw",
-                        lambda: self._return_to_manage(manage_preset_frame), 16, resource_path(BACK_ICON_DIR))
+                        lambda: self._return_to_manage(manage_preset_frame), 16, self.resource_path(BACK_ICON_DIR))
         make_button(manage_preset_frame, "Confirm", 1, 14, BUTTON_BG, "black", 0.9865, 0.31, lambda: self.operation_page(), 16, "ne")
         self.notice_label = make_label(manage_preset_frame, "", MAIN_BG, "red", 0.975, 0.025, "ne", 12)
 
@@ -135,7 +135,7 @@ class Window:
         self.new_preset_locations = []
         create_preset_frame = make_frame(self.window, MAIN_BG, 1, 1, 0.5, 0.5, "center")
         make_img_button(create_preset_frame, "", 32, 50, BUTTON_BG, "black", 0.0125, 0.0125, "nw",
-                        lambda: self._return_to_manage(create_preset_frame), 16, resource_path(BACK_ICON_DIR))
+                        lambda: self._return_to_manage(create_preset_frame), 16, self.resource_path(BACK_ICON_DIR))
         make_label(create_preset_frame, "CREATE NEW PRESET", MAIN_BG, TITLE_FG, 0.5, 0.0125, "n", 20)
 
         name_lbl = make_label(create_preset_frame, "Name", MAIN_BG, LABEL_FG, 0.0125, 0.07, "nw", 18)
@@ -278,7 +278,7 @@ class Window:
         if self.presets.selected_preset is not None:
             self._set_window_compact()
             operation_page_frame = make_frame(self.window, MAIN_BG, 1, 1, 0.5, 0.5, "center")
-            make_img_button(operation_page_frame, "", 32, 50, BUTTON_BG, "black", 0.0125, 0.03, "nw", lambda: self._return_to_manage(operation_page_frame), 16, resource_path(BACK_ICON_DIR))
+            make_img_button(operation_page_frame, "", 32, 50, BUTTON_BG, "black", 0.0125, 0.03, "nw", lambda: self._return_to_manage(operation_page_frame), 16, self.resource_path(BACK_ICON_DIR))
 
             make_label(operation_page_frame, "SYNC PRESET", MAIN_BG, TITLE_FG, 0.5, 0.036, "n", 20)
 
@@ -387,10 +387,19 @@ class Window:
         self.notice_label.config(text="")
 
     def compare_locations_page(self):
-        self._set_window_expanded()
-        compare_locations_frame = make_frame(self.window, MAIN_BG, 1, 1, 0.5, 0.5, "center")
-        make_button(compare_locations_frame, "Back", 1, 6, BUTTON_BG, "black", 0.0125, 0.0125, lambda: self._return_to_manage(compare_locations_frame), 16, "nw")
+        compare_locations_frame = make_static_frame(self.window, MAIN_BG, APP_EXPANDED_W, APP_EXPANDED_H, 400, 450, "center")
+        make_img_button(compare_locations_frame, "", 32, 50, BUTTON_BG, "black", 0.0125, 0.0125, "nw", lambda: self._return_to_manage(compare_locations_frame), 16, self.resource_path(BACK_ICON_DIR))
         make_label(compare_locations_frame, "COMPARE LOCATIONS", MAIN_BG, TITLE_FG, 0.5, 0.0125, "n", 20)
+
+    @staticmethod
+    def resource_path(relative_path):
+        # Get absolute path to resource, works for dev and for PyInstaller
+        try:
+            # PyInstaller creates a temp folder and stores path in _MEIPASS
+            base_path = sys._MEIPASS
+        except Exception:
+            base_path = os.path.abspath(".")
+        return os.path.join(base_path, relative_path)
 
 
 if __name__ == "__main__":
