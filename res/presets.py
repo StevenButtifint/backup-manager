@@ -5,8 +5,9 @@ from res.operations import resource_path, connected_drive_letters, get_drive_nam
 
 
 class Presets:
-    def __init__(self):
-        self.saved_presets = get_saved_presets()
+    def __init__(self, path):
+        self.path = path
+        self.saved_presets = get_saved_presets(self.path)
         self.selected_preset = None
         self.recommended_presets = []
         self.recommended_preset_names = []
@@ -33,19 +34,17 @@ class Presets:
                 self.recommended_preset_names.append(preset["name"])
 
     def update_saved_presets(self):
-        self.saved_presets = get_saved_presets()
+        self.saved_presets = get_saved_presets(self.path)
 
     def delete_preset(self, preset_name):
         for idx, preset in enumerate(self.saved_presets):
             if preset['name'] == preset_name:
                 self.saved_presets.pop(idx)
 
-        with open(resource_path(PRESETS_DIR), 'w', encoding='utf-8') as f:
-            json.dump(self.saved_presets, f, ensure_ascii=False, indent=4)
+        write_json_file(self.path, self.saved_presets)
         self.update_saved_presets()
 
     def save_new_preset(self, new_preset):
         self.saved_presets.append(new_preset)
-        with open(resource_path(PRESETS_DIR), 'w', encoding='utf-8') as f:
-            json.dump(self.saved_presets, f, ensure_ascii=False, indent=4)
+        write_json_file(self.path, self.saved_presets)
         self.update_saved_presets()
