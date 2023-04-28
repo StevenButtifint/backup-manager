@@ -203,7 +203,7 @@ class Window:
 
         folder_notice = make_label(add_folder_tab, "", TAB_BG_SELECTED, "red", 0.74, 0.86, "ne", 12)
 
-        make_button(add_folder_tab, "Add Location Pair", 1, 14, BUTTON_BG, "black", 0.99, 0.97, lambda: self.add_folder_pair(folder_notice, src_entry, dst_entry, sub_folders_check, sync_files_edited, sync_deleted_files), 16, "se")
+        make_button(add_folder_tab, "Add Location Pair", 1, 14, BUTTON_BG, "black", 0.99, 0.97, lambda: self.add_folder_pair(folder_notice, folder_pair, sub_folders_check, sync_files_edited, sync_deleted_files), 16, "se")
 
         # add file things
         add_file_tab = make_frame(tabs[1], TAB_BG_SELECTED, 1, 1, 0.5, 0.5, "center")
@@ -215,6 +215,7 @@ class Window:
 
         file_notice = make_label(add_file_tab, "", TAB_BG_SELECTED, "red", 0.74, 0.86, "ne", 12)
 
+        make_button(add_file_tab, "Add Location Pair", 1, 14, BUTTON_BG, "black", 0.99, 0.97, lambda: self.add_file_pair(file_notice, file_pair, sync_file_edited, sync_file_deleted), 16, "se")
 
     def add_file_pair(self, file_notice, file_pair, sync_edited, sync_deleted):
         if file_pair.valid_src():
