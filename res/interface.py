@@ -21,7 +21,7 @@ def make_button(frame, text, height, width, bg, fg, rx, ry, command, size, ancho
     new_button = tk.Button(frame, text=text, height=height, width=width, bg=bg, fg=fg)
     new_button.config(activebackground=BUTTON_BG_CLICKED, command=command)
     new_button['font'] = font.Font(family='Helvetica', size=size)
-    new_button['borderwidth'] = 2
+    new_button['borderwidth'] = 4
     new_button.place(relx=rx, rely=ry, anchor=anchor)
     new_button.bind("<Enter>", mouse_enter)
     new_button.bind("<Leave>", mouse_leave)
@@ -46,6 +46,14 @@ def make_img_button(frame, text, height, width, bg, fg, rx, ry, anchor, command,
     new_button.bind("<Enter>", mouse_enter)
     new_button.bind("<Leave>", mouse_leave)
     return new_button
+
+
+
+
+def make_back_button(frame, operation, icon_path):
+    button = make_img_button(frame, "", 40, 55, BUTTON_BG, "black", 0.00125, 0.001, "nw", operation, 16, icon_path)
+    button['borderwidth'] = 0
+    return button
 
 
 def set_style():
