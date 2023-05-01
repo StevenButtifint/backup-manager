@@ -5,6 +5,7 @@
 - [Demo Images](#demo-images)
 - [Description](#description)
 - [What I Learned](#what-i-learned)
+- [References](#references)
 
 ---
 ### Demo Images
@@ -30,6 +31,9 @@ This backup manager makes syncing file systems across multiple drives and device
 - How to customise ttk widgets using styles.
 - How to check the modified time of a file.
 - How to create a minimalistic UI for perform complex operations. 
+
+### References
+- Icon links can be found [here](https://github.com/stevenbuttifint/backup-manager/blob/main/icon_links.txt).
 
 [Back To The Top](#backup-manager)
  
