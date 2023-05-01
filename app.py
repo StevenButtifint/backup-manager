@@ -20,6 +20,7 @@ class Window:
         self.preset_preview = PresetPreview()
         self.new_preset_locations = []
         self.notice_label = tk.Button()
+        self.last_sync_label = tk.Label()
         self.presets_listbox = []
         self.location_preview_tree = []
         self.new_preset_tree = []
@@ -29,12 +30,13 @@ class Window:
     def home_page(self):
         set_style()
         home_frame = make_frame(self.window, MAIN_BG, 1, 1, 0.5, 0.5, "center")
-        make_label(home_frame, "WELCOME", MAIN_BG, TITLE_FG, 0.5, 0.03, "n", 20)
-        make_img_button(home_frame, "Recommended\nPresets", 200, 200, BUTTON_BG, "black", 0, 0.5, "w", lambda: self.recommend_preset_page(), 14, self.resource_path(TICK_ICON_DIR))
-        make_img_button(home_frame, "Select a\nPreset", 200, 200, BUTTON_BG, "black", 0.25, 0.5, "w", lambda: self.select_preset_page(), 14, self.resource_path(SEARCH_ICON_DIR))
-        make_img_button(home_frame, "Create New\nPreset", 200, 200, BUTTON_BG, "black", 0.5, 0.5, "w", lambda: self.create_preset_page(), 14, self.resource_path(ADD_ICON_DIR))
-        make_img_button(home_frame, "Compare\nFolders", 200, 200, BUTTON_BG, "black", 0.75, 0.5, "w", lambda: self.compare_locations_page(), 14, self.resource_path(COMPARE_ICON_DIR))
+        make_label(home_frame, "WELCOME", MAIN_BG, TITLE_FG, 0.5, 0.01, "n", 22)
+        make_img_button(home_frame, "Recommended\nPresets", 240, 200, BUTTON_BG, "black", 0, 0.5, "w", lambda: self.recommend_preset_page(), 14, self.resource_path(TICK_ICON_DIR))
+        make_img_button(home_frame, "Select a\nPreset", 240, 200, BUTTON_BG, "black", 0.25, 0.5, "w", lambda: self.select_preset_page(), 14, self.resource_path(SEARCH_ICON_DIR))
+        make_img_button(home_frame, "Create New\nPreset", 240, 200, BUTTON_BG, "black", 0.5, 0.5, "w", lambda: self.create_preset_page(), 14, self.resource_path(ADD_ICON_DIR))
+        make_img_button(home_frame, "Compare\nFolders", 240, 200, BUTTON_BG, "black", 0.75, 0.5, "w", lambda: self.compare_locations_page(), 14, self.resource_path(COMPARE_ICON_DIR))
         make_label(home_frame, APP_VERSION, MAIN_BG, VERSION_FG, 1, 1, "se", 10)
+        self.last_sync_label = make_label(home_frame, get_last_used_string(self.resource_path("")), MAIN_BG, UPDATED_FG, 0.5, 0.94, "c", 14)
 
     def recommend_preset_page(self):
         self.presets.update_recommended_presets()

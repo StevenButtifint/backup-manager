@@ -168,6 +168,23 @@ def get_saved_presets():
     return json_data
 
 
+def get_last_used_string(path):
+    try:
+        file = open(path+LAST_USED_DIR, "r")
+        last_used_string = file.readline()
+        file.close()
+        return last_used_string
+
+    except FileNotFoundError:
+        return "No presets have been synced yet."
+
+
+def update_last_used_string(path):
+    f = open(path+LAST_USED_DIR, "w")
+    f.write("Last used on "+date.today().strftime("%B %d, %Y"))
+    f.close()
+
+
 
 
 def file_selection(event, items, location):
