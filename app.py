@@ -42,10 +42,9 @@ class Window:
         self.presets.update_recommended_presets()
         self.presets.clear_selected_preset()
         recommend_frame = make_static_frame(self.window, MAIN_BG, APP_EXPANDED_W, APP_EXPANDED_H, 400, 450, "center")
-        make_label(recommend_frame, "RECOMMENDED PRESETS", MAIN_BG, TITLE_FG, 0.5, 0.0125, "n", 20)
-        make_img_button(recommend_frame, "", 32, 50, BUTTON_BG, "black", 0.0125, 0.0125, "nw",
-                        lambda: self._return_to_manage(recommend_frame), 16, self.resource_path(BACK_ICON_DIR))
-        presets_frame = make_frame(recommend_frame, MAIN_BG, 0.975, 0.235, 0.5, 0.065, "n")
+        make_label(recommend_frame, "RECOMMENDED PRESETS", MAIN_BG, TITLE_FG, 0.5, 0.005, "n", 22)
+        make_back_button(recommend_frame, lambda: self._return_to_manage(recommend_frame), self.resource_path(BACK_ICON_DIR))
+        presets_frame = make_frame(recommend_frame, MAIN_BG, 1, 0.27, 0.5, 0.049, "n")
         presets_listbox = make_listbox(presets_frame, 18, LISTBOX_BG, LISTBOX_FG)
         presets_listbox.bind('<<ListboxSelect>>', self.recommended_preset_selected)
         set_listbox(presets_listbox, self.presets.recommended_preset_names)
