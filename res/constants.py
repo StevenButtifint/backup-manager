@@ -20,6 +20,9 @@ ADD_ICON_DIR = "res/icons/add.png"
 TICK_ICON_DIR = "res/icons/tick.png"
 EXIT_ICON_DIR = "res/icons/exit.png"
 BACK_ICON_DIR = "res/icons/back.png"
+DOWNLOAD_ICON_DIR = "res/icons/download.png"
+RELOAD_ICON_DIR = "res/icons/reload.png"
+UPLOAD_ICON_DIR = "res/icons/upload.png"
 APP_ICON_DIR = "res/icons/icon.ico"
 
 # Colours
