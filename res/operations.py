@@ -174,13 +174,12 @@ def write_json_file(directory, content):
 
 def get_saved_presets(path):
     try:
-        json_file = open(resource_path(PRESETS_DIR))
-        json_str = json_file.read()
-        json_data = json.loads(json_str)
+        json_data = read_json_file(PRESETS_DIR)
     except FileNotFoundError:
-        with open(resource_path(PRESETS_DIR), "w") as outfile:
-            json.dump("[]", outfile)
-        json_data = json.loads("[]")
+        with open(PRESETS_DIR, "w") as outfile:
+            json.dump([], outfile)
+        outfile.close()
+        json_data = read_json_file(PRESETS_DIR)
     return json_data
 
 
