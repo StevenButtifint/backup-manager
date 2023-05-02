@@ -156,6 +156,12 @@ def file_path(directory):
     return "." in directory[-8:]
 
 
+def read_json_file(directory):
+    json_file = open(directory)
+    json_str = json_file.read()
+    json_data = json.loads(json_str)
+    json_file.close()
+    return json_data
 
 
 def write_json_file(directory, content):
