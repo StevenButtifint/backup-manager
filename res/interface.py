@@ -48,6 +48,15 @@ def make_img_button(frame, text, height, width, bg, fg, rx, ry, anchor, command,
     return new_button
 
 
+def make_img(frame, text, height, width, bg, fg, rx, ry, anchor, size, image_dir):
+    image = tk.PhotoImage(file=image_dir)
+    new_button = tk.Button(frame, text=text, height=height, width=width, bg=bg, fg=fg, image=image, compound="top")
+    new_button.config(activebackground=bg)
+    new_button.image = image
+    new_button['font'] = font.Font(family="Helvetica", size=size, weight="bold")
+    new_button['borderwidth'] = 0
+    new_button.place(relx=rx, rely=ry, anchor=anchor)
+    return new_button
 
 
 def make_back_button(frame, operation, icon_path):
