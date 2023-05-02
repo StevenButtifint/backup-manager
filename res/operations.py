@@ -156,7 +156,17 @@ def file_path(directory):
     return "." in directory[-8:]
 
 
-def get_saved_presets():
+
+
+def write_json_file(directory, content):
+
+
+    with open(PRESETS_DIR, "w") as outfile:
+        json.dump(content, outfile)
+    outfile.close()
+
+
+def get_saved_presets(path):
     try:
         json_file = open(resource_path(PRESETS_DIR))
         json_str = json_file.read()
