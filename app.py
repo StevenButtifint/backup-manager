@@ -65,18 +65,16 @@ class Window:
         self.presets_listbox = make_listbox(presets_frame, 18, LISTBOX_BG, LISTBOX_FG)
         self.presets_listbox.bind('<<ListboxSelect>>', self.saved_preset_selected)
         set_listbox(self.presets_listbox, self.presets.get_preset_names())
-        preset_details = make_button(manage_preset_frame, "Toggle Preset Details", 1, 17, BUTTON_BG, "black", 0.5, 0.31, lambda: None, 16, "n")
+        preset_details = make_button(manage_preset_frame, "Toggle Preset Details", 1, 21, BUTTON_BG, "black", 0.5, 0.3175, lambda: None, 16, "n")
         preset_details.config(command=lambda: self._toggle_preset_details())
-        make_button(manage_preset_frame, "Create New Preset", 1, 18, BUTTON_BG, "black", 0.0125, 0.31, lambda: self.create_preset_page(), 16, "nw")
-        make_img_button(manage_preset_frame, "", 32, 50, BUTTON_BG, "black", 0.0125, 0.0125, "nw",
-                        lambda: self._return_to_manage(manage_preset_frame), 16, self.resource_path(BACK_ICON_DIR))
-        make_button(manage_preset_frame, "Confirm", 1, 14, BUTTON_BG, "black", 0.9865, 0.31, lambda: self.operation_page(), 16, "ne")
-        self.notice_label = make_label(manage_preset_frame, "", MAIN_BG, "red", 0.975, 0.025, "ne", 12)
-
+        make_button(manage_preset_frame, "Create New Preset", 1, 21, BUTTON_BG, "black", 0.0005, 0.3175, lambda: self.create_preset_page(), 16, "nw")
+        make_back_button(manage_preset_frame, lambda: self._return_to_manage(manage_preset_frame), self.resource_path(BACK_ICON_DIR))
+        make_button(manage_preset_frame, "Use Preset", 1, 21, BUTTON_BG, "black", 0.9995, 0.3175, lambda: self.operation_page(), 16, "ne")
+        self.notice_label = make_label(manage_preset_frame, "", MAIN_BG, "red", 0.975, 0.015, "ne", 12)
         preset_preview_frame = make_frame(manage_preset_frame, MAIN_BG_LIGHT, 1, 0.63, 0.5, 1, "s")
-        make_label(preset_preview_frame, "PRESET DETAILS", MAIN_BG_LIGHT, LISTBOX_BG, 0.5, 0.09, "s", 20)
+        self._create_preset_preview(preset_preview_frame)
+        self.previous_page = manage_preset_frame
 
-        name_label = make_label(preset_preview_frame, "Name", MAIN_BG_LIGHT, LISTBOX_BG, 0.02, 0.1, "w", 18)
         name_label['font'] = font.Font(slant="italic", size=16)
 
         self.preset_preview.name = make_label(preset_preview_frame, "", MAIN_BG_LIGHT, PREVIEW_FG, 0.02, 0.15, "w", 18)
