@@ -200,6 +200,21 @@ def update_last_used_string(path):
     f.close()
 
 
+def list_unique_located_items(location_one, location_two):
+    unique_loc_one, unique_loc_two = [], []
+    loc_one_items = get_files_including_subfolders(location_one)
+    loc_two_items = get_files_including_subfolders(location_two)
+    for item in loc_one_items:
+        if item not in loc_two_items:
+            unique_loc_one.append(item)
+        elif check_file_modified(location_one+"//"+item, location_two+"//"+item):
+            unique_loc_one.append(item)
+    for item in loc_two_items:
+        if item not in loc_one_items:
+            unique_loc_two.append(item)
+        elif check_file_modified(location_one+"//"+item, location_two+"//"+item):
+            unique_loc_two.append(item)
+    return unique_loc_one, unique_loc_two
 
 
 def list_unique_items(location_one, location_two):
