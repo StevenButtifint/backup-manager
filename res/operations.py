@@ -202,6 +202,37 @@ def update_last_used_string(path):
 
 
 
+def list_unique_items(location_one, location_two):
+    loc_one_items = get_files_including_subfolders(location_one)
+    loc_two_items = get_files_including_subfolders(location_two)
+
+    loc_one_set = []
+    for item in loc_one_items:
+        item_name = item.split("/")[-1]
+        item_mod_time = get_modified_time(location_one+"//"+item)
+        loc_one_set.append((item, item_name, item_mod_time))
+
+    loc_two_set = []
+    for item in loc_two_items:
+        item_name = item.split("/")[-1]
+        item_mod_time = get_modified_time(location_two+"//"+item)
+        loc_two_set.append((item, item_name, item_mod_time))
+
+    for item_dir, item_name, item_mod_time in loc_one_set:
+        for item in loc_two_set:
+            if item_name == item[1] and item_mod_time == item[2]:
+                print(item, "is the same as ", item_dir)
+                loc_two_items.remove(item[0])
+
+    for item_dir, item_name, item_mod_time in loc_two_set:
+        for item in loc_one_set:
+            if item_name == item[1] and item_mod_time == item[2]:
+                print(item, "is the same as ", item_dir)
+                loc_one_items.remove(item[0])
+
+    return loc_one_items, loc_two_items
+
+
 def file_selection(event, items, location):
     widget = event.widget
     path = location+"/"+items[widget.curselection()[0]]
