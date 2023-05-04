@@ -374,6 +374,25 @@ class Window:
         make_img_button(compare_locations_frame, "", 32, 50, BUTTON_BG, "black", 0.0125, 0.0125, "nw", lambda: self._return_to_manage(compare_locations_frame), 16, self.resource_path(BACK_ICON_DIR))
         make_label(compare_locations_frame, "COMPARE LOCATIONS", MAIN_BG, TITLE_FG, 0.5, 0.0125, "n", 20)
 
+    def compare_folders(self, use_location_similarity, entry_one, entry_two, listbox_one, listbox_two, loc_one_count, loc_two_count, notice):
+        location_one = entry_one.get()
+        location_two = entry_two.get()
+        notice.config(text="")
+
+        if folder_exists(location_one) and folder_exists(location_two):
+            if use_location_similarity == "Yes":
+                unique_loc_one, unique_loc_two = list_unique_located_items(location_one, location_two)
+            else:
+                unique_loc_one, unique_loc_two = list_unique_items(location_one, location_two)
+            set_listbox(listbox_one, unique_loc_one)
+            set_listbox(listbox_two, unique_loc_two)
+            loc_one_count.config(text=str(len(unique_loc_one))+" Items")
+            loc_two_count.config(text=str(len(unique_loc_two))+" Items")
+            self._set_window_expanded()
+        else:
+            notice.config(text="Locations not found")
+            self._set_window_compact()
+
     @staticmethod
     def resource_path(relative_path):
         # Get absolute path to resource, works for dev and for PyInstaller
