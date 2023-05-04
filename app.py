@@ -60,8 +60,8 @@ class Window:
     def select_preset_page(self):
         self.presets.clear_selected_preset()
         manage_preset_frame = make_static_frame(self.window, MAIN_BG, APP_EXPANDED_W, APP_EXPANDED_H, 400, 450, "center")
-        make_label(manage_preset_frame, "SELECT PRESET", MAIN_BG, TITLE_FG, 0.5, 0.0125, "n", 20)
-        presets_frame = make_frame(manage_preset_frame, MAIN_BG, 0.975, 0.235, 0.5, 0.065, "n")
+        make_label(manage_preset_frame, "SELECT PRESET", MAIN_BG, TITLE_FG, 0.5, 0.005, "n", 22)
+        presets_frame = make_frame(manage_preset_frame, MAIN_BG, 1, 0.2675, 0.5, 0.049, "n")
         self.presets_listbox = make_listbox(presets_frame, 18, LISTBOX_BG, LISTBOX_FG)
         self.presets_listbox.bind('<<ListboxSelect>>', self.saved_preset_selected)
         set_listbox(self.presets_listbox, self.presets.get_preset_names())
@@ -115,7 +115,7 @@ class Window:
 
     def delete_confirm(self, preset_preview_frame):
         if self.presets.selected_preset is not None:
-            confirm_button = make_button(preset_preview_frame, "Confirm Preset Deletion", 1, 20, BUTTON_BG, "black", 0.975, 0.975, None, 16, "se")
+            confirm_button = make_button(preset_preview_frame, "Confirm Preset Deletion", 1, 20, BUTTON_BG, "black", 0.99, 0.99, None, 16, "se")
             confirm_button.config(command=lambda: self.remove_preset(confirm_button))
             confirm_button.config(bg="red")
         else:
