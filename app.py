@@ -237,9 +237,7 @@ class Window:
 
                     self.new_preset_locations.append((source, destination, sub_folders_check.get(), sync_files_edited.get(), sync_deleted_files.get(), src_drive_name, dst_drive_name))
                     set_tree_view(self.new_preset_tree, self.new_preset_locations)
-                    src_entry.delete(0, tk.END)
-                    dst_entry.delete(0, tk.END)
-
+                    folder_pair.clear_entries()
                 else:
                     folder_notice.config(text="Source and Destination locations must be different")
             else:
