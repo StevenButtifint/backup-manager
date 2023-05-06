@@ -132,27 +132,25 @@ class Window:
         self._set_window_expanded()
         self.new_preset_locations = []
         create_preset_frame = make_frame(self.window, MAIN_BG, 1, 1, 0.5, 0.5, "center")
-        make_img_button(create_preset_frame, "", 32, 50, BUTTON_BG, "black", 0.0125, 0.0125, "nw",
-                        lambda: self._return_to_manage(create_preset_frame), 16, self.resource_path(BACK_ICON_DIR))
-        make_label(create_preset_frame, "CREATE NEW PRESET", MAIN_BG, TITLE_FG, 0.5, 0.0125, "n", 20)
+        make_back_button(create_preset_frame, lambda: self._return_to_manage(create_preset_frame), self.resource_path(BACK_ICON_DIR))
+        make_label(create_preset_frame, "CREATE NEW PRESET", MAIN_BG, TITLE_FG, 0.5, 0.005, "n", 22)
 
         name_lbl = make_label(create_preset_frame, "Name", MAIN_BG, LABEL_FG, 0.0125, 0.07, "nw", 18)
         name_lbl['font'] = font.Font(slant="italic", size=16)
         name_entry = make_entry(create_preset_frame, 64, ENTRY_BG, ENTRY_FG, "Preset "+str(datetime.now()), 0.0125, 0.1, "nw")
-
         desc_lbl = make_label(create_preset_frame, "Description", MAIN_BG, LABEL_FG, 0.0125, 0.14, "nw", 18)
         desc_lbl['font'] = font.Font(slant="italic", size=16)
         description_frame = make_frame(create_preset_frame, MAIN_BG, 0.97, 0.06, 0.0125, 0.17, "nw")
         description_entry = make_text_box(description_frame, ENTRY_BG, ENTRY_FG, 12, 12)
-
         locations_lbl = make_label(create_preset_frame, "Sync Locations", MAIN_BG, LABEL_FG, 0.0125, 0.24, "nw", 18)
         locations_lbl['font'] = font.Font(slant="italic", size=16)
         new_tree_frame = make_frame(create_preset_frame, ENTRY_BG, 1-.028, 0.3, 0.5, 0.27, "n")
         self.new_preset_tree = make_tree_view(new_tree_frame, TREE_NAMES, TREE_WIDTHS)
 
         main_notice = make_label(create_preset_frame, "", MAIN_BG, "red", 0.985, 0.065, "ne", 12)
-        make_button(create_preset_frame, "Save", 1, 6, BUTTON_BG, "black", 1 - 0.0125, 0.0125, lambda: self._save_new_preset(main_notice, name_entry.get(), description_entry.get("1.0", tk.END), create_preset_frame), 16, "ne")
+        make_button(create_preset_frame, "Save Preset", 1, 64, BUTTON_BG, "black", 0.5, 0.99, lambda: self._save_new_preset(main_notice, name_entry.get(), description_entry.get("1.0", tk.END), create_preset_frame), 16, "s")
         self.add_sync_options(create_preset_frame)
+        self.previous_page = create_preset_frame
 
     def _save_new_preset(self, notice, name, description, create_preset_frame):
         notice.config(text="")
@@ -192,27 +190,19 @@ class Window:
         notebook, tabs = make_notebook(sub_options_frame, tabs, NOTEBOOK_BG, NOTEBOOK_FG)
 
         add_folder_tab = make_frame(tabs[0], TAB_BG_SELECTED, 1, 1, 0.5, 0.5, "center")
-
         folder_pair = LocationPair(add_folder_tab, "Set Source Folder", add_folder)
-
         _, sub_folders_check = make_checkbutton(add_folder_tab, "Include Source Sub Folders", 16, TAB_BG_SELECTED, None, 0.01, 0.5, "w")
         _, sync_files_edited = make_checkbutton(add_folder_tab, "Sync File Alterations ", 16, TAB_BG_SELECTED, None, 0.01, 0.65, "w")
         _, sync_deleted_files = make_checkbutton(add_folder_tab, "Sync Deleted Files", 16, TAB_BG_SELECTED, None, 0.01, 0.8, "w")
-
         folder_notice = make_label(add_folder_tab, "", TAB_BG_SELECTED, "red", 0.74, 0.86, "ne", 12)
-
         make_button(add_folder_tab, "Add Location Pair", 1, 14, BUTTON_BG, "black", 0.99, 0.97, lambda: self.add_folder_pair(folder_notice, folder_pair, sub_folders_check, sync_files_edited, sync_deleted_files), 16, "se")
 
         # add file things
         add_file_tab = make_frame(tabs[1], TAB_BG_SELECTED, 1, 1, 0.5, 0.5, "center")
-
         _, sync_file_edited = make_checkbutton(add_file_tab, "Sync File Alterations ", 16, TAB_BG_SELECTED, None, 0.01, 0.5, "w")
         _, sync_file_deleted = make_checkbutton(add_file_tab, "Sync Deleted Files", 16, TAB_BG_SELECTED, None, 0.01, 0.65, "w")
-
         file_pair = LocationPair(add_file_tab,  "Set Source File", add_file)
-
         file_notice = make_label(add_file_tab, "", TAB_BG_SELECTED, "red", 0.74, 0.86, "ne", 12)
-
         make_button(add_file_tab, "Add Location Pair", 1, 14, BUTTON_BG, "black", 0.99, 0.97, lambda: self.add_file_pair(file_notice, file_pair, sync_file_edited, sync_file_deleted), 16, "se")
 
     def add_file_pair(self, file_notice, file_pair, sync_edited, sync_deleted):
