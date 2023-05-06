@@ -117,7 +117,7 @@ def connected_drive_letters():
 
 
 def get_folder():
-    path = askdirectory(title='Select Folder')  # shows dialog box and return the path
+    path = askdirectory(title='Select Folder')
     print(path)
     return path
 
@@ -165,8 +165,6 @@ def read_json_file(directory):
 
 
 def write_json_file(directory, content):
-
-
     with open(PRESETS_DIR, "w") as outfile:
         json.dump(content, outfile)
     outfile.close()
