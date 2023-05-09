@@ -249,20 +249,28 @@ class Window:
         if self.presets.selected_preset is not None:
             self._set_window_compact()
             operation_page_frame = make_frame(self.window, MAIN_BG, 1, 1, 0.5, 0.5, "center")
-            make_img_button(operation_page_frame, "", 32, 50, BUTTON_BG, "black", 0.0125, 0.03, "nw", lambda: self._return_to_manage(operation_page_frame), 16, self.resource_path(BACK_ICON_DIR))
+            self.sync_back_button = make_img_button(operation_page_frame, "", 36, 60, BUTTON_BG, "black", 0.000, 0.000, "nw", lambda: self._return_to_manage(operation_page_frame), 16, self.resource_path(BACK_ICON_DIR))
 
-            make_label(operation_page_frame, "SYNC PRESET", MAIN_BG, TITLE_FG, 0.5, 0.036, "n", 20)
+            make_label(operation_page_frame, "SYNC PRESET", MAIN_BG, TITLE_FG, 0.5, 0.001, "n", 22)
 
-            make_label(operation_page_frame, "Preset:  " + self.presets.selected_preset["name"], MAIN_BG, "white", 0.2, 0.3, "w", 17)
+            info_frame = make_frame(operation_page_frame, LISTBOX_BG, 1, 0.68, 0.5, 0.465, "center")
 
-            results = make_label(operation_page_frame, "Details:  Results will be shown here.", MAIN_BG, "white", 0.2, 0.45, "w", 17)
+            name_label = make_label(info_frame, "Name", MAIN_BG, LISTBOX_BG, 0.5, 0.25, "c", 16)
+            name_label['font'] = font.Font(slant="italic")
+
+            saved = make_img(info_frame, "0 Saved", 160, 160, LISTBOX_BG, "black", 0.25, 0.55, "c", 14, self.resource_path(DOWNLOAD_ICON_DIR))
+            updated = make_img(info_frame, "0 Updated", 200, 200, LISTBOX_BG, "black", 0.5, 0.55, "c", 14, self.resource_path(RELOAD_ICON_DIR))
+            cleared = make_img(info_frame, "0 Cleared", 200, 200, LISTBOX_BG, "black", 0.75, 0.55, "c", 14, self.resource_path(UPLOAD_ICON_DIR))
+
+            results = saved, updated, cleared
+
+            make_label(info_frame, "Preset: "+self.presets.selected_preset["name"], LISTBOX_BG, "black", 0.5, 0.1, "c", 17)
 
 
-            status = make_label(operation_page_frame, "Ready", MAIN_BG, "grey", 0.01, 0.91, "sw", 16)
-            bar_progress = make_progress_bar(operation_page_frame, 0.5, 0.98, 780, "s")
+            status = make_label(operation_page_frame, "Ready", MAIN_BG, LISTBOX_BG, 0.01, 0.93, "sw", 16)
+            bar_progress = make_progress_bar(operation_page_frame, 0.5, 1, 800, "s")
 
-            start_button = make_button(operation_page_frame, "Start", 1, 6, BUTTON_BG, "black", 0.9865, 0.88, lambda: None, 16, "se")
-            start_button.config(command=lambda: self.perform_preset(bar_progress, status, operation_page_frame, start_button, results))
+            start_button = make_button(operation_page_frame, "START", 1, 14, BUTTON_BG, "black", 1, 0.9465, lambda: None, 16, "se")
 
         else:
             self.notice_label.config(text="Select a preset to continue")
