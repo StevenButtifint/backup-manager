@@ -271,6 +271,11 @@ class Window:
             bar_progress = make_progress_bar(operation_page_frame, 0.5, 1, 800, "s")
 
             start_button = make_button(operation_page_frame, "START", 1, 14, BUTTON_BG, "black", 1, 0.9465, lambda: None, 16, "se")
+            self.bar_progress = bar_progress
+            self.status = status
+            self.start_button = start_button
+            self.results = results
+            start_button.config(command=self.setup_preset_thread)
 
         else:
             self.notice_label.config(text="Select a preset to continue")
