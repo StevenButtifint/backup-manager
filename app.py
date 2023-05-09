@@ -272,6 +272,12 @@ class Window:
         self.results[1].config(text=str(updated) + " Updated")
         self.results[2].config(text=str(cleared) + " Cleared")
 
+    def setup_preset_thread(self):
+        self.start_button.configure(state="disabled")
+        self.sync_back_button.configure(state="disabled")
+        thread = threading.Thread(target=self.perform_preset_thread)
+        thread.start()
+
     def perform_preset(self, bar_progress, status, start_button, results):####old
         start_button.destroy()
         operation_count = len(self.presets.selected_preset["locations"])
