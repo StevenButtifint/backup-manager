@@ -267,7 +267,12 @@ class Window:
         else:
             self.notice_label.config(text="Select a preset to continue")
 
-    def perform_preset(self, bar_progress, status, operation_page_frame, start_button, results):
+    def update_results(self, saved, updated, cleared):
+        self.results[0].config(text=str(saved) + " Saved")
+        self.results[1].config(text=str(updated) + " Updated")
+        self.results[2].config(text=str(cleared) + " Cleared")
+
+    def perform_preset(self, bar_progress, status, start_button, results):####old
         start_button.destroy()
         operation_count = len(self.presets.selected_preset["locations"])
         bar_increment = int(100/operation_count)
