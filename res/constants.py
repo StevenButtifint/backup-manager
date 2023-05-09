@@ -11,7 +11,7 @@ TREE_NAMES = ('Source Location', 'Backup Location', 'Source Subfolders', 'Sync E
 TREE_WIDTHS = [110, 110, 22, 3, 3]
 
 # Directories
-PRESETS_DIR = "saved_presets.json"
+PRESETS_DIR = "backup_manager_saved_presets.json"
 LAST_USED_DIR = "res/last_used_log.txt"
 
 SEARCH_ICON_DIR = "res/icons/search.png"
