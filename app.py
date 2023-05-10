@@ -395,8 +395,18 @@ class Window:
 
         name_lbl = make_label(compare_locations_frame, "Location One", MAIN_BG, LABEL_FAINT_FG, 0.0125, 0.11, "nw", 14)
         name_lbl['font'] = font.Font(slant="italic", size=14)
+        entry_one = make_entry(compare_locations_frame, 50, ENTRY_BG, ENTRY_FG, "", 0.0125, 0.144, "nw")
+        entry_one.config(state="readonly")
+        make_button(compare_locations_frame, "Open Folder", 1, 18, BUTTON_BG, "black", 0.992, 0.1435, lambda: add_folder(entry_one), 11, "ne")
+
         name_lbl = make_label(compare_locations_frame, "Location Two", MAIN_BG, LABEL_FAINT_FG, 0.0125, 0.18, "nw", 14)
         name_lbl['font'] = font.Font(slant="italic", size=14)
+        entry_two = make_entry(compare_locations_frame, 50, ENTRY_BG, ENTRY_FG, "", 0.0125, 0.21, "nw")
+        entry_two.config(state="readonly")
+        make_button(compare_locations_frame, "Open Folder", 1, 18, BUTTON_BG, "black", 0.992, 0.209, lambda: add_folder(entry_two), 11, "ne")
+
+        subfolder_check, use_location_similarity = make_checkbutton(compare_locations_frame, "", 12, MAIN_BG, None, 0.2, 0.28, "c")
+        subfolder_check.config(foreground="black")
 
         make_label(compare_locations_frame, "Compare location similarity of files in subfolders.\t\t\t        \n"
                                             " e.g. The same file in different subfolder locations will be shown as a difference.", MAIN_BG, TITLE_FAINT_FG, 0.55, 0.28, "c", 12)
