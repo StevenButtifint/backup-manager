@@ -1,3 +1,4 @@
+import threading
 from datetime import datetime
 
 from res.constants import *
@@ -290,6 +291,15 @@ class Window:
         self.sync_back_button.configure(state="disabled")
         thread = threading.Thread(target=self.perform_preset_thread)
         thread.start()
+
+    def perform_preset_thread(self):
+        operation_count = len(self.presets.selected_preset["locations"])
+        bar_increment = int(100/operation_count)
+        locations_skipped = 0
+        files_saved = 0
+        files_updated = 0
+        files_cleared = 0
+        count = 1
 
     def perform_preset(self, bar_progress, status, start_button, results):####old
         start_button.destroy()
