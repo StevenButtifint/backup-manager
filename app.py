@@ -388,8 +388,21 @@ class Window:
 
     def compare_locations_page(self):
         compare_locations_frame = make_static_frame(self.window, MAIN_BG, APP_EXPANDED_W, APP_EXPANDED_H, 400, 450, "center")
-        make_img_button(compare_locations_frame, "", 32, 50, BUTTON_BG, "black", 0.0125, 0.0125, "nw", lambda: self._return_to_manage(compare_locations_frame), 16, self.resource_path(BACK_ICON_DIR))
-        make_label(compare_locations_frame, "COMPARE LOCATIONS", MAIN_BG, TITLE_FG, 0.5, 0.0125, "n", 20)
+        make_back_button(compare_locations_frame, lambda: self._return_to_manage(compare_locations_frame), self.resource_path(BACK_ICON_DIR))
+
+        make_label(compare_locations_frame, "COMPARE LOCATIONS", MAIN_BG, TITLE_FG, 0.5, 0.005, "n", 22)
+        make_label(compare_locations_frame, "Compare the difference between two folders contents.", MAIN_BG, TITLE_FAINT_FG, 0.5, 0.08, "c", 14)
+
+        name_lbl = make_label(compare_locations_frame, "Location One", MAIN_BG, LABEL_FAINT_FG, 0.0125, 0.11, "nw", 14)
+        name_lbl['font'] = font.Font(slant="italic", size=14)
+        name_lbl = make_label(compare_locations_frame, "Location Two", MAIN_BG, LABEL_FAINT_FG, 0.0125, 0.18, "nw", 14)
+        name_lbl['font'] = font.Font(slant="italic", size=14)
+
+        make_label(compare_locations_frame, "Compare location similarity of files in subfolders.\t\t\t        \n"
+                                            " e.g. The same file in different subfolder locations will be shown as a difference.", MAIN_BG, TITLE_FAINT_FG, 0.55, 0.28, "c", 12)
+
+        make_label(compare_locations_frame, "_"*23+" "*50+"_"*23, MAIN_BG, LABEL_FAINT_FG, 0.5, 0.32, "c", 14)
+
 
     def compare_folders(self, use_location_similarity, entry_one, entry_two, listbox_one, listbox_two, loc_one_count, loc_two_count, notice):
         location_one = entry_one.get()
