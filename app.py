@@ -413,6 +413,21 @@ class Window:
 
         make_label(compare_locations_frame, "_"*23+" "*50+"_"*23, MAIN_BG, LABEL_FAINT_FG, 0.5, 0.32, "c", 14)
 
+        name_lbl = make_label(compare_locations_frame, "Unique Location One Items", MAIN_BG, LABEL_FAINT_FG, 0.0125, 0.36, "nw", 14)
+        loc_one_count = make_label(compare_locations_frame, "0 Items", MAIN_BG, "white", 0.99, 0.36, "ne", 13)
+        name_lbl['font'] = font.Font(slant="italic", size=14)
+        listbox_frame_one = make_frame(compare_locations_frame, MAIN_BG, 0.975, 0.28, 0.5, 0.53, "c")
+        listbox_one = make_listbox(listbox_frame_one, 12, ENTRY_BG, "black")
+        listbox_one.bind("<<ListboxSelect>>", lambda event: file_selection(event, listbox_one.get(0, tk.END), entry_one.get()))
+
+        name_lbl = make_label(compare_locations_frame, "Unique Location Two Items", MAIN_BG, LABEL_FAINT_FG, 0.0125, 0.68, "nw", 14)
+        name_lbl['font'] = font.Font(slant="italic", size=14)
+        listbox_frame_two = make_frame(compare_locations_frame, MAIN_BG, 0.975, 0.28, 0.5, 0.85, "c")
+        listbox_two = make_listbox(listbox_frame_two, 12, ENTRY_BG, "black")
+        listbox_two.bind("<<ListboxSelect>>", lambda event: file_selection(event, listbox_two.get(0, tk.END), entry_two.get()))
+        loc_two_count = make_label(compare_locations_frame, "0 Items", MAIN_BG, "white", 0.99, 0.68, "ne", 13)
+        notice = make_label(compare_locations_frame, "", MAIN_BG, "red", 0.81, 0.35, "c", 13)
+        make_button(compare_locations_frame, "Compare Folders", 1, 18, BUTTON_BG, "black", 0.5, 0.33, lambda: self.compare_folders(use_location_similarity.get(), entry_one, entry_two, listbox_one, listbox_two, loc_one_count, loc_two_count, notice), 14, "c")
 
     def compare_folders(self, use_location_similarity, entry_one, entry_two, listbox_one, listbox_two, loc_one_count, loc_two_count, notice):
         location_one = entry_one.get()
