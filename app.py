@@ -307,6 +307,22 @@ class Window:
 
             src_location, dst_location, sub_folders_check, sync_files_edited, sync_deleted_files, src_drive_name, dst_drive_name = location
 
+            # for both file and folder sync the dst must exist
+            if not folder_exists(dst_location):
+                locations_skipped += 1
+                print(dst_location, "dst directory does not exist.")
+
+            # if src is dir that doesnt exist then don't sync for safety but notify user
+            if not file_path(src_location) and not folder_exists(src_location):
+                locations_skipped += 1
+                print(src_location, "folder src directory does not exist.")
+
+            else:
+
+                # get list of files in dst location (without dst location prefix)
+                current_files_save = get_files_including_subfolders(dst_location)
+                print("\tDST items:" + str(current_files_save))
+
     def perform_preset(self, bar_progress, status, start_button, results):####old
         start_button.destroy()
         operation_count = len(self.presets.selected_preset["locations"])
