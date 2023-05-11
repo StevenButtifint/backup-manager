@@ -349,6 +349,20 @@ class Window:
                             clear_empty_folders(dst_location, file)
                             files_cleared += 1
 
+                # check modified files
+                if sync_files_edited == "Yes":
+                    for file in current_files_save:
+                        if file in current_files:
+                            if check_file_modified(src_location+"//"+file, dst_location+"//"+file):
+                                print("\t\tEDITED FILE (save): " + str(file) + " (should be copied to replace old backup version)")
+                                # use basic copy as should overwrite file in dst location but needs to be tested
+                                if "//" in file:
+                                    sub_location = file.rsplit('//', 1)
+                                    sub_location = sub_location[0]
+                                    make_dir(dst_location + "//" + sub_location)
+                                basic_copy(src_location + "//" + file, dst_location + "//" + file)
+                                files_updated += 1
+
     def perform_preset(self, bar_progress, status, start_button, results):####old
         start_button.destroy()
         operation_count = len(self.presets.selected_preset["locations"])
