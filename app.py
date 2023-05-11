@@ -323,6 +323,23 @@ class Window:
                 current_files_save = get_files_including_subfolders(dst_location)
                 print("\tDST items:" + str(current_files_save))
 
+                # src is a file path
+                if os.path.isdir(src_location):
+                    print(src_location, " - is a  directory")
+                    print(dst_location, " - is a  directory")
+                    # src is a folder
+                    # get list of files in src location (without src location prefix)
+                    if sub_folders_check == "Yes":
+                        current_files = get_files_including_subfolders(src_location)
+                    else:
+                        current_files = get_files_only(src_location)
+                    print("\tSRC items:" + str(current_files))
+
+                else:
+                    print(src_location, " - is a file, not a directory")
+                    current_files = get_file_only(src_location)
+                    src_location = get_file_folder(src_location)
+
     def perform_preset(self, bar_progress, status, start_button, results):####old
         start_button.destroy()
         operation_count = len(self.presets.selected_preset["locations"])
