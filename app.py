@@ -301,6 +301,12 @@ class Window:
         files_cleared = 0
         count = 1
 
+
+        for location in self.presets.selected_preset["locations"]:
+            print("Processing: " + str(location))
+
+            src_location, dst_location, sub_folders_check, sync_files_edited, sync_deleted_files, src_drive_name, dst_drive_name = location
+
     def perform_preset(self, bar_progress, status, start_button, results):####old
         start_button.destroy()
         operation_count = len(self.presets.selected_preset["locations"])
