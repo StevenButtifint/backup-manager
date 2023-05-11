@@ -363,6 +363,17 @@ class Window:
                                 basic_copy(src_location + "//" + file, dst_location + "//" + file)
                                 files_updated += 1
 
+                                # sync new files
+                for file in current_files:
+                    if file not in current_files_save:
+                        print("\t\tNEW FILE (save): " + file)  # note: save to sub location in dst if in sub location in src
+                        if "//" in file:
+                            sub_location = file.rsplit('//', 1)
+                            sub_location = sub_location[0]
+                            make_dir(dst_location+"//"+sub_location)
+                        basic_copy(src_location+"//"+file, dst_location+"//"+file)
+                        files_saved += 1
+
     def perform_preset(self, bar_progress, status, start_button, results):####old
         start_button.destroy()
         operation_count = len(self.presets.selected_preset["locations"])
