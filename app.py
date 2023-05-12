@@ -381,6 +381,16 @@ class Window:
             time.sleep(2)
 
             self.update_results(files_saved, files_updated, files_cleared)
+        if locations_skipped == 0:
+            self.status.configure(text="Completed")
+            update_last_used_string(self.resource_path(""))
+            self.last_sync_label.config(text=get_last_used_string(self.resource_path("")))
+        else:
+            self.status.configure(text=str(locations_skipped) + " location pair(s) listed were not found and skipped.", fg="red")
+
+        self.start_button.configure(state="normal")
+        self.sync_back_button.configure(state="normal")
+
     def perform_preset(self, bar_progress, status, start_button, results):####old
         start_button.destroy()
         operation_count = len(self.presets.selected_preset["locations"])
