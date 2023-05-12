@@ -1,3 +1,4 @@
+import time
 import threading
 from datetime import datetime
 
@@ -267,6 +268,7 @@ class Window:
 
             make_label(info_frame, "Preset: "+self.presets.selected_preset["name"], LISTBOX_BG, "black", 0.5, 0.1, "c", 17)
 
+            # check about drive letters maybe changing for drives used
 
             status = make_label(operation_page_frame, "Ready", MAIN_BG, LISTBOX_BG, 0.01, 0.93, "sw", 16)
             bar_progress = make_progress_bar(operation_page_frame, 0.5, 1, 800, "s")
@@ -301,6 +303,8 @@ class Window:
         files_cleared = 0
         count = 1
 
+        # currently assume:
+        # -locations exist and use same drive letters as when created
 
         for location in self.presets.selected_preset["locations"]:
             print("Processing: " + str(location))
@@ -317,6 +321,10 @@ class Window:
                 locations_skipped += 1
                 print(src_location, "folder src directory does not exist.")
 
+            # dst folder exists
+            # src could be
+            #  -a file that might exist
+            #  -a folder that exist
             else:
 
                 # get list of files in dst location (without dst location prefix)
@@ -390,28 +398,6 @@ class Window:
 
         self.start_button.configure(state="normal")
         self.sync_back_button.configure(state="normal")
-
-    def perform_preset(self, bar_progress, status, start_button, results):####old
-        start_button.destroy()
-        operation_count = len(self.presets.selected_preset["locations"])
-        bar_increment = int(100/operation_count)
-
-        files_saved = 0
-        files_updated = 0
-        files_cleared = 0
-
-        count = 1
-        for location in self.presets.selected_preset["locations"]:
-            print("Processing: " + str(location))
-
-            src_location, dst_location, sub_folders_check, sync_files_edited, sync_deleted_files, src_drive_name, dst_drive_name = location
-
-            else:
-
-            status.config(text="Processing ("+str(count)+"/"+str(operation_count)+")")
-            count += 1
-            bar_progress.config(value=bar_progress["value"]+bar_increment)
-            self.window.update_idletasks()
 
 
     def recommended_preset_selected(self, event):
