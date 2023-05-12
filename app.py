@@ -404,67 +404,15 @@ class Window:
         for location in self.presets.selected_preset["locations"]:
             print("Processing: " + str(location))
 
-            # currently assume:
-            # -locations exist and use same drive letters as when created
-
             src_location, dst_location, sub_folders_check, sync_files_edited, sync_deleted_files, src_drive_name, dst_drive_name = location
 
-            # get list of files in src location (without src location prefix)
-            if sub_folders_check == "Yes":
-                current_files = get_files_including_subfolders(src_location)
             else:
-                current_files = get_files_only(src_location)
-            print("\tSRC items:" + str(current_files))
-
-            # get list of files in dst location (without dst location prefix)
-            current_files_save = get_files_including_subfolders(dst_location)
-            print("\tDST items:" + str(current_files_save))
-
-            # if sync_deleted_files do this
-            if sync_deleted_files == "Yes":
-                for file in current_files_save:
-                    if file not in current_files:
-                        print("\t\tDELETED FILE (delete): "+str(file) + " (should be deleted from backup)")
-                        delete_file(dst_location+"//"+file)
-                        clear_empty_folders(dst_location, file)
-                        files_cleared += 1
-
-            # check modified files
-            if sync_files_edited == "Yes":
-                for file in current_files_save:
-                    if file in current_files:
-                        if check_file_modified(src_location+"//"+file, dst_location+"//"+file):
-                            print("\t\tEDITED FILE (save): " + str(file) + " (should be copied to replace old backup version)")
-                            # use basic copy as should overwrite file in dst location but needs to be tested
-                            if "//" in file:
-                                sub_location = file.rsplit('//', 1)
-                                sub_location = sub_location[0]
-                                make_dir(dst_location + "//" + sub_location)
-                            basic_copy(src_location + "//" + file, dst_location + "//" + file)
-                            files_updated += 1
-
-                            # sync new files
-            for file in current_files:
-                if file not in current_files_save:
-                    print("\t\tNEW FILE (save): " + file)  # note: save to sub location in dst if in sub location in src
-                    if "//" in file:
-                        sub_location = file.rsplit('//', 1)
-                        sub_location = sub_location[0]
-                        make_dir(dst_location+"//"+sub_location)
-                    basic_copy(src_location+"//"+file, dst_location+"//"+file)
-                    files_saved += 1
 
             status.config(text="Processing ("+str(count)+"/"+str(operation_count)+")")
             count += 1
             bar_progress.config(value=bar_progress["value"]+bar_increment)
             self.window.update_idletasks()
 
-            import time
-            time.sleep(1)
-
-        results.config(text="Details:  Saved: "+str(files_saved)+"    Updated: "+str(files_updated)+"    Cleared: "+str(files_cleared))
-        status.config(text="Completed")
-        make_button(operation_page_frame, "Close", 1, 6, BUTTON_BG, "black", 0.9865, 0.88, lambda: operation_page_frame.destroy(), 16, "se")
 
     def recommended_preset_selected(self, event):
         w = event.widget
