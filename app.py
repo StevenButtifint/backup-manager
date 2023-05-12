@@ -374,6 +374,13 @@ class Window:
                         basic_copy(src_location+"//"+file, dst_location+"//"+file)
                         files_saved += 1
 
+            self.status.configure(text="Processing ("+str(count)+"/"+str(operation_count)+")")
+            count += 1
+            self.bar_progress.config(value=self.bar_progress["value"]+bar_increment)
+            self.window.update() ###self.window.update_idletasks()
+            time.sleep(2)
+
+            self.update_results(files_saved, files_updated, files_cleared)
     def perform_preset(self, bar_progress, status, start_button, results):####old
         start_button.destroy()
         operation_count = len(self.presets.selected_preset["locations"])
