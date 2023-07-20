@@ -17,3 +17,11 @@ class CompareThread(QThread):
         self.location_two = location_two
         self.check_subfolder_similarity = check_subfolder_similarity
 
+    def run(self):
+        if self.check_subfolder_similarity:
+            location_one_differences, location_two_differences = list_unique_located_items(self.location_one, self.location_two)
+        else:
+            location_one_differences, location_two_differences = list_unique_items(self.location_one, self.location_two)
+
+        self.finished.emit(location_one_differences, location_two_differences)
+
