@@ -25,3 +25,12 @@ class CompareThread(QThread):
 
         self.finished.emit(location_one_differences, location_two_differences)
 
+
+class ShowWaitingChanges(QThread):
+    finished = pyqtSignal(int, str)
+
+    def __init__(self, locations):
+        super().__init__()
+        self.locations = locations
+        self.notice = NO_NOTICE
+
