@@ -34,3 +34,23 @@ class ShowWaitingChanges(QThread):
         self.locations = locations
         self.notice = NO_NOTICE
 
+    def run(self):
+        waiting_changes_total = 0
+        for location in self.locations:
+
+            src_location = location[0]
+            dst_location = location[1]
+            subfolders_check = location[2]
+
+            if folder_exists(src_location) and folder_exists(dst_location):
+                if subfolders_check == "Yes":
+                    location_one_differences, location_two_differences = list_unique_located_items(src_location, dst_location)
+                else:
+                    location_one_differences, location_two_differences = list_unique_items(src_location, dst_location)
+
+                waiting_changes_total += len(location_one_differences) + len(location_two_differences)
+            else:
+                self.notice = NO_LOCATION
+
+        self.finished.emit(waiting_changes_total, self.notice)
+
