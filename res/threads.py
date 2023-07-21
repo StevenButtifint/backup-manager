@@ -74,3 +74,22 @@ class PerformPreset(QThread):
     def increment_bar_progress(self):
         self.bar_progress += int(self.bar_increment)
 
+    def run(self):
+        files_saved = 0
+        files_updated = 0
+        files_cleared = 0
+
+        for index, location in enumerate(self.locations):
+            self.increment_bar_progress()
+            src_location, dst_location, sub_folders_check, sync_files_edited, sync_deleted_files, src_drive_name, dst_drive_name = location
+
+            # for both file and folder sync the dst must exist
+            if not folder_exists(dst_location):
+                self.alerts = SYNC_LOCATIONS_SKIPPED
+                print(dst_location, "dst directory does not exist.")
+
+            # if src is dir that doesnt exist then don't sync for safety but notify user
+            if not file_path(src_location) and not folder_exists(src_location):
+                self.alerts = SYNC_LOCATIONS_SKIPPED
+                print(src_location, "src directory does not exist.")
+
