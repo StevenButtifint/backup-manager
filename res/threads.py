@@ -115,3 +115,11 @@ class PerformPreset(QThread):
                     print(src_location, " - is a file, not a directory")
                     current_files = get_file_only(src_location)
                     src_location = get_file_folder(src_location)
+                # if sync_deleted_files do this
+                if sync_deleted_files == "Yes":
+                    for file in current_files_save:
+                        if file not in current_files:
+                            print("\t\tDELETED FILE (delete): " + str(file) + " (should be deleted from backup)")
+                            delete_file(dst_location + "//" + file)
+                            clear_empty_folders(dst_location, file)
+                            files_cleared += 1
