@@ -71,3 +71,6 @@ class PerformPreset(QThread):
     def set_bar_increment(self):
         return int(100 / (len(self.locations) + 1))
 
+    def increment_bar_progress(self):
+        self.bar_progress += int(self.bar_increment)
+
