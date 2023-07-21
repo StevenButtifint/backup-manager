@@ -54,3 +54,17 @@ class ShowWaitingChanges(QThread):
 
         self.finished.emit(waiting_changes_total, self.notice)
 
+
+class PerformPreset(QThread):
+    finished = pyqtSignal(str, int, int, int)
+    update_status = pyqtSignal(str, int)
+
+    def __init__(self, locations):
+        super().__init__()
+        self.locations = locations
+        self.location_count = len(locations)
+        self.status = SYNC_ACTIVE
+        self.alerts = SYNC_COMPLETED_SUCCESS
+        self.bar_progress = 0
+        self.bar_increment = self.set_bar_increment()
+
