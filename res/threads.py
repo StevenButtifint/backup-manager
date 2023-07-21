@@ -93,3 +93,25 @@ class PerformPreset(QThread):
                 self.alerts = SYNC_LOCATIONS_SKIPPED
                 print(src_location, "src directory does not exist.")
 
+            else:
+
+                # get list of files in dst location (without dst location prefix)
+                current_files_save = get_files_including_subfolders(dst_location)
+                print("\tDST items:" + str(current_files_save))
+
+                # src is a file path
+                if os.path.isdir(src_location):
+                    print(src_location, " - is a  directory")
+                    print(dst_location, " - is a  directory")
+                    # src is a folder
+                    # get list of files in src location (without src location prefix)
+                    if sub_folders_check == "Yes":
+                        current_files = get_files_including_subfolders(src_location)
+                    else:
+                        current_files = get_files_only(src_location)
+                    print("\tSRC items:" + str(current_files))
+
+                else:
+                    print(src_location, " - is a file, not a directory")
+                    current_files = get_file_only(src_location)
+                    src_location = get_file_folder(src_location)
