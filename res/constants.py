@@ -61,3 +61,8 @@ PROGRESSBAR_FG = "green"
 
 UPDATED_FG = "#5c7d92"
 VERSION_FG = "#3c5d72"
+
+# Notices
+NO_NOTICE = ""
+NO_PRESET_SELECTION = "No Preset Selected"
+NO_LOCATION = "WARNING: Preset Locations could not be found."
