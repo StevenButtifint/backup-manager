@@ -27,10 +27,11 @@ This backup manager makes syncing file systems across multiple drives and device
 
 
 ### What I Learned
-- How to utilize ttk treeview and notebook widgets.
-- How to customise ttk widgets using styles.
+- How to perform operations in QTreads and use signals to update the UI.
 - How to check the modified time of a file.
-- How to create a minimalistic UI for perform complex operations. 
+- How to create a modern and uniform looking interface.  
+- How to create a user-friendly UI for perform complex operations.
+- How data created within the executable environment during runtime is volatile.
 
 ### References
 - Icon links can be found [here](https://github.com/stevenbuttifint/backup-manager/blob/main/icon_links.txt).
