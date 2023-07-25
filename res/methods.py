@@ -13,3 +13,11 @@ def get_today_date():
     return datetime.today().strftime('%d/%m/%y')
 
 
+def get_later_date(date_one, date_two):
+    if date_one == 'never':
+        date_one = date_two
+    if date_two == 'never':
+        date_two = date_one
+    return max(date_one, date_two)
+
+
