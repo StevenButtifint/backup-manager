@@ -9,3 +9,7 @@ def get_directory():
     return path
 
 
+def get_today_date():
+    return datetime.today().strftime('%d/%m/%y')
+
+
