@@ -62,6 +62,13 @@ PROGRESSBAR_FG = "green"
 UPDATED_FG = "#5c7d92"
 VERSION_FG = "#3c5d72"
 
+# Status
+SYNC_READY = "Ready"
+SYNC_ACTIVE = "Syncing..."
+SYNC_COMPLETED_SUCCESS = "Completed"
+SYNC_LOCATIONS_SKIPPED = "ERROR: Locations were skipped"
+SYNC_FILES_SKIPPED = f'WARNING: Files skipped. Check {SYNC_LOG_DIR} for details.'
+
 # Notices
 NO_NOTICE = ""
 NO_PRESET_SELECTION = "No Preset Selected"
