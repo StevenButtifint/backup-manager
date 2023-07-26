@@ -13,6 +13,34 @@ from os.path import isfile, join
 from res.constants import *
 
 
+def get_directory():
+    path = QFileDialog.getExistingDirectory(caption='Select a Folder')
+    return path
+
+
+def get_today_date():
+    return datetime.today().strftime('%d/%m/%y')
+
+
+def get_later_date(date_one, date_two):
+    if date_one == 'never':
+        date_one = date_two
+    if date_two == 'never':
+        date_two = date_one
+    return max(date_one, date_two)
+
+
+def open_file_explorer(location):
+    location = location.replace('//', '\\')
+    location = location.replace('/', '\\')
+    subprocess.Popen(r'explorer /select,"'+location+'"')
+
+
+def only_letters_numbers(raw_string):
+    sanitized_string = re.sub(r'[^A-Za-z0-9 ]+', '', str(raw_string))
+    return sanitized_string
+
+
 def get_files_only(location):
     files = [f for f in listdir(location) if isfile(join(location, f))]
     return files
