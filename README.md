@@ -8,20 +8,15 @@
 - [References](#references)
 
 ---
-### Demo Images
-<img src="https://github.com/stevenbuttifint/backup-manager/blob/main/res/demo/menu.JPG?raw=true" width=80% height=90%>
-<br clear="left"/>
-
-<img src="https://github.com/stevenbuttifint/backup-manager/blob/main/res/demo/new.JPG?raw=true" width=80% height=90%>
-<br clear="left"/>
-
-<img src="https://github.com/stevenbuttifint/backup-manager/blob/main/res/demo/sync.JPG?raw=true" width=80% height=90%>
+### Demo Videos
+<img src="https://github.com/stevenbuttifint/backup-manager/blob/main/res/demo/sync_preset_demo.gif?raw=true" width=45% height=100%>
+<img src="https://github.com/stevenbuttifint/backup-manager/blob/main/res/demo/new_preset_demo.gif?raw=true" width=45% height=100%>
 
 ---
 
 ### Description
 
-This backup manager makes syncing file systems across multiple drives and devices quick and simple. The user can create custom presets that make maintaining backups as easy as clicking a single button. The application has been made with Python with Tkinter for the GUI.
+This backup manager makes syncing file systems across multiple drives and devices quick and simple. The user can create custom presets that make maintaining backups as easy as clicking a single button. The application has been made with Python with PyQt5 for the GUI.
 
 ---
 
