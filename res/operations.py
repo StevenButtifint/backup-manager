@@ -1,14 +1,15 @@
+import subprocess
 import win32api
 import shutil
-import os
 import json
-import subprocess
-import tkinter as tk
-from tkinter.filedialog import askdirectory, askopenfilename
-from os import listdir
-from datetime import date
-from os.path import isfile, join
+import os
+import re
 
+from tkinter.filedialog import askdirectory, askopenfilename
+from PyQt5.QtWidgets import *
+from datetime import datetime, date
+from os.path import isfile, join
+from os import listdir
 
 from res.constants import *
 
@@ -110,14 +111,6 @@ def clear_empty_folders(base, file_directory):
             pass  # folder not empty
 
 
-def resource_path(relative_path):
-    try:
-        base_path = sys._MEIPASS
-    except Exception:
-        base_path = os.path.abspath(".")
-    return os.path.join(base_path, relative_path)
-
-
 def get_drive_name(letter):
     disk_name = win32api.GetVolumeInformation(letter+":\\")[0]
     if disk_name == "":
@@ -156,22 +149,6 @@ def get_file():
     return path
 
 
-def add_file(entry):
-    path = get_file()
-    entry.config(state="normal")
-    entry.delete(0, tk.END)
-    entry.insert(0, path)
-    entry.config(state="readonly")
-
-
-def add_folder(entry):
-    path = get_folder()
-    entry.config(state="normal")
-    entry.delete(0, tk.END)
-    entry.insert(0, path)
-    entry.config(state="readonly")
-
-
 def file_exists(directory):
     return os.path.isfile(directory)
 
@@ -193,7 +170,7 @@ def read_json_file(directory):
 
 
 def write_json_file(directory, content):
-    with open(PRESETS_DIR, "w") as outfile:
+    with open(directory, "w") as outfile:
         json.dump(content, outfile)
     outfile.close()
 
