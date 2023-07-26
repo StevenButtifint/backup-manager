@@ -169,21 +169,16 @@ def read_json_file(directory):
     return json_data
 
 
+def get_preset(presets_dir, preset_name):
+    presets_list = read_json_file(presets_dir)
+    preset_dict = [x for x in presets_list if x['name'] == preset_name][0]
+    return preset_dict
+
+
 def write_json_file(directory, content):
     with open(directory, "w") as outfile:
         json.dump(content, outfile)
     outfile.close()
-
-
-def get_saved_presets(path):
-    try:
-        json_data = read_json_file(PRESETS_DIR)
-    except FileNotFoundError:
-        with open(PRESETS_DIR, "w") as outfile:
-            json.dump([], outfile)
-        outfile.close()
-        json_data = read_json_file(PRESETS_DIR)
-    return json_data
 
 
 def get_last_used_string(path):
