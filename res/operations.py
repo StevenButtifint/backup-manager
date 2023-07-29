@@ -128,6 +128,23 @@ def get_drive_names():
     return drive_names
 
 
+def get_preset_drive_names(locations):
+    drives = []
+    for location in locations:
+        src_location_letter = location[0][0]
+        dst_location_letter = location[1][0]
+
+        src_drive_name = get_drive_name(src_location_letter)
+        dst_drive_name = get_drive_name(dst_location_letter)
+
+        if src_drive_name not in drives:
+            drives.append(src_drive_name)
+        if dst_drive_name not in drives:
+            drives.append(dst_drive_name)
+
+    return drives
+
+
 def connected_drive_letters():
     drives = win32api.GetLogicalDriveStrings()
     drives = drives.split('\000')[:-1]
