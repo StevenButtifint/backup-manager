@@ -137,6 +137,14 @@ class Window(QtWidgets.QMainWindow):
         lbl_use_status = self.findChild(QLabel, 'lbl_use_status')
         lbl_use_status.setText(SYNC_READY)
 
+    def set_last_used_date(self):
+        presets_list = read_json_file(PRESETS_DIR)
+        most_recent_date = '00/00/0000'
+        for preset in presets_list:
+            most_recent_date = get_later_date(most_recent_date, preset['last-used'])
+        lbl_last_used = self.findChild(QLabel, 'lbl_last_used')
+        lbl_last_used.setText(f'Last Used: {most_recent_date}')
+
         else:
 
 
