@@ -132,6 +132,11 @@ class Window(QtWidgets.QMainWindow):
         if not os.path.isfile(PRESETS_DIR):
             write_json_file(PRESETS_DIR, [])
 
+    def back_home_from_use(self):
+        self.switch_main_page('page_home', SIZE_COMPACT)
+        lbl_use_status = self.findChild(QLabel, 'lbl_use_status')
+        lbl_use_status.setText(SYNC_READY)
+
         else:
 
 
