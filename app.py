@@ -26,6 +26,9 @@ class Window(QtWidgets.QMainWindow):
         self.bar_animation = None
         self.show()
 
+    def setup_environment(self):
+        self.ensure_local_presets_file()
+
         else:
 
 
