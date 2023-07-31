@@ -127,6 +127,11 @@ class Window(QtWidgets.QMainWindow):
         btn_use_preset = self.findChild(QToolButton, 'btn_use_preset')
         btn_use_preset.clicked.connect(lambda: self.perform_preset())
 
+    @staticmethod
+    def ensure_local_presets_file():
+        if not os.path.isfile(PRESETS_DIR):
+            write_json_file(PRESETS_DIR, [])
+
         else:
 
 
