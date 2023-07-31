@@ -29,6 +29,13 @@ class Window(QtWidgets.QMainWindow):
     def setup_environment(self):
         self.ensure_local_presets_file()
 
+    def setup_interface(self):
+        self.switch_main_page('page_home', SIZE_COMPACT)
+        self.switch_page(self.compare_page_stack, "loading_page")
+        self.setup_buttons()
+        self.set_notice_text('all_preset_notice', NO_NOTICE)
+        self.set_last_used_date()
+
         else:
 
 
