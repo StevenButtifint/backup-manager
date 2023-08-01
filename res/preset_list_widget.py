@@ -8,3 +8,6 @@ class PresetList:
     def clear_list(self):
         self.list_widget.clear()
 
+    def set_list(self, item_list):
+        self.clear_list()
+        self.list_widget.addItems(item_list)
