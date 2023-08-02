@@ -67,6 +67,7 @@ class PerformPreset(QThread):
         self.alerts = SYNC_COMPLETED_SUCCESS
         self.bar_progress = 0
         self.bar_increment = self.set_bar_increment()
+        self.skipped_files = []
 
     def set_bar_increment(self):
         return int(100 / (len(self.locations) + 1))
@@ -84,6 +85,7 @@ class PerformPreset(QThread):
         files_saved = 0
         files_updated = 0
         files_cleared = 0
+        self.skipped_files = []
 
         for index, location in enumerate(self.locations):
             self.increment_bar_progress()
@@ -166,3 +168,5 @@ class PerformPreset(QThread):
                             files_saved += 1
                         except:
                             self.skipped_files.append(src_location + "//" + file)
+            self.update_status.emit(self.status + " " + str(index+1) + " of " + str(self.location_count), self.bar_progress)
+
