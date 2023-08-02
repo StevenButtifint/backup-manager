@@ -74,6 +74,12 @@ class PerformPreset(QThread):
     def increment_bar_progress(self):
         self.bar_progress += int(self.bar_increment)
 
+    def log_skipped_files(self):
+        with open(SYNC_LOG_DIR, 'w') as f:
+            f.write('The following files were skipped:')
+            for file_name in self.skipped_files:
+                f.write(f"{file_name}\n")
+
     def run(self):
         files_saved = 0
         files_updated = 0
