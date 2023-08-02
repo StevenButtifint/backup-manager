@@ -151,3 +151,18 @@ class PerformPreset(QThread):
                                 except:
                                     self.skipped_files.append(src_location + "//" + file)
 
+                # sync new files
+                for file in current_files:
+                    if file not in current_files_save:
+                        print(
+                            "\t\tNEW FILE (save): " + file)  # note: save to sub location in dst if in sub location in src
+                        if "//" in file:
+                            sub_location = file.rsplit('//', 1)
+                            sub_location = sub_location[0]
+                            make_dir(dst_location + "//" + sub_location)
+
+                        try:
+                            basic_copy(src_location + "//" + file, dst_location + "//" + file)
+                            files_saved += 1
+                        except:
+                            self.skipped_files.append(src_location + "//" + file)
