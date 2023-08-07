@@ -170,3 +170,8 @@ class PerformPreset(QThread):
                             self.skipped_files.append(src_location + "//" + file)
             self.update_status.emit(self.status + " " + str(index+1) + " of " + str(self.location_count), self.bar_progress)
 
+        if len(self.skipped_files) > 0:
+            self.alerts = SYNC_FILES_SKIPPED
+            self.log_skipped_files()
+
+        self.finished.emit(self.alerts, files_saved, files_updated, files_cleared)
