@@ -181,6 +181,9 @@ class Window(QtWidgets.QMainWindow):
             src_location, dst_location, sub_folders, modifications, deletions, _, _ = location
             self.add_location_to_table('recommended_preset_selected_table', src_location, dst_location, sub_folders, modifications, deletions)
 
+    @staticmethod
+    def on_location_item_clicked(location, item):
+        open_file_explorer(location + "/" + item)
 
     def toggle_page_size(self, current_page_name):
         current_height = self.window().frameGeometry().height()
