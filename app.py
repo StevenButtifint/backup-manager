@@ -181,7 +181,13 @@ class Window(QtWidgets.QMainWindow):
             src_location, dst_location, sub_folders, modifications, deletions, _, _ = location
             self.add_location_to_table('recommended_preset_selected_table', src_location, dst_location, sub_folders, modifications, deletions)
 
+
+    def toggle_page_size(self, current_page_name):
+        current_height = self.window().frameGeometry().height()
+        if current_height == SIZE_COMPACT[1] + 32:
+            self.switch_main_page(current_page_name, SIZE_EXPANDED)
         else:
+            self.switch_main_page(current_page_name, SIZE_COMPACT)
 
 
 
