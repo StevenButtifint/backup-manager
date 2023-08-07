@@ -163,6 +163,24 @@ class Window(QtWidgets.QMainWindow):
             src_location, dst_location, sub_folders, modifications, deletions, _, _ = location
             self.add_location_to_table('all_preset_selected_table', src_location, dst_location, sub_folders, modifications, deletions)
 
+    def recommended_presets_item_clicked(self, item):
+        item_name = item.text()
+        self.disable_recommended_preset_delete_option()
+        self.show_recommended_preset_notice(NO_NOTICE)
+        self.selected_preset = get_preset(PRESETS_DIR, item_name)
+        recommended_preset_selected_name = self.findChild(QLabel, 'recommended_preset_selected_name')
+        recommended_preset_selected_name.setText(item_name)
+        recommended_preset_selected_description = self.findChild(QLabel, 'recommended_preset_selected_description')
+        recommended_preset_selected_description.setText(self.selected_preset['description'])
+        recommended_preset_selected_created = self.findChild(QLabel, 'recommended_preset_selected_created')
+        recommended_preset_selected_created.setText(self.selected_preset['created'])
+        recommended_preset_selected_last_used = self.findChild(QLabel, 'recommended_preset_selected_last_used')
+        recommended_preset_selected_last_used.setText(self.selected_preset['last-used'])
+        self.clear_locations_table('recommended_preset_selected_table')
+        for location in self.selected_preset['locations']:
+            src_location, dst_location, sub_folders, modifications, deletions, _, _ = location
+            self.add_location_to_table('recommended_preset_selected_table', src_location, dst_location, sub_folders, modifications, deletions)
+
         else:
 
 
