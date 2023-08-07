@@ -145,6 +145,24 @@ class Window(QtWidgets.QMainWindow):
         lbl_last_used = self.findChild(QLabel, 'lbl_last_used')
         lbl_last_used.setText(f'Last Used: {most_recent_date}')
 
+    def all_presets_item_clicked(self, item):
+        item_name = item.text()
+        self.disable_all_preset_delete_option()
+        self.show_all_preset_notice(NO_NOTICE)
+        self.selected_preset = get_preset(PRESETS_DIR, item_name)
+        all_preset_selected_name = self.findChild(QLabel, 'all_preset_selected_name')
+        all_preset_selected_name.setText(item_name)
+        all_preset_selected_description = self.findChild(QLabel, 'all_preset_selected_description')
+        all_preset_selected_description.setText(self.selected_preset['description'])
+        all_preset_selected_created = self.findChild(QLabel, 'all_preset_selected_created')
+        all_preset_selected_created.setText(self.selected_preset['created'])
+        all_preset_selected_last_used = self.findChild(QLabel, 'all_preset_selected_last_used')
+        all_preset_selected_last_used.setText(self.selected_preset['last-used'])
+        self.clear_locations_table('all_preset_selected_table')
+        for location in self.selected_preset['locations']:
+            src_location, dst_location, sub_folders, modifications, deletions, _, _ = location
+            self.add_location_to_table('all_preset_selected_table', src_location, dst_location, sub_folders, modifications, deletions)
+
         else:
 
 
