@@ -225,6 +225,16 @@ class Window(QtWidgets.QMainWindow):
             self.add_location_to_table('tbl_locations_added', src_location, dst_location, sub_folders, modifications, deletions)
             self.reset_new_location_pair()
 
+    def add_location_to_table(self, table_name, src_location, dst_location, sub_folders, modifications, deletions):
+        tbl_locations_added = self.findChild(QTableWidget, table_name)
+        new_row_index = tbl_locations_added.rowCount()
+        tbl_locations_added.insertRow(new_row_index)
+        tbl_locations_added.setItem(new_row_index, 0, QTableWidgetItem(str(src_location)))
+        tbl_locations_added.setItem(new_row_index, 1, QTableWidgetItem(str(dst_location)))
+        tbl_locations_added.setItem(new_row_index, 2, QTableWidgetItem(sub_folders))
+        tbl_locations_added.setItem(new_row_index, 3, QTableWidgetItem(modifications))
+        tbl_locations_added.setItem(new_row_index, 4, QTableWidgetItem(deletions))
+
         else:
         else:
 
