@@ -235,6 +235,21 @@ class Window(QtWidgets.QMainWindow):
         tbl_locations_added.setItem(new_row_index, 3, QTableWidgetItem(modifications))
         tbl_locations_added.setItem(new_row_index, 4, QTableWidgetItem(deletions))
 
+    def reset_new_location_pair(self):
+        self.line_src_location.setText("")
+        self.line_dst_location.setText("")
+
+    def clear_new_preset_locations(self):
+        self.clear_locations_table('tbl_locations_added')
+
+    def clear_all_presets_table(self):
+        self.clear_locations_table('all_preset_selected_table')
+
+    def clear_locations_table(self, table_name):
+        tbl_locations_added = self.findChild(QTableWidget, table_name)
+        while tbl_locations_added.rowCount() > 0:
+            tbl_locations_added.removeRow(0)
+
         else:
         else:
 
