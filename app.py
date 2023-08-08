@@ -250,6 +250,26 @@ class Window(QtWidgets.QMainWindow):
         while tbl_locations_added.rowCount() > 0:
             tbl_locations_added.removeRow(0)
 
+    def save_new_preset(self):
+        new_preset_name_line = self.findChild(QLineEdit, 'line_preset_name')
+        name = only_letters_numbers(new_preset_name_line.text())
+        new_preset_description_line = self.findChild(QLineEdit, 'line_preset_description')
+        description = only_letters_numbers(new_preset_description_line.text())
+        locations = self.get_new_table_locations()
+
+        new_preset = {
+            "name": name,
+            "description": description,
+            "created": get_today_date(),
+            "last-used": "never",
+            "locations": locations,
+            "drives": get_preset_drive_names(locations)
+        }
+
+        self.add_preset_to_saved_presets(new_preset)
+        self.clear_new_preset_page()
+        self.switch_main_page('page_home', SIZE_COMPACT)
+
         else:
         else:
 
