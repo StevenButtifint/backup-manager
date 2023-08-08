@@ -270,6 +270,20 @@ class Window(QtWidgets.QMainWindow):
         self.clear_new_preset_page()
         self.switch_main_page('page_home', SIZE_COMPACT)
 
+    def get_new_table_locations(self):
+        tbl_locations_added = self.findChild(QTableWidget, 'tbl_locations_added')
+        locations = []
+        for row in range(tbl_locations_added.rowCount()):
+            src_location = tbl_locations_added.item(row, 0).text()
+            dst_location = tbl_locations_added.item(row, 1).text()
+            subfolders = tbl_locations_added.item(row, 2).text()
+            modified = tbl_locations_added.item(row, 3).text()
+            deletions = tbl_locations_added.item(row, 4).text()
+            src_drive_letter = tbl_locations_added.item(row, 0).text()[0]
+            dst_drive_letter = tbl_locations_added.item(row, 1).text()[0]
+            locations.append([src_location, dst_location, subfolders, modified, deletions, src_drive_letter, dst_drive_letter])
+        return locations
+
         else:
         else:
 
