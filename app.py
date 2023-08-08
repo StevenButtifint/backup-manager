@@ -284,6 +284,12 @@ class Window(QtWidgets.QMainWindow):
             locations.append([src_location, dst_location, subfolders, modified, deletions, src_drive_letter, dst_drive_letter])
         return locations
 
+    def clear_new_preset_page(self):
+        new_preset_name_line = self.findChild(QLineEdit, 'line_preset_name')
+        new_preset_name_line.setText("")
+        new_preset_description_line = self.findChild(QLineEdit, 'line_preset_description')
+        new_preset_description_line.setText("")
+        self.clear_new_preset_locations()
         else:
         else:
 
