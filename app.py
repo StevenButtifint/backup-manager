@@ -192,10 +192,39 @@ class Window(QtWidgets.QMainWindow):
         else:
             self.switch_main_page(current_page_name, SIZE_COMPACT)
 
+    def add_preset_location(self):
+        src_location = self.line_src_location.text()
+        dst_location = self.line_dst_location.text()
 
+        new_location_chk_sub_folders = self.findChild(QCheckBox, 'chk_sub_folders')
+        new_location_chk_modifications = self.findChild(QCheckBox, 'chk_modifications')
+        new_location_chk_deletions = self.findChild(QCheckBox, 'chk_deletions')
 
+        if new_location_chk_sub_folders.isChecked():
+            sub_folders = "Yes"
         else:
+            sub_folders = "No"
+
+        if new_location_chk_modifications.isChecked():
+            modifications = "Yes"
         else:
+            modifications = "No"
+
+        if new_location_chk_deletions.isChecked():
+            deletions = "Yes"
+        else:
+            deletions = "No"
+
+        if src_location == "":
+            print("set a src location")
+        elif dst_location == "":
+            print("set a dst location")
+        elif src_location == dst_location:
+            print("Source and Destination locations must be different")
+        else:
+            self.add_location_to_table('tbl_locations_added', src_location, dst_location, sub_folders, modifications, deletions)
+            self.reset_new_location_pair()
+
         else:
         else:
 
