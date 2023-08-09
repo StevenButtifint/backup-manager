@@ -290,6 +290,13 @@ class Window(QtWidgets.QMainWindow):
         new_preset_description_line = self.findChild(QLineEdit, 'line_preset_description')
         new_preset_description_line.setText("")
         self.clear_new_preset_locations()
+
+    def add_preset_to_saved_presets(self, new_preset):
+        self.ensure_local_presets_file()
+        presets_list = read_json_file(PRESETS_DIR)
+        presets_list.append(new_preset)
+        write_json_file(PRESETS_DIR, presets_list)
+
         else:
         else:
 
