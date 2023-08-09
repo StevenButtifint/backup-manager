@@ -339,8 +339,15 @@ class Window(QtWidgets.QMainWindow):
         updated_list = [preset for preset in presets_list if preset['name'] != self.selected_preset['name']]
         write_json_file(PRESETS_DIR, updated_list)
 
+    def show_all_preset_notice(self, notice):
+        self.set_notice_text('all_preset_notice', notice)
 
+    def show_recommended_preset_notice(self, notice):
+        self.set_notice_text('recommended_preset_notice', notice)
 
+    def set_notice_text(self, notice_label, notice_text):
+        notice = self.findChild(QLabel, notice_label)
+        notice.setText(notice_text)
 
 
 
