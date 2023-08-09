@@ -297,8 +297,24 @@ class Window(QtWidgets.QMainWindow):
         presets_list.append(new_preset)
         write_json_file(PRESETS_DIR, presets_list)
 
+    def enable_preset_delete_option(self):
+        if self.selected_preset is not None:
+            btn_confirm_delete = self.findChild(QToolButton, 'btn_confirm_delete')
+            btn_confirm_delete.setEnabled(True)
+            btn_confirm_delete.show()
         else:
+            print("no preset selected")
+            self.show_all_preset_notice(NO_PRESET_SELECTION)
+
+    def enable_preset_delete_option_recommended(self):
+        if self.selected_preset is not None:
+            btn_confirm_delete = self.findChild(QToolButton, 'btn_confirm_delete_recommended')
+            btn_confirm_delete.setEnabled(True)
+            btn_confirm_delete.show()
         else:
+            print("no preset selected")
+            self.show_recommended_preset_notice(NO_PRESET_SELECTION)
+
 
 
 
