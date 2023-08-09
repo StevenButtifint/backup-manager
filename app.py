@@ -315,8 +315,29 @@ class Window(QtWidgets.QMainWindow):
             print("no preset selected")
             self.show_recommended_preset_notice(NO_PRESET_SELECTION)
 
+    def disable_all_preset_delete_option(self):
+        btn_confirm_delete = self.findChild(QToolButton, 'btn_confirm_delete')
+        btn_confirm_delete.setEnabled(False)
+        btn_confirm_delete.hide()
 
+    def disable_recommended_preset_delete_option(self):
+        btn_confirm_delete = self.findChild(QToolButton, 'btn_confirm_delete_recommended')
+        btn_confirm_delete.setEnabled(False)
+        btn_confirm_delete.hide()
 
+    def remove_preset_from_all_list(self):
+        self.delete_preset()
+        self.refresh_all_presets_list()
+
+    def remove_preset_from_recommended_list(self):
+        self.delete_preset()
+        self.refresh_recommended_presets_list()
+
+    def delete_preset(self):
+        self.ensure_local_presets_file()
+        presets_list = read_json_file(PRESETS_DIR)
+        updated_list = [preset for preset in presets_list if preset['name'] != self.selected_preset['name']]
+        write_json_file(PRESETS_DIR, updated_list)
 
 
 
