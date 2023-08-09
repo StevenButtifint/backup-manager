@@ -349,6 +349,10 @@ class Window(QtWidgets.QMainWindow):
         notice = self.findChild(QLabel, notice_label)
         notice.setText(notice_text)
 
+    @staticmethod
+    def select_folder(line_edit):
+        path = get_directory()
+        line_edit.setText(path)
 
 
 
