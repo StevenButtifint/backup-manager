@@ -373,6 +373,17 @@ class Window(QtWidgets.QMainWindow):
         self.recommended_presets_list.set_list(recommended_preset_names)
         self.clear_recommended_preset_preview()
 
+    def clear_recommended_preset_preview(self):
+        recommended_preset_selected_name = self.findChild(QLabel, 'recommended_preset_selected_name')
+        recommended_preset_selected_name.setText('-')
+        recommended_preset_selected_description = self.findChild(QLabel, 'recommended_preset_selected_description')
+        recommended_preset_selected_description.setText('-')
+        recommended_preset_selected_created = self.findChild(QLabel, 'recommended_preset_selected_created')
+        recommended_preset_selected_created.setText('-')
+        recommended_preset_selected_last_used = self.findChild(QLabel, 'recommended_preset_selected_last_used')
+        recommended_preset_selected_last_used.setText('-')
+        self.disable_recommended_preset_delete_option()
+        self.clear_locations_table('recommended_preset_selected_table')
 
     def refresh_all_presets_list(self):
         json_data = read_json_file(PRESETS_DIR)
@@ -381,6 +392,18 @@ class Window(QtWidgets.QMainWindow):
             preset_names.append(json_data[x]["name"])
         self.all_presets_list.set_list(preset_names)
         self.clear_select_preset_preview()
+
+    def clear_select_preset_preview(self):
+        all_preset_selected_name = self.findChild(QLabel, 'all_preset_selected_name')
+        all_preset_selected_name.setText('-')
+        all_preset_selected_description = self.findChild(QLabel, 'all_preset_selected_description')
+        all_preset_selected_description.setText('-')
+        all_preset_selected_created = self.findChild(QLabel, 'all_preset_selected_created')
+        all_preset_selected_created.setText('-')
+        all_preset_selected_last_used = self.findChild(QLabel, 'all_preset_selected_last_used')
+        all_preset_selected_last_used.setText('-')
+        self.disable_all_preset_delete_option()
+        self.clear_locations_table('all_preset_selected_table')
 
         else:
         else:
