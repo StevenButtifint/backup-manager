@@ -354,6 +354,14 @@ class Window(QtWidgets.QMainWindow):
         path = get_directory()
         line_edit.setText(path)
 
+    def view_recommended_presets(self):
+        self.refresh_recommended_presets_list()
+        self.switch_main_page('page_recommended_presets', SIZE_COMPACT)
+
+    def view_all_presets(self):
+        self.refresh_all_presets_list()
+        self.switch_main_page('page_select_preset', SIZE_COMPACT)
+
 
 
         else:
