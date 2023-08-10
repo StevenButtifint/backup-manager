@@ -405,6 +405,18 @@ class Window(QtWidgets.QMainWindow):
         self.disable_all_preset_delete_option()
         self.clear_locations_table('all_preset_selected_table')
 
+    def switch_main_page(self, page_name, window_size):
+        self.switch_page(self.main_page_stack, page_name)
+        self.setFixedWidth(window_size[0])
+        self.setFixedHeight(window_size[1])
+        self.set_notice_text('all_preset_notice', NO_NOTICE)
+        self.set_notice_text('recommended_preset_notice', NO_NOTICE)
+        if page_name == 'page_home':
+            self.selected_preset = None
+
+    def switch_page(self, page_stack, page_name):
+        page_stack.setCurrentWidget(self.findChild(QWidget, page_name))
+
         else:
         else:
         else:
