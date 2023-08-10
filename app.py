@@ -362,7 +362,25 @@ class Window(QtWidgets.QMainWindow):
         self.refresh_all_presets_list()
         self.switch_main_page('page_select_preset', SIZE_COMPACT)
 
+    def refresh_recommended_presets_list(self):
+        json_data = read_json_file(PRESETS_DIR)
+        recommended_preset_names = []
+        current_connected_drives = connected_drive_letters()
+        for x in range(len(json_data)):
+            preset_drives = json_data[x]["drives"]
+            if set(preset_drives).issubset(current_connected_drives):
+                recommended_preset_names.append(json_data[x]["name"])
+        self.recommended_presets_list.set_list(recommended_preset_names)
+        self.clear_recommended_preset_preview()
 
+
+    def refresh_all_presets_list(self):
+        json_data = read_json_file(PRESETS_DIR)
+        preset_names = []
+        for x in range(len(json_data)):
+            preset_names.append(json_data[x]["name"])
+        self.all_presets_list.set_list(preset_names)
+        self.clear_select_preset_preview()
 
         else:
         else:
