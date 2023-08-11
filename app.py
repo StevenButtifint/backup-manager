@@ -417,7 +417,19 @@ class Window(QtWidgets.QMainWindow):
     def switch_page(self, page_stack, page_name):
         page_stack.setCurrentWidget(self.findChild(QWidget, page_name))
 
+    def get_location_differences(self, location_one, location_two):
+        if (location_one == "") or (location_two == ""):
+            print("select locations")
+        if not folder_exists(location_one) or not folder_exists(location_two):
+            print("locations could not be found")
         else:
+            self.btn_compare_locations.setEnabled(False)
+            self.switch_page(self.compare_page_stack, "loading_page")
+            self.switch_main_page('page_compare_folders', SIZE_EXPANDED)
+            self.compare_thread = CompareThread(str(location_one), str(location_two), self.chk_subfolder_similarity.isChecked())
+            self.compare_thread.finished.connect(self.show_comparison)
+            self.compare_thread.start()
+
         else:
         else:
 
