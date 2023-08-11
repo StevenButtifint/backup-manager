@@ -476,6 +476,23 @@ class Window(QtWidgets.QMainWindow):
         else:
             lbl_changes_waiting.setText(f'{notice}')
 
+    def perform_preset(self):
+        self.disable_perform_preset()
+        self.perform_preset_thread = PerformPreset(self.selected_preset["locations"])
+        self.perform_preset_thread.update_status.connect(self.update_preset_progress)
+        self.perform_preset_thread.finished.connect(self.preset_sync_finished)
+        self.perform_preset_thread.start()
+
+    def disable_perform_preset(self):
+        btn_use_preset = self.findChild(QToolButton, 'btn_use_preset')
+        btn_use_preset.setText('SYNCING')
+        btn_use_preset.setEnabled(False)
+
+    def enable_perform_preset(self):
+        btn_use_preset = self.findChild(QToolButton, 'btn_use_preset')
+        btn_use_preset.setText('START')
+        btn_use_preset.setEnabled(True)
+
 
     @staticmethod
     def resource_path(relative_path):
