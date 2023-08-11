@@ -469,7 +469,13 @@ class Window(QtWidgets.QMainWindow):
             self.waiting_changes_thread.finished.connect(self.show_waiting_changes)
             self.waiting_changes_thread.start()
 
+    def show_waiting_changes(self, changes_count, notice):
+        lbl_changes_waiting = self.findChild(QLabel, 'lbl_changes_waiting')
+        if notice == NO_NOTICE:
+            lbl_changes_waiting.setText(f'{changes_count} changes are waiting to be synced.')
         else:
+            lbl_changes_waiting.setText(f'{notice}')
+
 
     @staticmethod
     def resource_path(relative_path):
