@@ -430,6 +430,12 @@ class Window(QtWidgets.QMainWindow):
             self.compare_thread.finished.connect(self.show_comparison)
             self.compare_thread.start()
 
+    def show_comparison(self, list_one, list_two):
+        self.update_location_lists(list_one, list_two)
+        self.update_location_lists_count(len(list_one), len(list_two))
+        self.switch_page(self.compare_page_stack, "results_page")
+        self.btn_compare_locations.setEnabled(True)
+
         else:
         else:
 
