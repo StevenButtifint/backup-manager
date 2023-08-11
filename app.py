@@ -444,7 +444,31 @@ class Window(QtWidgets.QMainWindow):
         location_one_list.addItems(list_one)
         location_two_list.addItems(list_two)
 
+    def update_location_lists_count(self, list_one_count, list_two_count):
+        lbl_location_one_count = self.findChild(QLabel, 'lbl_location_one_count')
+        lbl_location_two_count = self.findChild(QLabel, 'lbl_location_two_count')
+        lbl_location_one_count.setText(str(list_one_count) + " Items")
+        lbl_location_two_count.setText(str(list_two_count) + " Items")
+
+    def select_preset(self):
+        if self.selected_preset is None:
+            self.show_all_preset_notice(NO_PRESET_SELECTION)
+            self.show_recommended_preset_notice(NO_PRESET_SELECTION)
         else:
+            use_progress_bar = self.findChild(QProgressBar, 'use_progress_bar')
+            use_progress_bar.setValue(0)
+            use_preset_name = self.findChild(QLabel, 'use_preset_name')
+            use_preset_name.setText(self.selected_preset["name"])
+            use_preset_last_used = self.findChild(QLabel, 'use_preset_last_used')
+            use_preset_last_used.setText(self.selected_preset["last-used"])
+            self.switch_main_page('page_use_preset', SIZE_COMPACT)
+            lbl_changes_waiting = self.findChild(QLabel, 'lbl_changes_waiting')
+            lbl_changes_waiting.setText("Calculating number of potential changes...")
+
+            self.waiting_changes_thread = ShowWaitingChanges(self.selected_preset["locations"])
+            self.waiting_changes_thread.finished.connect(self.show_waiting_changes)
+            self.waiting_changes_thread.start()
+
         else:
 
     @staticmethod
