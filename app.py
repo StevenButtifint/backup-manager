@@ -436,6 +436,14 @@ class Window(QtWidgets.QMainWindow):
         self.switch_page(self.compare_page_stack, "results_page")
         self.btn_compare_locations.setEnabled(True)
 
+    def update_location_lists(self, list_one, list_two):
+        location_one_list = self.findChild(QListWidget, 'location_one_list')
+        location_two_list = self.findChild(QListWidget, 'location_two_list')
+        location_one_list.clear()
+        location_two_list.clear()
+        location_one_list.addItems(list_one)
+        location_two_list.addItems(list_two)
+
         else:
         else:
 
