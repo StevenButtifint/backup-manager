@@ -493,6 +493,10 @@ class Window(QtWidgets.QMainWindow):
         btn_use_preset.setText('START')
         btn_use_preset.setEnabled(True)
 
+    def update_preset_progress(self, status, percent):
+        self.update_preset_bar(percent)
+        self.update_preset_status(status)
+
 
     @staticmethod
     def resource_path(relative_path):
