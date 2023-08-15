@@ -529,6 +529,17 @@ class Window(QtWidgets.QMainWindow):
 
         write_json_file(PRESETS_DIR, presets_list)
 
+    def update_preset_bar(self, percent):
+        use_progress_bar = self.findChild(QProgressBar, 'use_progress_bar')
+        if use_progress_bar.value() == 100:
+            use_progress_bar.setValue(0)
+
+        self.bar_animation = QPropertyAnimation(use_progress_bar, b"value")
+        self.bar_animation.setEasingCurve(QEasingCurve.InCubic)
+        self.bar_animation.setEndValue(percent)
+        self.bar_animation.setDuration(200)
+        self.bar_animation.start()
+
 
     @staticmethod
     def resource_path(relative_path):
