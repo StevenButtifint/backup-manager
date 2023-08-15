@@ -540,6 +540,9 @@ class Window(QtWidgets.QMainWindow):
         self.bar_animation.setDuration(200)
         self.bar_animation.start()
 
+    def update_preset_status(self, status):
+        lbl_use_status = self.findChild(QLabel, 'lbl_use_status')
+        lbl_use_status.setText(status)
 
     @staticmethod
     def resource_path(relative_path):
