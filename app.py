@@ -520,6 +520,15 @@ class Window(QtWidgets.QMainWindow):
             else:
                 lbl_changes_waiting.setText(f'Locations were already synced.')
 
+    def update_preset_last_used(self):
+        presets_list = read_json_file(PRESETS_DIR)
+
+        for preset in presets_list:
+            if preset['name'] == self.selected_preset['name']:
+                preset['last-used'] = get_today_date()
+
+        write_json_file(PRESETS_DIR, presets_list)
+
 
     @staticmethod
     def resource_path(relative_path):
