@@ -497,6 +497,29 @@ class Window(QtWidgets.QMainWindow):
         self.update_preset_bar(percent)
         self.update_preset_status(status)
 
+    def preset_sync_finished(self, status, num_saved, num_updated, num_cleared):
+        print("preset thread is done")
+        print(" info: ", str(num_saved), str(num_updated), str(num_cleared))
+        self.update_preset_status(status)
+        self.enable_perform_preset()
+        if status == SYNC_COMPLETED_SUCCESS:
+            self.update_preset_bar(100)
+            lbl_changes_waiting = self.findChild(QLabel, 'lbl_changes_waiting')
+
+            if (num_saved + num_updated + num_cleared) > 0:
+                saved_string = f'Saved {num_saved}, ' if num_saved > 0 else ""
+                updated_string = f'Updated {num_updated}, ' if num_updated > 0 else ""
+                cleared_string = f'Cleared {num_cleared}, ' if num_cleared > 0 else ""
+                full_string = saved_string + updated_string + cleared_string
+                lbl_changes_waiting.setText(f'Successfully synced files. \n[{full_string[:-2]}]')
+                use_preset_last_used = self.findChild(QLabel, 'use_preset_last_used')
+                use_preset_last_used.setText(get_today_date())
+                self.update_preset_last_used()
+                self.set_last_used_date()
+
+            else:
+                lbl_changes_waiting.setText(f'Locations were already synced.')
+
 
     @staticmethod
     def resource_path(relative_path):
